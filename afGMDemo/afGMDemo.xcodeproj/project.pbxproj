@@ -1,0 +1,286 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		389D91191392E89E005A7B40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91181392E89E005A7B40 /* UIKit.framework */; };
+		389D911B1392E89F005A7B40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911A1392E89F005A7B40 /* Foundation.framework */; };
+		389D911D1392E89F005A7B40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911C1392E89F005A7B40 /* CoreGraphics.framework */; };
+		389D91231392E89F005A7B40 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 389D91211392E89F005A7B40 /* InfoPlist.strings */; };
+		389D91261392E89F005A7B40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91251392E89F005A7B40 /* main.m */; };
+		389D91291392E89F005A7B40 /* afGMDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91281392E89F005A7B40 /* afGMDemoAppDelegate.m */; };
+		389D912C1392E89F005A7B40 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D912A1392E89F005A7B40 /* MainWindow.xib */; };
+		389D912F1392E89F005A7B40 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D912E1392E89F005A7B40 /* RootViewController.m */; };
+		389D91321392E89F005A7B40 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D91301392E89F005A7B40 /* RootViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		389D91141392E89E005A7B40 /* afGMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = afGMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		389D91181392E89E005A7B40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		389D911A1392E89F005A7B40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		389D911C1392E89F005A7B40 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		389D91201392E89F005A7B40 /* afGMDemo-Info.plist */ = {isa = PBXFileReference; path = "afGMDemo-Info.plist"; sourceTree = "<group>"; };
+		389D91221392E89F005A7B40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		389D91241392E89F005A7B40 /* afGMDemo-Prefix.pch */ = {isa = PBXFileReference; path = "afGMDemo-Prefix.pch"; sourceTree = "<group>"; };
+		389D91251392E89F005A7B40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		389D91271392E89F005A7B40 /* afGMDemoAppDelegate.h */ = {isa = PBXFileReference; path = afGMDemoAppDelegate.h; sourceTree = "<group>"; };
+		389D91281392E89F005A7B40 /* afGMDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = afGMDemoAppDelegate.m; sourceTree = "<group>"; };
+		389D912B1392E89F005A7B40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		389D912D1392E89F005A7B40 /* RootViewController.h */ = {isa = PBXFileReference; path = RootViewController.h; sourceTree = "<group>"; };
+		389D912E1392E89F005A7B40 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		389D91311392E89F005A7B40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		389D91111392E89E005A7B40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				389D91191392E89E005A7B40 /* UIKit.framework in Frameworks */,
+				389D911B1392E89F005A7B40 /* Foundation.framework in Frameworks */,
+				389D911D1392E89F005A7B40 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		389D91091392E89E005A7B40 = {
+			isa = PBXGroup;
+			children = (
+				389D911E1392E89F005A7B40 /* afGMDemo */,
+				389D91171392E89E005A7B40 /* Frameworks */,
+				389D91151392E89E005A7B40 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		389D91151392E89E005A7B40 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				389D91141392E89E005A7B40 /* afGMDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		389D91171392E89E005A7B40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				389D91181392E89E005A7B40 /* UIKit.framework */,
+				389D911A1392E89F005A7B40 /* Foundation.framework */,
+				389D911C1392E89F005A7B40 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		389D911E1392E89F005A7B40 /* afGMDemo */ = {
+			isa = PBXGroup;
+			children = (
+				389D91271392E89F005A7B40 /* afGMDemoAppDelegate.h */,
+				389D91281392E89F005A7B40 /* afGMDemoAppDelegate.m */,
+				389D912A1392E89F005A7B40 /* MainWindow.xib */,
+				389D912D1392E89F005A7B40 /* RootViewController.h */,
+				389D912E1392E89F005A7B40 /* RootViewController.m */,
+				389D91301392E89F005A7B40 /* RootViewController.xib */,
+				389D911F1392E89F005A7B40 /* Supporting Files */,
+			);
+			path = afGMDemo;
+			sourceTree = "<group>";
+		};
+		389D911F1392E89F005A7B40 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				389D91201392E89F005A7B40 /* afGMDemo-Info.plist */,
+				389D91211392E89F005A7B40 /* InfoPlist.strings */,
+				389D91241392E89F005A7B40 /* afGMDemo-Prefix.pch */,
+				389D91251392E89F005A7B40 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		389D91131392E89E005A7B40 /* afGMDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 389D91351392E89F005A7B40 /* Build configuration list for PBXNativeTarget "afGMDemo" */;
+			buildPhases = (
+				389D91101392E89E005A7B40 /* Sources */,
+				389D91111392E89E005A7B40 /* Frameworks */,
+				389D91121392E89E005A7B40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = afGMDemo;
+			productName = afGMDemo;
+			productReference = 389D91141392E89E005A7B40 /* afGMDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		389D910B1392E89E005A7B40 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Ferré";
+			};
+			buildConfigurationList = 389D910E1392E89E005A7B40 /* Build configuration list for PBXProject "afGMDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 389D91091392E89E005A7B40;
+			productRefGroup = 389D91151392E89E005A7B40 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				389D91131392E89E005A7B40 /* afGMDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		389D91121392E89E005A7B40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				389D91231392E89F005A7B40 /* InfoPlist.strings in Resources */,
+				389D912C1392E89F005A7B40 /* MainWindow.xib in Resources */,
+				389D91321392E89F005A7B40 /* RootViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		389D91101392E89E005A7B40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				389D91261392E89F005A7B40 /* main.m in Sources */,
+				389D91291392E89F005A7B40 /* afGMDemoAppDelegate.m in Sources */,
+				389D912F1392E89F005A7B40 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		389D91211392E89F005A7B40 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				389D91221392E89F005A7B40 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		389D912A1392E89F005A7B40 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				389D912B1392E89F005A7B40 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		389D91301392E89F005A7B40 /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				389D91311392E89F005A7B40 /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		389D91331392E89F005A7B40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		389D91341392E89F005A7B40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		389D91361392E89F005A7B40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "afGMDemo/afGMDemo-Prefix.pch";
+				INFOPLIST_FILE = "afGMDemo/afGMDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		389D91371392E89F005A7B40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "afGMDemo/afGMDemo-Prefix.pch";
+				INFOPLIST_FILE = "afGMDemo/afGMDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		389D910E1392E89E005A7B40 /* Build configuration list for PBXProject "afGMDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				389D91331392E89F005A7B40 /* Debug */,
+				389D91341392E89F005A7B40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		389D91351392E89F005A7B40 /* Build configuration list for PBXNativeTarget "afGMDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				389D91361392E89F005A7B40 /* Debug */,
+				389D91371392E89F005A7B40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 389D910B1392E89E005A7B40 /* Project object */;
+}
