@@ -1,0 +1,9 @@
+iOS wrapper for the GoogleMaps API Web Services.
+
+Available: distance matrix, geocoding.
+
+Currently supports only JSON format.
+
+# Install
+
+Simply copy the files related to the WS you want to use to your project (you need ASIHTTP and JSON frameworks to use the wrapper), along with the afGoogleMapsAPIRequest files.
