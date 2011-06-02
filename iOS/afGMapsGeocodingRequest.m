@@ -11,69 +11,41 @@
 
 @implementation afGMapsGeocodingRequest
 
-@synthesize reverseGeocoding, afDelegate;
+@synthesize reverseGeocoding, afDelegate,address,latlng,boundsP1,boundsP2,useBounds;
 
--(NSString *) getURLString{
-    
-    NSString *str = [super getURLString];
-    
-    str = [str stringByAppendingFormat:@"%@",GOOGLE_GEOCODE_API_PATH_COMPONENT];
-    
-    switch (format) {
-        case USE_JSON:
-        {
-            str = [str stringByAppendingFormat:@"/json?"];
-        }
-            break;
-        case USE_XML:
-        {
-            str = [str stringByAppendingFormat:@"/xml?"];
-        }
-            break;
-        default:
-            NSLog(@"ERROR: didn't choose a format for GOOGLE WS");
-            break;
-    }
+#pragma mark ------------------------------------------
+#pragma mark ------ INIT
+#pragma mark ------------------------------------------
 
-    return str;
++(id) geocodingRequest{
+    return [[[self alloc] init] autorelease];
 }
 
-+(id) addressForLatitude:(double) lat andLongitude:(double)lng{
-    
-    return [[[self alloc] requestAddressForLatitude:lat andLongitude:lng] autorelease];
-}
-- (void) initDefVars{
-    useSensor = NO;
-    useHTTPS = NO;
-    format = USE_JSON;
-}
-
-- (id) requestAddressForLatitude:(double) lat andLongitude:(double) lng{
-    reverseGeocoding = YES;
-    [self initDefVars];
-    
-    self = [super initWithURL:[self urlAddressForLatitude:lat andLongitude:lng]];
+-(id) init{
+    self = [super init];
     
     if (self){
         [self setUserInfo: [NSDictionary dictionaryWithObject:@"adressToCoordinate" forKey:@"type"]];
+        useBounds = NO;
         self.delegate = self;
     }
     
     return self;
 }
 
-- (NSURL *) urlAddressForLatitude:(double) lat andLongitude:(double) lng{
-    NSMutableString *urlString = [NSMutableString stringWithString:[self getURLString]];
++(id) addressForLatitude:(double) lat andLongitude:(double)lng{
     
-    [urlString appendFormat:@"latlng=%f,%f",lat,lng];
+    return [[[self alloc] requestAddressForLatitude:lat andLongitude:lng] autorelease];
+}
+
+- (id) requestAddressForLatitude:(double) lat andLongitude:(double) lng{
+    self = [self init];
     
-    if (useSensor)
-        [urlString appendString:@"&sensor=true"];
-    else
-        [urlString appendString:@"&sensor=false"];
+    if (self){
+        [self setLatitude:lat andLongitude:lng];    
+    }
     
-    NSLog(@"URL IS %@",urlString);
-    return [NSURL URLWithString:urlString];
+    return self;
 }
 
 +(id) coordinatesForAddress:(NSString *)address{
@@ -82,36 +54,112 @@
 }
 
 - (id) requestCoordinatesForAddress:(NSString *)address{
-    [self initDefVars];
-    format = USE_JSON;
-    reverseGeocoding = NO;
     
-    self = [super initWithURL:[self urlCoordinatesForAddress:address]];
+    self = [self init];
     
     if (self){
-        [self setUserInfo: [NSDictionary dictionaryWithObject:@"adressToCoordinate" forKey:@"type"]];
-        self.delegate = self;
+        [self setAddress:address];
     }
     
     return self;
 }
 
-- (NSURL *) urlCoordinatesForAddress:(NSString *)address{
-    NSMutableString *urlString = [NSMutableString stringWithString:[self getURLString]];
-    
-    NSString *ad = [address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    
-    [urlString appendFormat:@"address=%@",ad];
-    
-    if (useSensor)
-        [urlString appendString:@"&sensor=true"];
-    else
-        [urlString appendString:@"&sensor=false"];
-    
-    NSURL *turl = [NSURL URLWithString:urlString];
-    
-    return turl;
+#pragma mark ------------------------------------------
+#pragma mark ------ Helpers
+#pragma mark ------------------------------------------
+
+-(void) setAddress:(NSString *)address{
+    reverseGeocoding = NO;
+    self.address = [address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 }
+
+-(void) setLatitude:(double)lat andLongitude:(double)lng{
+    reverseGeocoding = YES;
+    latlng = [NSString stringWithFormat:@"%f,%f",lat,lng];    
+}
+
+-(void) setBoundsUpperLeft:(CGPoint) p1 downRight:(CGPoint)p2{
+    useBounds = YES;
+    self.boundsP1 = p1;
+    self.boundsP2 = p2;
+}
+
+#pragma mark ------------------------------------------
+#pragma mark ------ ASI HTTP OVERRIDES
+#pragma mark ------------------------------------------
+
+-(void) startAsynchronous{
+    
+    [super startAsynchronous];
+}
+
+-(void) startSynchronous{
+    
+    [super startSynchronous];
+}
+
+#pragma mark ------------------------------------------
+#pragma mark ------ URL COMPUTING
+#pragma mark ------------------------------------------
+
+-(NSURL *) makeURL{
+    NSString *rootURL = [self getURLString];
+    
+    rootURL = [rootURL stringByAppendingFormat:@"%@",GOOGLE_GEOCODING_API_PATH_COMPONENT];
+    
+    switch (format) {
+        case ReturnJSON:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
+        }
+            break;
+        case ReturnXML:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
+        }
+            break;
+        default:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
+        }
+            break;
+    }
+    
+    if (reverseGeocoding){
+        //latlng to address
+        rootURL = [rootURL stringByAppendingFormat:@"latlng=%@",latlng];
+    }
+    else{
+        //adress to latlng
+        rootURL = [rootURL stringByAppendingFormat:@"address=%@",address];
+    }
+    
+    //bounds
+    if (useBounds){
+        rootURL = [rootURL stringByAppendingFormat:@"&bounds=%d,%d|%d,%d",boundsP1.x ,boundsP1.y , boundsP2.x,boundsP2.y];
+    }
+    
+    //region
+    if (region != ccTLD_DEFAULT)
+        rootURL = [rootURL stringByAppendingFormat:@"&region=%@",[afGoogleMapsAPIRequest regionCode:region]];
+    
+    //language
+    if (language != LangDEFAULT)
+        rootURL = [rootURL stringByAppendingFormat:@"&language=%@",[afGoogleMapsAPIRequest languageCode:language]];
+    
+    //sensor
+    if (useSensor) 
+        rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
+    else
+        rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
+    
+    return [NSURL URLWithString:rootURL];
+    
+}
+
+#pragma mark ------------------------------------------
+#pragma mark ------ ASI HTTP REQUEST DELEGATE FUNCTIONS
+#pragma mark ------------------------------------------
 
 -(void) request:(ASIHTTPRequest *)req 
  didReceiveData:(NSData *)data{
@@ -147,6 +195,7 @@
     NSDictionary *results = [resStr JSONValue];
     
     NSString *status = [results objectForKey:@"status"];
+    
     if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"] ){
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
             [afDelegate afGeocodingWSFailed:self withError:status];

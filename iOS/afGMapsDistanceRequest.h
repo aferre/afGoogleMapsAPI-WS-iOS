@@ -16,22 +16,29 @@
 @interface afGMapsDistanceRequest : afGoogleMapsAPIRequest {
     
     id <afGoogleMapsDistanceDelegate> afDelegate;
+    
+    NSArray *origins;
+    
+    NSArray *destinations;
+
+    TravelMode travelMode;
+    
+    AvoidMode avoidMode;
+    
+    UnitsSystem unitsSystem;
 }
 
 @property (nonatomic,assign) id<afGoogleMapsDistanceDelegate> afDelegate;
+@property (nonatomic,assign) NSArray *origins;
+@property (nonatomic,assign) NSArray *destinations;
+@property (nonatomic,assign) TravelMode travelMode;
+@property (nonatomic,assign) AvoidMode avoidMode;
+@property (nonatomic,assign) UnitsSystem unitsSystem;
 
-+(id) distanceForStartingLatitude:(double) slat andLongitude:(double)slng
-               withEndingLatitude:(double) elat andLongitude:(double)elng;
++ (id) distanceRequest;
 
-- (id) requestDistanceForStartingLatitude:(double) slat andLongitude:(double)slng
-                       withEndingLatitude:(double) elat andLongitude:(double)elng;
+- (NSURL *)makeURL;
 
-- (NSString *) getURLString;
-
-- (void) initDefVars;
-
-- (NSURL *) urlDistanceForStartingLatitude:(double) slat andLongitude:(double)slng
-                        withEndingLatitude:(double) elat andLongitude:(double)elng;
 @end
 
 @protocol afGoogleMapsDistanceDelegate <NSObject>

@@ -11,79 +11,140 @@
 
 @implementation afGMapsDistanceRequest
 
-@synthesize afDelegate;
+@synthesize afDelegate,origins,destinations,travelMode,avoidMode,unitsSystem;
 
--(NSString *) getURLString{
-    
-    NSString *str = [super getURLString];
-    
-    str = [str stringByAppendingFormat:@"%@",GOOGLE_DISTANCE_API_PATH_COMPONENT];
-    
-    switch (format) {
-        case USE_JSON:
-        {
-            str = [str stringByAppendingFormat:@"/json?"];
-        }
-            break;
-        case USE_XML:
-        {
-            str = [str stringByAppendingFormat:@"/xml?"];
-        }
-            break;
-        default:
-            NSLog(@"ERROR: didn't choose a format for GOOGLE WS");
-            break;
-    }
-    
-    return str;
+#pragma mark ------------------------------------------
+#pragma mark ------ INIT
+#pragma mark ------------------------------------------
+
+
++(id) distanceRequest{
+    return [[[self alloc] init] autorelease];
 }
 
-+(id) distanceForStartingLatitude:(double) slat andLongitude:(double)slng
-               withEndingLatitude:(double) elat andLongitude:(double)elng{
-    
-    return [[[self alloc] requestDistanceForStartingLatitude:slat andLongitude:slng
-                                          withEndingLatitude:elat andLongitude:elng] autorelease];
-}
-- (void) initDefVars{
-    useSensor = NO;
-    useHTTPS = NO;
-    format = USE_JSON;
-}
-
-- (id) requestDistanceForStartingLatitude:(double) slat andLongitude:(double)slng
-                       withEndingLatitude:(double) elat andLongitude:(double)elng{
-    [self initDefVars];
-    
-    self = [super initWithURL:[self urlDistanceForStartingLatitude:slat andLongitude:slng
-                                                withEndingLatitude:elat andLongitude:elng]];
-    
+-(id)init{
+    self = [super init];
     if (self){
+        
+        self.travelMode = TravelModeDefault;
+        self.avoidMode = AvoidModeNone;
+        self.unitsSystem = UnitsDefault;
+        
         [self setUserInfo: [NSDictionary dictionaryWithObject:@"distance" forKey:@"type"]];
         self.delegate = self;
+    
     }
     
     return self;
 }
 
-- (NSURL *) urlDistanceForStartingLatitude:(double) slat andLongitude:(double)slng
-                        withEndingLatitude:(double) elat andLongitude:(double)elng{
-    
-    NSMutableString *urlString = [NSMutableString stringWithString:[self getURLString]];
-    
-    [urlString appendFormat:@"origins=%f,%f&destinations=%f,%f&mode=driving&language=fr-FR",slat,slng,elat,elng];
-    
-    if (useSensor)
-        [urlString appendString:@"&sensor=true"];
-    else
-        [urlString appendString:@"&sensor=false"];
-    
-    NSLog(@"URL IS %@",urlString);
-    return [NSURL URLWithString:urlString];
+#pragma mark ------------------------------------------
+#pragma mark ------ ASI HTTP REQUEST Overrides
+#pragma mark ------------------------------------------
+
+-(void) startAsynchronous{
+    [self setURL:[self  makeURL]];
+    [super startAsynchronous];
 }
 
-#pragma mark --
-#pragma mark -- ASI HTTP REQUESTS
-#pragma mark --
+-(void) startSynchronous{
+    
+    [self setURL:[self  makeURL]];
+    [super startSynchronous];
+}
+
+#pragma mark ------------------------------------------
+#pragma mark ------ URL COMPUTING
+#pragma mark ------------------------------------------
+
+-(NSURL *)makeURL{
+    
+    NSString *rootURL = [self getURLString];
+    
+    rootURL = [rootURL stringByAppendingFormat:@"%@",GOOGLE_DISTANCE_API_PATH_COMPONENT];
+    
+    switch (format) {
+        case ReturnJSON:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
+        }
+            break;
+        case ReturnXML:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
+        }
+            break;
+        default:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
+        }
+            break;
+    }
+    
+    //origins
+        rootURL = [rootURL stringByAppendingFormat:@"origins="];
+        
+        int i = 0;
+        for (NSString *origin in origins) {
+            i++;
+            if (i == [origins count])
+                rootURL = [rootURL stringByAppendingFormat:@"%@",origin];
+            else
+                rootURL = [rootURL stringByAppendingFormat:@"%@|",origin];
+        }
+        
+    //destinations
+    rootURL = [rootURL stringByAppendingFormat:@"destinations="];
+    
+    i = 0;
+    for (NSString *dest in destinations) {
+        i++;
+        if (i == [destinations count])
+            rootURL = [rootURL stringByAppendingFormat:@"%@",dest];
+        else
+            rootURL = [rootURL stringByAppendingFormat:@"%@|",dest];
+    }
+    
+    //mode
+    if (travelMode != TravelModeDefault)
+        rootURL = [rootURL stringByAppendingFormat:@"&mode=%@",[afGoogleMapsAPIRequest travelMode:travelMode]];
+    
+    //language
+    if (language != LangDEFAULT)
+        rootURL = [rootURL stringByAppendingFormat:@"&language=%@",[afGoogleMapsAPIRequest languageCode:language]];
+    
+    //avoid
+    if (avoidMode != AvoidModeNone)
+        rootURL = [rootURL stringByAppendingFormat:@"&avoid=%@",[afGoogleMapsAPIRequest avoidMode:avoidMode]];
+    
+    //units
+    if (unitsSystem != UnitsDefault)
+        switch (unitsSystem) {
+            case UnitsImperial:
+                rootURL = [rootURL stringByAppendingFormat:@"&units=imperial"];
+                break;
+                
+            case UnitsMetric:
+                rootURL = [rootURL stringByAppendingFormat:@"&units=metric"];
+                break;
+                
+            default:
+                break;
+        }
+    
+    //sensor
+    if (useSensor) 
+        rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
+    else
+        rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
+    
+    return [NSURL URLWithString:rootURL];
+
+}
+
+#pragma mark ------------------------------------------
+#pragma mark ------ ASI HTTP REQUEST Delegate functions
+#pragma mark ------------------------------------------
 
 -(void) request:(ASIHTTPRequest *)req 
  didReceiveData:(NSData *)data{
@@ -116,22 +177,6 @@
     
     if (WS_DEBUG) NSLog(@"Request finished");
     
-  /*  NSDictionary *results = [resStr JSONValue];
-    
-    NSString *status = [results objectForKey:@"status"];
-    if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"] ){
-        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
-            [afDelegate afDistanceWSFailed:self withError:status];
-        }
-        return;
-    }
-    
-    //Now we need to obtain our coordinates
-    NSArray *placemark  = [results objectForKey:@"results"];
-    
-    if (WS_DEBUG)    
-        NSLog(@"%d objects", [placemark count]);
-    */
     SBJsonParser *json;
     NSError *jsonError;
     NSDictionary *jsonResults;
@@ -152,7 +197,7 @@
         NSDictionary *childEle = [elements objectAtIndex:0];
         
         NSString *status = [childEle objectForKey:@"status"];
-        if ([status isEqualToString:@"ZERO_RESULTS"]){
+        if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"]){
             
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
                 [afDelegate afDistanceWSFailed:self withError:status];
@@ -172,12 +217,13 @@
 
 -(void)requestRedirected:(ASIHTTPRequest *)req{
     
+    if (WS_DEBUG) NSLog(@"Request redirected");
 }
 
 -(void) requestStarted:(ASIHTTPRequest *)req{
+    if (WS_DEBUG) NSLog(@"Request started");
     resStr = [[NSMutableString alloc] init];
     
-    if (WS_DEBUG) NSLog(@"Request started");
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSStarted:)]){
         [afDelegate afDistanceWSStarted:self];
     }
