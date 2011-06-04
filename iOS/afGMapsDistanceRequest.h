@@ -35,6 +35,8 @@
 @property (nonatomic,assign) AvoidMode avoidMode;
 @property (nonatomic,assign) UnitsSystem unitsSystem;
 
+- (id) initDefault;
+
 + (id) distanceRequest;
 
 - (NSURL *)makeURL;

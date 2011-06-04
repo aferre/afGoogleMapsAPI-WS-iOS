@@ -34,14 +34,14 @@
 @property (nonatomic,assign) id<afGoogleMapsGeocodingDelegate> afDelegate;
 @property (nonatomic,assign) BOOL reverseGeocoding;
 @property (nonatomic,assign) BOOL useBounds;
-@property (nonatomic,assign) NSString *address;
-@property (nonatomic,assign) NSString *latlng;
+@property (nonatomic,retain) NSString *address;
+@property (nonatomic,retain) NSString *latlng;
 @property (nonatomic,assign) CGPoint boundsP1;
 @property (nonatomic,assign) CGPoint boundsP2;
 
 + (id) geocodingRequest;
 
-- (id) init;
+- (id) initDefault;
 
 + (id) addressForLatitude:(double) lat andLongitude:(double)lng;
 
@@ -55,18 +55,24 @@
 
 - (void) setBoundsUpperLeft:(CGPoint) p1 downRight:(CGPoint)p2;
 
+- (void) setLatitude:(double)lat andLongitude:(double)lng;
+
+- (void) setTheAddress:(NSString *)taddress;
+
 @end
 
 @protocol afGoogleMapsGeocodingDelegate <NSObject>
 
+@required
+
 @optional
 
--(void) afGeocodingWSStarted:(afGMapsGeocodingRequest *)ws ;
+-(void) afGeocodingWSStarted:(afGMapsGeocodingRequest *)ws;
+
+-(void) afGeocodingWSFailed:(afGMapsGeocodingRequest *)ws withError:(NSString *)er;
 
 -(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotLatitude:(double) latitude andLongitude:(double)longitude;
 
 -(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotAddress:(NSString *)address;
-
--(void) afGeocodingWSFailed:(afGMapsGeocodingRequest *)ws withError:(NSString *)er;
 
 @end

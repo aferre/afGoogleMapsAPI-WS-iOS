@@ -19,11 +19,12 @@
 
 
 +(id) distanceRequest{
-    return [[[self alloc] init] autorelease];
+    return [[[self alloc] initDefault] autorelease];
 }
 
--(id)init{
-    self = [super init];
+-(id)initDefault{
+    self = [super initDefault];
+    
     if (self){
         
         self.travelMode = TravelModeDefault;
@@ -86,23 +87,25 @@
         
         int i = 0;
         for (NSString *origin in origins) {
+            NSString *str = [origin stringByReplacingOccurrencesOfString:@" " withString:@"+"];
             i++;
             if (i == [origins count])
-                rootURL = [rootURL stringByAppendingFormat:@"%@",origin];
+                rootURL = [rootURL stringByAppendingFormat:@"%@",str];
             else
-                rootURL = [rootURL stringByAppendingFormat:@"%@|",origin];
+                rootURL = [rootURL stringByAppendingFormat:@"%@|",str];
         }
         
     //destinations
-    rootURL = [rootURL stringByAppendingFormat:@"destinations="];
+    rootURL = [rootURL stringByAppendingFormat:@"&destinations="];
     
     i = 0;
     for (NSString *dest in destinations) {
+        NSString *str = [dest stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         i++;
         if (i == [destinations count])
-            rootURL = [rootURL stringByAppendingFormat:@"%@",dest];
+            rootURL = [rootURL stringByAppendingFormat:@"%@",str];
         else
-            rootURL = [rootURL stringByAppendingFormat:@"%@|",dest];
+            rootURL = [rootURL stringByAppendingFormat:@"%@|",str];
     }
     
     //mode
@@ -137,6 +140,8 @@
         rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
     else
         rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
+    
+    NSLog(@"URL IS %@",rootURL);
     
     return [NSURL URLWithString:rootURL];
 

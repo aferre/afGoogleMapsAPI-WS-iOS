@@ -19,19 +19,22 @@
 #pragma mark ------------------------------------------
 
 +(id) directionsRequest{
-    return [[[self alloc] init] autorelease];
+    return [[[self alloc] initDefault] autorelease];
 }
 
 
--(id) init{
+-(id) initDefault{
     
-    self = [super init];
+    self = [super initDefault];
     
     if (self){
         travelMode = TravelModeDefault;
         avoidMode = AvoidModeNone;
         alternatives = NO;
         unitsSystem = UnitsDefault;
+        
+        [self setUserInfo: [NSDictionary dictionaryWithObject:@"directions" forKey:@"type"]];
+        self.delegate = self;
     }
     
     return self;
@@ -65,13 +68,13 @@
     }
     
     //origin
-    rootURL = [rootURL stringByAppendingFormat:@"origin=%@",origin];
+    rootURL = [rootURL stringByAppendingFormat:@"origin=%@",[origin stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
     //destination
-    rootURL = [rootURL stringByAppendingFormat:@"&destination=%@",destination];
+    rootURL = [rootURL stringByAppendingFormat:@"&destination=%@",[destination stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
     
     //mode
     if (travelMode != TravelModeDefault)
-        rootURL = [rootURL stringByAppendingFormat:@"&mode=%@",[self travelModeString]];
+        rootURL = [rootURL stringByAppendingFormat:@"&mode=%@",[afGoogleMapsAPIRequest travelMode:travelMode]];
     
     //waypoints
     if ([waypoints count]>=1) {
@@ -109,7 +112,6 @@
                 break;
         }
     
-    
     //region
     if (region != ccTLD_DEFAULT)
         rootURL = [rootURL stringByAppendingFormat:@"&region=%@",[afGoogleMapsAPIRequest regionCode:region]];
@@ -123,6 +125,8 @@
         rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
     else
         rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
+    
+    NSLog(@"URL is %@",rootURL);
     
     return [NSURL URLWithString:rootURL];
 }
@@ -218,10 +222,6 @@
      
      */
     
-    
-    
-    
-    
     SBJsonParser *json;
     NSError *jsonError;
     NSDictionary *jsonResults;
@@ -250,8 +250,8 @@
         
         NSDictionary *routesDico = [routesArr objectAtIndex:0];
         
-        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotRoute:)]){
-            [afDelegate afGeocodingWS:self gotRoute:routesDico];
+        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWS:gotResult:)]){
+            [afDelegate afDirectionsWS:self gotResult:routesDico];
         }
         /*
          NSArray *legsArray = [routesDico objectForKey:@"legs"];
@@ -307,6 +307,7 @@
     resStr = [[NSMutableString alloc] init];
     
     if (WS_DEBUG) NSLog(@"Request started");
+    
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSStarted:)]){
         [afDelegate afDirectionsWSStarted:self];
     }

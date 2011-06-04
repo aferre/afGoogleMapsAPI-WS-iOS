@@ -380,4 +380,6 @@ typedef enum Language {
 
 - (NSString *) getURLString;
 
+-(id) initDefault;
+
 @end

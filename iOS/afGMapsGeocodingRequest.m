@@ -18,14 +18,14 @@
 #pragma mark ------------------------------------------
 
 +(id) geocodingRequest{
-    return [[[self alloc] init] autorelease];
+    return [[[self alloc] initDefault] autorelease];
 }
 
--(id) init{
-    self = [super init];
+-(id) initDefault{
+    self = [super initDefault];
     
     if (self){
-        [self setUserInfo: [NSDictionary dictionaryWithObject:@"adressToCoordinate" forKey:@"type"]];
+        [self setUserInfo: [NSDictionary dictionaryWithObject:@"geocoding" forKey:@"type"]];
         useBounds = NO;
         self.delegate = self;
     }
@@ -53,12 +53,12 @@
     return [[[self alloc] requestCoordinatesForAddress:address] autorelease];
 }
 
-- (id) requestCoordinatesForAddress:(NSString *)address{
+- (id) requestCoordinatesForAddress:(NSString *)taddress{
     
     self = [self init];
     
     if (self){
-        [self setAddress:address];
+        [self setTheAddress:taddress];
     }
     
     return self;
@@ -68,9 +68,9 @@
 #pragma mark ------ Helpers
 #pragma mark ------------------------------------------
 
--(void) setAddress:(NSString *)address{
+-(void) setTheAddress:(NSString *)taddress{
     reverseGeocoding = NO;
-    self.address = [address stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    self.address = [NSString stringWithString:[taddress stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
 }
 
 -(void) setLatitude:(double)lat andLongitude:(double)lng{
@@ -89,12 +89,13 @@
 #pragma mark ------------------------------------------
 
 -(void) startAsynchronous{
-    
+    [self setURL:[self makeURL]];
     [super startAsynchronous];
 }
 
 -(void) startSynchronous{
     
+    [self setURL:[self makeURL]];
     [super startSynchronous];
 }
 
@@ -152,6 +153,8 @@
         rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
     else
         rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
+    
+    NSLog(@"URL is %@",rootURL);
     
     return [NSURL URLWithString:rootURL];
     

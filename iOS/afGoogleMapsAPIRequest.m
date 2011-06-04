@@ -7,6 +7,7 @@
 //
 
 #import "afGoogleMapsAPIRequest.h"
+#import "ASIHTTPRequest.h"
 
 @implementation afGoogleMapsAPIRequest
 
@@ -16,8 +17,8 @@
 #pragma mark ------ INIT
 #pragma mark ------------------------------------------
 
-- (id) init{
-    self = [super initWithURL:[NSURL URLWithString:@""]];
+- (id) initDefault{
+    self = [super initWithURL:[NSURL URLWithString:@"http://www.google.fr"]];
     
     if (self){
         useSensor = NO;
@@ -82,7 +83,7 @@
 #pragma mark ------ Language and region support
 #pragma mark ------------------------------------------
 
-+(NSString *)regionCode:(RC) rc{
++(NSString *) regionCode:(RC) rc{
     
     switch (rc) {
             
@@ -829,7 +830,7 @@
     return @"";
 }
 
-+(NSString *)languageCode:(Language) ln{
++(NSString *) languageCode:(Language) ln{
     switch (ln) {
         case LangDEFAULT:
         {

@@ -62,6 +62,8 @@
 
 +(id) directionsRequest;
 
+-(id) initDefault;
+
 @end
 
 @protocol afGoogleMapsDirectionsDelegate <NSObject>
