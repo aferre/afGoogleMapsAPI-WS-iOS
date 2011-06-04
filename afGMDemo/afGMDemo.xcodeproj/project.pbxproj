@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3810D829139811AA00B5972E /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3810D827139811AA00B5972E /* DirectionsViewController.m */; };
+		3810D82A139811AA00B5972E /* DirectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D828139811AA00B5972E /* DirectionsViewController.xib */; };
+		3810D83013981DAD00B5972E /* DistanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3810D82E13981DAD00B5972E /* DistanceViewController.m */; };
+		3810D83113981DAD00B5972E /* DistanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D82F13981DAD00B5972E /* DistanceViewController.xib */; };
+		3810D83513981E1300B5972E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3810D83313981E1300B5972E /* SettingsViewController.m */; };
+		3810D83613981E1300B5972E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D83413981E1300B5972E /* SettingsViewController.xib */; };
 		389D91191392E89E005A7B40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91181392E89E005A7B40 /* UIKit.framework */; };
 		389D911B1392E89F005A7B40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911A1392E89F005A7B40 /* Foundation.framework */; };
 		389D911D1392E89F005A7B40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911C1392E89F005A7B40 /* CoreGraphics.framework */; };
@@ -14,8 +20,8 @@
 		389D91261392E89F005A7B40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91251392E89F005A7B40 /* main.m */; };
 		389D91291392E89F005A7B40 /* afGMDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91281392E89F005A7B40 /* afGMDemoAppDelegate.m */; };
 		389D912C1392E89F005A7B40 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D912A1392E89F005A7B40 /* MainWindow.xib */; };
-		389D912F1392E89F005A7B40 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D912E1392E89F005A7B40 /* RootViewController.m */; };
-		389D91321392E89F005A7B40 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D91301392E89F005A7B40 /* RootViewController.xib */; };
+		389D912F1392E89F005A7B40 /* GeocodingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D912E1392E89F005A7B40 /* GeocodingViewController.m */; };
+		389D91321392E89F005A7B40 /* GeocodingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D91301392E89F005A7B40 /* GeocodingViewController.xib */; };
 		389D91401392E8AF005A7B40 /* afGMapsDirectionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91391392E8AF005A7B40 /* afGMapsDirectionsRequest.m */; };
 		389D91411392E8AF005A7B40 /* afGMapsDistanceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913B1392E8AF005A7B40 /* afGMapsDistanceRequest.m */; };
 		389D91421392E8AF005A7B40 /* afGMapsGeocodingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913D1392E8AF005A7B40 /* afGMapsGeocodingRequest.m */; };
@@ -51,6 +57,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3810D826139811AA00B5972E /* DirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionsViewController.h; sourceTree = "<group>"; };
+		3810D827139811AA00B5972E /* DirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionsViewController.m; sourceTree = "<group>"; };
+		3810D828139811AA00B5972E /* DirectionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DirectionsViewController.xib; sourceTree = "<group>"; };
+		3810D82D13981DAD00B5972E /* DistanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceViewController.h; sourceTree = "<group>"; };
+		3810D82E13981DAD00B5972E /* DistanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceViewController.m; sourceTree = "<group>"; };
+		3810D82F13981DAD00B5972E /* DistanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DistanceViewController.xib; sourceTree = "<group>"; };
+		3810D83213981E1200B5972E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		3810D83313981E1300B5972E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		3810D83413981E1300B5972E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		389D91141392E89E005A7B40 /* afGMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = afGMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		389D91181392E89E005A7B40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		389D911A1392E89F005A7B40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -62,9 +77,9 @@
 		389D91271392E89F005A7B40 /* afGMDemoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = afGMDemoAppDelegate.h; sourceTree = "<group>"; };
 		389D91281392E89F005A7B40 /* afGMDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = afGMDemoAppDelegate.m; sourceTree = "<group>"; };
 		389D912B1392E89F005A7B40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		389D912D1392E89F005A7B40 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		389D912E1392E89F005A7B40 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		389D91311392E89F005A7B40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		389D912D1392E89F005A7B40 /* GeocodingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeocodingViewController.h; sourceTree = "<group>"; };
+		389D912E1392E89F005A7B40 /* GeocodingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeocodingViewController.m; sourceTree = "<group>"; };
+		389D91311392E89F005A7B40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GeocodingViewController.xib; sourceTree = "<group>"; };
 		389D91381392E8AF005A7B40 /* afGMapsDirectionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGMapsDirectionsRequest.h; path = ../../iOS/afGMapsDirectionsRequest.h; sourceTree = "<group>"; };
 		389D91391392E8AF005A7B40 /* afGMapsDirectionsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGMapsDirectionsRequest.m; path = ../../iOS/afGMapsDirectionsRequest.m; sourceTree = "<group>"; };
 		389D913A1392E8AF005A7B40 /* afGMapsDistanceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGMapsDistanceRequest.h; path = ../../iOS/afGMapsDistanceRequest.h; sourceTree = "<group>"; };
@@ -151,6 +166,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3810D82C139811B000B5972E /* ViewCons */ = {
+			isa = PBXGroup;
+			children = (
+				389D912D1392E89F005A7B40 /* GeocodingViewController.h */,
+				389D912E1392E89F005A7B40 /* GeocodingViewController.m */,
+				389D91301392E89F005A7B40 /* GeocodingViewController.xib */,
+				3810D83213981E1200B5972E /* SettingsViewController.h */,
+				3810D83313981E1300B5972E /* SettingsViewController.m */,
+				3810D83413981E1300B5972E /* SettingsViewController.xib */,
+				3810D82D13981DAD00B5972E /* DistanceViewController.h */,
+				3810D82E13981DAD00B5972E /* DistanceViewController.m */,
+				3810D82F13981DAD00B5972E /* DistanceViewController.xib */,
+				3810D827139811AA00B5972E /* DirectionsViewController.m */,
+				3810D826139811AA00B5972E /* DirectionsViewController.h */,
+				3810D828139811AA00B5972E /* DirectionsViewController.xib */,
+			);
+			name = ViewCons;
+			sourceTree = "<group>";
+		};
 		389D91091392E89E005A7B40 = {
 			isa = PBXGroup;
 			children = (
@@ -190,10 +224,8 @@
 				389D91271392E89F005A7B40 /* afGMDemoAppDelegate.h */,
 				389D91281392E89F005A7B40 /* afGMDemoAppDelegate.m */,
 				389D912A1392E89F005A7B40 /* MainWindow.xib */,
-				389D912D1392E89F005A7B40 /* RootViewController.h */,
-				389D912E1392E89F005A7B40 /* RootViewController.m */,
+				3810D82C139811B000B5972E /* ViewCons */,
 				389D91451392E8BF005A7B40 /* JSON */,
-				389D91301392E89F005A7B40 /* RootViewController.xib */,
 				389D91441392E8B7005A7B40 /* ASI */,
 				389D911F1392E89F005A7B40 /* Supporting Files */,
 			);
@@ -344,7 +376,10 @@
 			files = (
 				389D91231392E89F005A7B40 /* InfoPlist.strings in Resources */,
 				389D912C1392E89F005A7B40 /* MainWindow.xib in Resources */,
-				389D91321392E89F005A7B40 /* RootViewController.xib in Resources */,
+				389D91321392E89F005A7B40 /* GeocodingViewController.xib in Resources */,
+				3810D82A139811AA00B5972E /* DirectionsViewController.xib in Resources */,
+				3810D83113981DAD00B5972E /* DistanceViewController.xib in Resources */,
+				3810D83613981E1300B5972E /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,7 +392,7 @@
 			files = (
 				389D91261392E89F005A7B40 /* main.m in Sources */,
 				389D91291392E89F005A7B40 /* afGMDemoAppDelegate.m in Sources */,
-				389D912F1392E89F005A7B40 /* RootViewController.m in Sources */,
+				389D912F1392E89F005A7B40 /* GeocodingViewController.m in Sources */,
 				389D91401392E8AF005A7B40 /* afGMapsDirectionsRequest.m in Sources */,
 				389D91411392E8AF005A7B40 /* afGMapsDistanceRequest.m in Sources */,
 				389D91421392E8AF005A7B40 /* afGMapsGeocodingRequest.m in Sources */,
@@ -385,6 +420,9 @@
 				389D918A1392E920005A7B40 /* Reachability.m in Sources */,
 				38CC36DC1396C4B3006C1381 /* afGMapsElevationRequest.m in Sources */,
 				38CC36DD1396C4B3006C1381 /* afGMapsPlacesRequest.m in Sources */,
+				3810D829139811AA00B5972E /* DirectionsViewController.m in Sources */,
+				3810D83013981DAD00B5972E /* DistanceViewController.m in Sources */,
+				3810D83513981E1300B5972E /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,12 +445,12 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		389D91301392E89F005A7B40 /* RootViewController.xib */ = {
+		389D91301392E89F005A7B40 /* GeocodingViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				389D91311392E89F005A7B40 /* en */,
 			);
-			name = RootViewController.xib;
+			name = GeocodingViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

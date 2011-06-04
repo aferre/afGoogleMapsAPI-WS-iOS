@@ -7,10 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "afGMapsDirectionsRequest.h"
 
-
-@interface DirectionsViewController : UIViewController {
-    
+@interface DirectionsViewController : UIViewController <afGoogleMapsDirectionsDelegate>{
+   
+    UITextField *originTF;
+    UITextField *destinationTF;
+    UITextField *waypointsTF;
+    UISwitch *alternativesSw;
+    UITextView *txtView;
+    UIButton *launchBtn;
 }
+
+@property (nonatomic, retain) IBOutlet UIButton *launchBtn;
+@property (nonatomic, retain) IBOutlet UITextField *originTF;
+@property (nonatomic, retain) IBOutlet UITextField *destinationTF;
+@property (nonatomic, retain) IBOutlet UITextField *waypointsTF;
+@property (nonatomic, retain) IBOutlet UISwitch *alternativesSw;
+@property (nonatomic, retain) IBOutlet UITextView *txtView;
+
+- (IBAction)launchReq:(id)sender;
 
 @end

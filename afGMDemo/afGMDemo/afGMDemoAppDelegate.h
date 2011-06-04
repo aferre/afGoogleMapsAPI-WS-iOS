@@ -16,4 +16,5 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
+@property (nonatomic, retain) IBOutlet UITabBarController *tabbarController;
 @end

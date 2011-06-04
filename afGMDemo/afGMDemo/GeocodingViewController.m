@@ -6,9 +6,19 @@
 //  Copyright 2011 Ferré. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "GeocodingViewController.h"
 
-@implementation RootViewController
+@implementation GeocodingViewController
+@synthesize revGeocodingSw;
+@synthesize addressTF;
+@synthesize latlngTF;
+@synthesize boundsSw;
+@synthesize p1latTF;
+@synthesize p1lngTF;
+@synthesize p2latTF;
+@synthesize p2lngTF;
+@synthesize launchBtn;
+@synthesize txtView;
 
 - (void)viewDidLoad
 {
@@ -37,88 +47,11 @@
 
 /*
  // Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations.
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations.
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
  */
-
-// Customize the number of sections in the table view.
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 0;
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
-
-    // Configure the cell.
-    return cell;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert)
-    {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-	*/
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -130,15 +63,89 @@
 
 - (void)viewDidUnload
 {
+    [self setRevGeocodingSw:nil];
+    [self setAddressTF:nil];
+    [self setLatlngTF:nil];
+    [self setBoundsSw:nil];
+    [self setP1latTF:nil];
+    [self setP1lngTF:nil];
+    [self setP2latTF:nil];
+    [self setP2lngTF:nil];
+    [self setLaunchBtn:nil];
+    [self setTxtView:nil];
     [super viewDidUnload];
-
+    
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 }
 
 - (void)dealloc
 {
+    [revGeocodingSw release];
+    [addressTF release];
+    [latlngTF release];
+    [boundsSw release];
+    [p1latTF release];
+    [p1lngTF release];
+    [p2latTF release];
+    [p2lngTF release];
+    [launchBtn release];
+    [txtView release];
     [super dealloc];
+}
+
+- (IBAction)launchReq:(id)sender {
+    
+    afGMapsGeocodingRequest *req =[afGMapsGeocodingRequest geocodingRequest];
+    req.afDelegate = self;
+    
+    BOOL useHTTPS = [[NSUserDefaults standardUserDefaults] boolForKey:@"HTTPS"];
+    BOOL useSensor = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sensor"];
+    
+    [req setUseSensor:useSensor];
+    [req setUseHTTPS:useHTTPS];
+    [req setReverseGeocoding:self.revGeocodingSw.on];
+    
+    if (self.revGeocodingSw.on)
+        [req setLatlng:self.latlngTF.text];
+    else
+        [req setTheAddress:[NSString stringWithString: self.addressTF.text]];
+    
+    if (self.boundsSw.on){
+        [req setBoundsP1:CGPointMake([self.p1latTF.text doubleValue], [self.p1lngTF.text doubleValue])];
+        [req setBoundsP1:CGPointMake([self.p2latTF.text doubleValue], [self.p2lngTF.text doubleValue])];
+    }
+    
+    [req startAsynchronous];
+}
+
+- (IBAction)reverseSw:(UISwitch *)sender {
+    addressTF.enabled = !sender.on;
+    latlngTF.enabled = sender.on;
+}
+
+- (IBAction)boundsChanged:(UISwitch *)sender {
+    p1latTF.enabled = sender.on;
+    p1lngTF.enabled = sender.on;
+    p2latTF.enabled = sender.on;
+    p2lngTF.enabled = sender.on;
+}
+
+-(void) afGeocodingWSStarted:(afGMapsGeocodingRequest *)ws {
+    
+}
+
+-(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotLatitude:(double) latitude andLongitude:(double)longitude{
+    txtView.text = [NSString stringWithFormat:@"Got latitude and longitude : %f %f",latitude,longitude]; 
+}
+
+-(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotAddress:(NSString *)address{
+        txtView.text = [NSString stringWithFormat:@"Got laddress : %@",address]; 
+}
+
+-(void) afGeocodingWSFailed:(afGMapsGeocodingRequest *)ws withError:(NSString *)er{
+    
+    txtView.text = [NSString stringWithFormat:@"Failed with error %@",er]; 
 }
 
 @end

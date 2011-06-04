@@ -10,6 +10,12 @@
 
 
 @implementation DirectionsViewController
+@synthesize launchBtn;
+@synthesize originTF;
+@synthesize destinationTF;
+@synthesize waypointsTF;
+@synthesize alternativesSw;
+@synthesize txtView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,6 +28,16 @@
 
 - (void)dealloc
 {
+    [originTF release];
+    [destinationTF release];
+    [waypointsTF release];
+    [alternativesSw release];
+    [originTF release];
+    [destinationTF release];
+    [waypointsTF release];
+    [alternativesSw release];
+    [txtView release];
+    [launchBtn release];
     [super dealloc];
 }
 
@@ -43,6 +59,21 @@
 
 - (void)viewDidUnload
 {
+    [originTF release];
+    originTF = nil;
+    [destinationTF release];
+    destinationTF = nil;
+    [waypointsTF release];
+    waypointsTF = nil;
+    [alternativesSw release];
+    alternativesSw = nil;
+    [self setOriginTF:nil];
+    [self setDestinationTF:nil];
+    [self setWaypointsTF:nil];
+    [self setAlternativesSw:nil];
+    [self setTxtView:nil];
+    [self setLaunchBtn:nil];
+    
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -53,5 +84,71 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (IBAction)launchReq:(id)sender {
+
+    afGMapsDirectionsRequest *req = [afGMapsDirectionsRequest directionsRequest];
+    req.afDelegate = self;
+    
+    BOOL useHTTPS = [[NSUserDefaults standardUserDefaults] boolForKey:@"HTTPS"];
+    BOOL useSensor = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sensor"];
+    
+    [req setUseSensor:useSensor];
+    [req setUseHTTPS:useHTTPS];
+    
+    NSString *avoid = [[NSUserDefaults standardUserDefaults] objectForKey:@"AvoidMode"];
+    
+    if ([avoid isEqualToString:@"None"])
+        [req setAvoidMode:AvoidModeNone];
+    else if ([avoid isEqualToString:@"Tolls"])
+        [req setAvoidMode:AvoidModeTolls];
+    else if ([avoid isEqualToString:@"Highways"])
+        [req setAvoidMode:AvoidModeHighway];
+    
+    NSString *units = [[NSUserDefaults standardUserDefaults] objectForKey:@"Units"];
+    
+    if ([units isEqualToString:@"Default"])
+        [req setUnitsSystem:UnitsDefault];
+    else if ([units isEqualToString:@"Metric"])
+        [req setUnitsSystem:UnitsMetric];
+    else if ([units isEqualToString:@"Imperial"])
+        [req setUnitsSystem:UnitsImperial];
+    
+    NSString *travel = [[NSUserDefaults standardUserDefaults] objectForKey:@"TravelMode"];
+    
+    if ([travel isEqualToString:@"Driving"])
+        [req setTravelMode:TravelModeDriving];
+    else if ([travel isEqualToString:@"Walking"])
+        [req setTravelMode:TravelModeWalking];
+    else if ([travel isEqualToString:@"Bicylcing"])
+        [req setTravelMode:TravelModeBicycling];
+    
+    [req setOrigin:self.originTF.text];
+    
+    [req setDestination:self.destinationTF.text];
+    
+    [req setAlternatives:self.alternativesSw.on];
+    if (![self.waypointsTF.text isEqualToString:@""])
+    [req setWaypoints:[NSArray arrayWithObject:self.waypointsTF.text]];
+    
+    [req startAsynchronous];
+}
+
+#pragma mark ------------------------------------------
+#pragma mark ------ afGMaps Direction delegates
+#pragma mark ------------------------------------------
+
+-(void) afDirectionsWSStarted:(afGMapsDirectionsRequest *)ws{
+    
+}
+
+-(void) afDirectionsWS:(afGMapsDirectionsRequest *)ws gotResult:(NSDictionary *)res{
+    self.txtView.text = [NSString stringWithFormat:@"Got result %@",res];
+}
+
+-(void) afDirectionsWSFailed:(afGMapsDirectionsRequest *)ws withError:(NSString *)er{
+    self.txtView.text = [NSString stringWithFormat:@"Failed with error %@",er];
+}
+
 
 @end
