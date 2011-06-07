@@ -152,17 +152,6 @@
 #pragma mark ------ ASI HTTP REQUEST Delegate functions
 #pragma mark ------------------------------------------
 
--(void) request:(ASIHTTPRequest *)req 
- didReceiveData:(NSData *)data{
-    
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    if (WS_DEBUG) NSLog(@"Request received data %@",jsonString);
-    
-    [resStr appendString:jsonString];
-    [jsonString release];
-}
-
 -(void) request:(ASIHTTPRequest *)req didReceiveResponseHeaders:(NSDictionary *)responseHeaders{
     
 }
@@ -181,7 +170,9 @@
 
 -(void) requestFinished:(ASIHTTPRequest *)req{
     
-    if (WS_DEBUG) NSLog(@"Request finished");
+    NSString *jsonString = [[NSString alloc] initWithData:[req responseData] encoding:NSUTF8StringEncoding];
+    
+    if (WS_DEBUG) NSLog(@"Request finished with data %@",jsonString);
     
     /* NSDictionary *results = [resStr JSONValue];
      
@@ -230,7 +221,7 @@
     json = [ [ SBJsonParser new ] autorelease ];
     
     // Get result in a NSDictionary
-    jsonResults = [ json objectWithString:resStr error:&jsonError ];
+    jsonResults = [ json objectWithString:jsonString error:&jsonError ];
     
     // Check if there is an error
     if (jsonResults == nil) {
@@ -304,8 +295,6 @@
 }
 
 -(void) requestStarted:(ASIHTTPRequest *)req{
-    resStr = [[NSMutableString alloc] init];
-    
     if (WS_DEBUG) NSLog(@"Request started");
     
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSStarted:)]){

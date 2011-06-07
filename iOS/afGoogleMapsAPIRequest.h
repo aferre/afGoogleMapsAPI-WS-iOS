@@ -356,8 +356,6 @@ typedef enum Language {
     
     ReturnFormat format;
     
-    NSMutableString *resStr;
-    
     Language language;
     
     RC region;
@@ -366,7 +364,6 @@ typedef enum Language {
 @property (nonatomic,assign) BOOL useHTTPS;
 @property (nonatomic,assign) BOOL useSensor;
 @property (nonatomic,assign) ReturnFormat format;
-@property (nonatomic,retain) NSMutableString *resStr;
 @property (nonatomic,assign) RC region;
 @property (nonatomic,assign) Language language;
 

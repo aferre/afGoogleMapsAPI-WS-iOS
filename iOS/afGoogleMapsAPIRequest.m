@@ -11,7 +11,7 @@
 
 @implementation afGoogleMapsAPIRequest
 
-@synthesize useHTTPS,format,useSensor,resStr,region,language;
+@synthesize useHTTPS,format,useSensor,region,language;
 
 #pragma mark ------------------------------------------
 #pragma mark ------ INIT
@@ -1145,7 +1145,6 @@
 
 -(void) dealloc{
     
-    [resStr release];
     [super dealloc];
 }
 

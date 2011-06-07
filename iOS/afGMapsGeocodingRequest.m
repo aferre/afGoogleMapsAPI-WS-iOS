@@ -164,17 +164,6 @@
 #pragma mark ------ ASI HTTP REQUEST DELEGATE FUNCTIONS
 #pragma mark ------------------------------------------
 
--(void) request:(ASIHTTPRequest *)req 
- didReceiveData:(NSData *)data{
-    
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    if (WS_DEBUG) NSLog(@"Request received data %@",jsonString);
-    
-    [resStr appendString:jsonString];
-    [jsonString release];
-}
-
 -(void) request:(ASIHTTPRequest *)req didReceiveResponseHeaders:(NSDictionary *)responseHeaders{
     
 }
@@ -195,7 +184,9 @@
     
     if (WS_DEBUG) NSLog(@"Request finished");
     
-    NSDictionary *results = [resStr JSONValue];
+    NSString *jsonString = [[NSString alloc] initWithData:[req responseData] encoding:NSUTF8StringEncoding];
+    
+    NSDictionary *results = [jsonString JSONValue];
     
     NSString *status = [results objectForKey:@"status"];
     
@@ -246,9 +237,8 @@
 }
 
 -(void) requestStarted:(ASIHTTPRequest *)req{
-    resStr = [[NSMutableString alloc] init];
-
     if (WS_DEBUG) NSLog(@"Request started");
+   
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSStarted:)]){
         [afDelegate afGeocodingWSStarted:self];
     }

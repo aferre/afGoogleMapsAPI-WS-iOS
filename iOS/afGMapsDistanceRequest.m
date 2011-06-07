@@ -151,17 +151,6 @@
 #pragma mark ------ ASI HTTP REQUEST Delegate functions
 #pragma mark ------------------------------------------
 
--(void) request:(ASIHTTPRequest *)req 
- didReceiveData:(NSData *)data{
-    
-    NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    if (WS_DEBUG) NSLog(@"Request received data %@",jsonString);
-    
-    [resStr appendString:jsonString];
-    [jsonString release];
-}
-
 -(void) request:(ASIHTTPRequest *)req didReceiveResponseHeaders:(NSDictionary *)responseHeaders{
     
 }
@@ -182,13 +171,15 @@
     
     if (WS_DEBUG) NSLog(@"Request finished");
     
+    NSString *jsonString = [[NSString alloc] initWithData:[req responseData] encoding:NSUTF8StringEncoding];
+    
     SBJsonParser *json;
     NSError *jsonError;
     NSDictionary *jsonResults;
     
     json = [ [ SBJsonParser new ] autorelease ];
     
-    jsonResults = [ json objectWithString:resStr error:&jsonError ];
+    jsonResults = [ json objectWithString:jsonString error:&jsonError ];
     
     if (jsonResults == nil) {
         NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
@@ -227,7 +218,6 @@
 
 -(void) requestStarted:(ASIHTTPRequest *)req{
     if (WS_DEBUG) NSLog(@"Request started");
-    resStr = [[NSMutableString alloc] init];
     
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSStarted:)]){
         [afDelegate afDistanceWSStarted:self];
