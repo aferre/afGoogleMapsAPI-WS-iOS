@@ -79,13 +79,33 @@
 }
 
 - (IBAction)startReq:(id)sender {
+    
+    [origin1TF resignFirstResponder];
+    [origin2TF resignFirstResponder];
+    [origin3TF resignFirstResponder];
+    [dest1TF resignFirstResponder];
+    [dest2TF resignFirstResponder];
+    [dest3TF resignFirstResponder];
+    
     afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
     
     req.afDelegate = self;
     
-    [req setOrigins:[NSArray arrayWithObject:origin1TF.text]];
+    NSMutableArray *orAr = [NSMutableArray array];
     
-    [req setDestinations:[NSArray arrayWithObject:dest1TF.text]];
+    if (![origin1TF.text isEqualToString:@""]) [orAr addObject:origin1TF.text];
+    if (![origin2TF.text isEqualToString:@""]) [orAr addObject:origin2TF.text];
+    if (![origin3TF.text isEqualToString:@""]) [orAr addObject:origin3TF.text];
+   
+    NSMutableArray *deAr = [NSMutableArray array];
+    
+    if (![dest1TF.text isEqualToString:@""]) [deAr addObject:dest1TF.text];
+    if (![dest2TF.text isEqualToString:@""]) [deAr addObject:dest2TF.text];
+    if (![dest3TF.text isEqualToString:@""]) [deAr addObject:dest3TF.text];
+   
+    [req setOrigins:orAr];
+    
+    [req setDestinations:deAr];
     
     BOOL useHTTPS = [[NSUserDefaults standardUserDefaults] boolForKey:@"HTTPS"];
     BOOL useSensor = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sensor"];
@@ -124,15 +144,17 @@
 }
 
 -(void) afDistanceWSStarted:(afGMapsDistanceRequest *)ws {
-    
-}
-
--(void) afDistanceWS:(afGMapsDistanceRequest *)ws gotDistance:(NSString *) dist{
-    txtView.text = [NSString stringWithFormat:@"Got distance: %@",dist];   
+    txtView.text = @"";
 }
 
 -(void) afDistanceWSFailed:(afGMapsDistanceRequest *)ws withError:(NSString *)er{
     txtView.text = [NSString stringWithFormat:@"Failed with error : %@",er];  
 }
 
+
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *)distance origin:(NSString *)origin destination:(NSString *)destination unit:(UnitsSystem)unit{
+    
+    txtView.text = [txtView.text stringByAppendingString:[NSString stringWithFormat:@"FROM : %@ TO %@ = %@\n", origin,destination, distance]];
+       
+}
 @end
