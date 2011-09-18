@@ -11,7 +11,7 @@
 
 @implementation afGMapsDistanceRequest
 
-@synthesize afDelegate,origins,destinations,travelMode,avoidMode,unitsSystem;
+@synthesize afDelegate,origins,destinations,travelMode,avoidMode,unitsSystem, jsonResult;
 
 #pragma mark ------------------------------------------
 #pragma mark ------ INIT
@@ -33,7 +33,7 @@
         
         [self setUserInfo: [NSDictionary dictionaryWithObject:@"distance" forKey:@"type"]];
         self.delegate = self;
-    
+        
     }
     
     return self;
@@ -60,75 +60,79 @@
 
 -(NSURL *)makeURL{
     
-    NSString *rootURL = [self getURLString];
+    NSMutableString *rootURL = [NSMutableString stringWithString: [self getURLString]];
     
-    rootURL = [rootURL stringByAppendingFormat:@"%@",GOOGLE_DISTANCE_API_PATH_COMPONENT];
+    [rootURL appendFormat:@"%@",GOOGLE_DISTANCE_API_PATH_COMPONENT];
     
     switch (format) {
         case ReturnJSON:
         {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
+            [rootURL appendFormat:@"/json?"];
         }
             break;
         case ReturnXML:
         {
-            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
+             [rootURL appendFormat:@"/xml?"];
         }
             break;
         default:
         {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
+            [rootURL appendFormat:@"/json?"];
         }
             break;
     }
     
     //origins
-        rootURL = [rootURL stringByAppendingFormat:@"origins="];
-        
-        int i = 0;
-        for (NSString *origin in origins) {
-            NSString *str = [origin stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-            i++;
-            if (i == [origins count])
-                rootURL = [rootURL stringByAppendingFormat:@"%@",str];
-            else
-                rootURL = [rootURL stringByAppendingFormat:@"%@|",str];
-        }
-        
+     [rootURL appendFormat:@"origins="];
+    
+    int i = 0;
+    for (NSString *origin in origins) {
+        NSString *str = [origin stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        i++;
+        if([origin isEqualToString:@""]){
+            
+        }else if (i == [origins count])
+            [rootURL appendFormat:@"%@",str];
+        else
+            [rootURL appendFormat:@"%@|",str];
+    }
+    
     //destinations
-    rootURL = [rootURL stringByAppendingFormat:@"&destinations="];
+    [rootURL appendFormat:@"&destinations="];
     
     i = 0;
     for (NSString *dest in destinations) {
         NSString *str = [dest stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         i++;
-        if (i == [destinations count])
-            rootURL = [rootURL stringByAppendingFormat:@"%@",str];
+        if([dest isEqualToString:@""]){
+            
+        }else if (i == [destinations count])
+            [rootURL appendFormat:@"%@",str];
         else
-            rootURL = [rootURL stringByAppendingFormat:@"%@|",str];
+           [rootURL appendFormat:@"%@|",str];
     }
     
     //mode
     if (travelMode != TravelModeDefault)
-        rootURL = [rootURL stringByAppendingFormat:@"&mode=%@",[afGoogleMapsAPIRequest travelMode:travelMode]];
+         [rootURL appendFormat:@"&mode=%@",[afGoogleMapsAPIRequest travelMode:travelMode]];
     
     //language
     if (language != LangDEFAULT)
-        rootURL = [rootURL stringByAppendingFormat:@"&language=%@",[afGoogleMapsAPIRequest languageCode:language]];
+        [rootURL appendFormat:@"&language=%@",[afGoogleMapsAPIRequest languageCode:language]];
     
     //avoid
     if (avoidMode != AvoidModeNone)
-        rootURL = [rootURL stringByAppendingFormat:@"&avoid=%@",[afGoogleMapsAPIRequest avoidMode:avoidMode]];
+         [rootURL appendFormat:@"&avoid=%@",[afGoogleMapsAPIRequest avoidMode:avoidMode]];
     
     //units
     if (unitsSystem != UnitsDefault)
         switch (unitsSystem) {
             case UnitsImperial:
-                rootURL = [rootURL stringByAppendingFormat:@"&units=imperial"];
+               [rootURL appendFormat:@"&units=imperial"];
                 break;
                 
             case UnitsMetric:
-                rootURL = [rootURL stringByAppendingFormat:@"&units=metric"];
+                [rootURL appendFormat:@"&units=metric"];
                 break;
                 
             default:
@@ -137,14 +141,19 @@
     
     //sensor
     if (useSensor) 
-        rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
+       [rootURL appendFormat:@"&sensor=true"];
     else
-        rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
+        [rootURL appendFormat:@"&sensor=false"];
+   //  [rootURL replaceOccurrencesOfString:@"|" withString:@"%7C" options:NSCaseInsensitiveSearch range:NSRangeFromString(rootURL)];
     
-    NSLog(@"URL IS %@",rootURL);
+    NSString * finalURL = [rootURL stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  
+    NSLog(@"URL IS %@",finalURL);  
+   
+    NSLog(@"NSURL IS %@",[NSURL URLWithString:finalURL]);
     
-    return [NSURL URLWithString:rootURL];
-
+    return [NSURL URLWithString:finalURL];
+    
 }
 
 #pragma mark ------------------------------------------
@@ -169,25 +178,118 @@
 
 -(void) requestFinished:(ASIHTTPRequest *)req{
     
-    if (WS_DEBUG) NSLog(@"Request finished");
-    
-    NSString *jsonString = [[NSString alloc] initWithData:[req responseData] encoding:NSUTF8StringEncoding];
+    if (WS_DEBUG) NSLog(@"Request finished %@",[req responseString]);
     
     SBJsonParser *json;
     NSError *jsonError;
-    NSDictionary *jsonResults;
     
     json = [ [ SBJsonParser new ] autorelease ];
     
-    jsonResults = [ json objectWithString:jsonString error:&jsonError ];
+    jsonResult = [[ json objectWithString:[req responseString] error:&jsonError ] copy];
     
-    if (jsonResults == nil) {
+    if (jsonResult == nil) {
         NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
     } else {
-        NSArray *rows = [jsonResults objectForKey:@"rows"];
+        
+        /*
+         OK indicates the response contains a valid result.
+         INVALID_REQUEST indicates that the provided request was invalid.
+         MAX_ELEMENTS_EXCEEDED indicates that the product of origins and destinations exceeds the per-query limit.
+         OVER_QUERY_LIMIT indicates the service has received too many requests from your application within the allowed time period.
+         REQUEST_DENIED indicates that the service denied use of the Distance Matrix service by your application.
+         UNKNOWN_ERROR indicates a Distance Matrix request could not be processed due to a server error. The request may succeed if you try again.
+         */
+        
+        NSString *topLevelStatus = [jsonResult objectForKey:@"status"];
+        if ([topLevelStatus isEqualToString:@"OK"]){
+            
+        }
+        else {
+            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
+                NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                              NSLocalizedString(@"GoogleMaps Distance Matrix API returned status code %@",@""),
+                                                                              topLevelStatus]
+                                                                      forKey:NSLocalizedDescriptionKey];
+                
+                [afDelegate afDistanceWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:666 userInfo:errorInfo]];
+            }
+            return;
+        }
+        
+        //ROW = ORIGIN
+        //ROW 0 = ORIGIN = 0
+        NSArray *returnedOrigins = [jsonResult objectForKey:@"origin_addresses"];
+        NSArray *returnedDestinations = [jsonResult objectForKey:@"destination_addresses"];
+        NSArray *rows = [jsonResult objectForKey:@"rows"];
+        NSLog(@"ROWS COUNT %d",[rows count]);
+        
+        if([rows count] != [origins count]){
+            if(WS_DEBUG) NSLog(@"rows count != origins count");
+        }
+        int i;
+        
+        for (i = 0 ; i < [rows count]; i++){
+            NSLog(@"PARSING ROW %d",i);
+            int j;
+            NSString *providedOrigin = [origins objectAtIndex:i];
+            NSString *returnedOrigin = [returnedOrigins objectAtIndex:i];
+            
+            NSDictionary *row = [rows objectAtIndex:i];
+            
+            //ELEMENT = DEST
+            //ELEMENT 0 = DEST = 0
+            NSArray *elements = [row objectForKey:@"elements"];
+            
+            for (j = 0 ; j < [elements count]; j++){
+                NSLog(@"PARSING element %d",j);
+                NSDictionary *childEle = [elements objectAtIndex:j];
+                NSString *providedDest = [destinations objectAtIndex:j];
+                NSString *returnedDest = [returnedDestinations objectAtIndex:j];
+                
+                /*
+                 ELEMENT STATUS 
+                 OK indicates the response contains a valid result.
+                 NOT_FOUND indicates that the origin and/or destination of this pairing could not be geocoded.
+                 ZERO_RESULTS indicates no route could be found between the origin and destination.
+                 */
+                NSString *elementStatus = [childEle objectForKey:@"status"];
+                if ([elementStatus isEqualToString:@"OK"]){
+                    
+                    NSDictionary * distanceDico = [childEle objectForKey:@"distance"];
+                    NSString *textDistance = [distanceDico objectForKey:@"text"];
+                    NSNumber *valueDistance = [NSNumber numberWithDouble:[[distanceDico objectForKey:@"value"] doubleValue]];
+                    NSDictionary * durationDico = [childEle objectForKey:@"duration"];
+                    NSString *textDuration = [durationDico objectForKey:@"text"];
+                    NSNumber *valueDuration = [NSNumber numberWithDouble:[[durationDico objectForKey:@"value"] doubleValue]];
+                    
+                    
+                    if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:distance:origin:destination:unit:)]){
+                        [afDelegate afDistanceWS:self distance:valueDistance origin:providedOrigin destination:providedDest unit:unitsSystem];
+                    }
+                    
+                    if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:distance:textDistance:origin:returnedOrigin:destination:returnedDestination:duration:textDuration:unit:)]){
+                        [afDelegate afDistanceWS:self distance:valueDistance textDistance:textDistance origin:providedOrigin returnedOrigin:returnedOrigin destination:providedDest returnedDestination:returnedDest duration: valueDuration textDuration:textDuration unit:unitsSystem];
+                    }
+                }
+                else {
+                    if( afDelegate !=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:origin:destination:failedWithError:)]){
+                        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                                      NSLocalizedString(@"GoogleMaps Distance Matrix API returned status code %@",@""),
+                                                                                      elementStatus]
+                                                                              forKey:NSLocalizedDescriptionKey];
+                        
+                        [afDelegate afDistanceWS:self origin:providedOrigin destination:providedDest failedWithError:[NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:666 userInfo:errorInfo]];
+                        
+                    }
+                }
+            }
+        }
         
         NSDictionary *dico = [rows objectAtIndex:0];
         
+        
+        //ELEMENT = DEST
+        //ELEMENT 0 = DEST = 0
         NSArray *elements = [dico objectForKey:@"elements"];
         
         NSDictionary *childEle = [elements objectAtIndex:0];
@@ -202,10 +304,11 @@
         else {
             NSDictionary *distanceDico = [childEle objectForKey:@"distance"];
             
-            NSString *distance = [distanceDico objectForKey:@"text"];
+            NSNumber *distance = [NSNumber numberWithDouble:[[distanceDico objectForKey:@"value"] doubleValue]];
             
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:gotDistance:)]){
-                [afDelegate afDistanceWS:self gotDistance:distance];
+            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:gotDistance:unit:)]){
+                [afDelegate afDistanceWS:self gotDistance:distance unit:unitsSystem];
+                
             }
         }
     }
@@ -222,6 +325,23 @@
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSStarted:)]){
         [afDelegate afDistanceWSStarted:self];
     }
+}
+
+-(void) dealloc{
+    
+    afDelegate = nil;
+    [origins release];
+    origins = nil;
+    [destinations  release];
+    destinations = nil;
+    
+    if (jsonResult != nil){
+        [jsonResult release];
+        jsonResult = nil;
+    }
+    
+    [super dealloc];
+    
 }
 
 @end

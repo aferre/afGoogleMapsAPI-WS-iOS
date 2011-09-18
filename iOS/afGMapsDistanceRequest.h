@@ -26,11 +26,14 @@
     AvoidMode avoidMode;
     
     UnitsSystem unitsSystem;
+    
+    NSDictionary *jsonResult;
 }
 
 @property (nonatomic,assign) id<afGoogleMapsDistanceDelegate> afDelegate;
-@property (nonatomic,assign) NSArray *origins;
-@property (nonatomic,assign) NSArray *destinations;
+@property (nonatomic,retain) NSArray *origins;
+@property (nonatomic,retain) NSArray *destinations;
+@property (nonatomic,retain) NSDictionary *jsonResult;
 @property (nonatomic,assign) TravelMode travelMode;
 @property (nonatomic,assign) AvoidMode avoidMode;
 @property (nonatomic,assign) UnitsSystem unitsSystem;
@@ -49,8 +52,15 @@
 
 -(void) afDistanceWSStarted:(afGMapsDistanceRequest *)ws ;
 
--(void) afDistanceWS:(afGMapsDistanceRequest *)ws gotDistance:(NSString *) dist;
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws gotDistance:(NSNumber *) distance unit:(UnitsSystem)unit;
 
 -(void) afDistanceWSFailed:(afGMapsDistanceRequest *)ws withError:(NSString *)er;
+
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws origin:(NSString *) origin destination:(NSString *)destination failedWithError:(NSError *) err;
+
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *) distance origin:(NSString *) origin destination:(NSString *)destination unit:(UnitsSystem)unit;
+
+
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *) distance textDistance:(NSString *)textDistance origin:(NSString *) origin returnedOrigin:(NSString *)returnedOrigin destination:(NSString *)destination returnedDestination:(NSString *)returnedDest duration:(NSNumber *)durationInSec textDuration:(NSString *)textDuration unit:(UnitsSystem)unit;
 
 @end
