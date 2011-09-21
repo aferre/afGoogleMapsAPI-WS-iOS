@@ -22,7 +22,6 @@
     return [[[self alloc] initDefault] autorelease];
 }
 
-
 -(id) initDefault{
     
     self = [super initDefault];

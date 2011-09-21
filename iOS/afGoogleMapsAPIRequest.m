@@ -11,7 +11,7 @@
 
 @implementation afGoogleMapsAPIRequest
 
-@synthesize useHTTPS,format,useSensor,region,language;
+@synthesize useHTTPS,format,useSensor,region,language,jsonResult;
 
 #pragma mark ------------------------------------------
 #pragma mark ------ INIT
@@ -1144,6 +1144,11 @@
 }
 
 -(void) dealloc{
+    
+    if (jsonResult != nil){
+        [jsonResult release];
+        jsonResult = nil;
+    }
     
     [super dealloc];
 }

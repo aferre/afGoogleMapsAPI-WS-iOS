@@ -11,7 +11,7 @@
 
 @implementation afGMapsDistanceRequest
 
-@synthesize afDelegate,origins,destinations,travelMode,avoidMode,unitsSystem, jsonResult;
+@synthesize afDelegate,origins,destinations,travelMode,avoidMode,unitsSystem;
 
 #pragma mark ------------------------------------------
 #pragma mark ------ INIT
@@ -334,11 +334,6 @@
     origins = nil;
     [destinations  release];
     destinations = nil;
-    
-    if (jsonResult != nil){
-        [jsonResult release];
-        jsonResult = nil;
-    }
     
     [super dealloc];
     

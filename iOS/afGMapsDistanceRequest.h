@@ -27,13 +27,11 @@
     
     UnitsSystem unitsSystem;
     
-    NSDictionary *jsonResult;
 }
 
 @property (nonatomic,assign) id<afGoogleMapsDistanceDelegate> afDelegate;
 @property (nonatomic,retain) NSArray *origins;
 @property (nonatomic,retain) NSArray *destinations;
-@property (nonatomic,retain) NSDictionary *jsonResult;
 @property (nonatomic,assign) TravelMode travelMode;
 @property (nonatomic,assign) AvoidMode avoidMode;
 @property (nonatomic,assign) UnitsSystem unitsSystem;

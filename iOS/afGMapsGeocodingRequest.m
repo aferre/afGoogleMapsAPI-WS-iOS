@@ -176,7 +176,7 @@
     if (WS_DEBUG) NSLog(@"Request failed");
     NSLog(@"%@ %@",[[req error]localizedDescription], [[req error] localizedFailureReason]);
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
-        [afDelegate afGeocodingWSFailed:self withError:[[self error] localizedDescription]];
+        [afDelegate afGeocodingWSFailed:self withError:[self error]];
     }
 }
 
@@ -186,22 +186,36 @@
     
     NSString *jsonString = [[NSString alloc] initWithData:[req responseData] encoding:NSUTF8StringEncoding];
     
-    NSDictionary *results = [jsonString JSONValue];
+    jsonResult = [[jsonString JSONValue] copy];
     
-    NSString *status = [results objectForKey:@"status"];
-    
-    if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"] ){
+    //
+    //ERROR CHECK
+    //
+    NSString *topLevelStatus = [jsonResult objectForKey:@"status"];
+    if ([topLevelStatus isEqualToString:@"OK"]){
+        
+    }
+    else {
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
-            [afDelegate afGeocodingWSFailed:self withError:status];
+            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                          NSLocalizedString(@"GoogleMaps Geocoding API returned status code %@",@""),
+                                                                          topLevelStatus]
+                                                                  forKey:NSLocalizedDescriptionKey];
+            
+            [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
         }
         return;
     }
     
+    //
+    //DATA PROCESSING
+    //
+    
     //Now we need to obtain our coordinates
-    NSArray *placemark  = [results objectForKey:@"results"];
+    NSArray *results  = [jsonResult objectForKey:@"results"];
     
     if (WS_DEBUG)    
-        NSLog(@"%d objects", [placemark count]);
+        NSLog(@"%d objects", [results count]);
     
     if (reverseGeocoding){
         NSMutableString *ad = [NSMutableString string];
@@ -211,25 +225,148 @@
         }
     }
     else{
-        NSDictionary *dico = [placemark objectAtIndex:0];
         
-        if (WS_DEBUG)    
-            for (id object in dico){
-                NSLog(@"%@",object);
+        int i ;
+        
+        for (i = 0 ; i<[results count] ; i++){
+            NSDictionary *result = [results objectAtIndex:i];
+            
+            NSString *formattedAddress = [result objectForKey:@"formatted_address"];
+            
+            NSArray *resultTypesStringArray = [result objectForKey:@"types"];
+            NSMutableArray *resultsTypesArray = [NSMutableArray arrayWithCapacity:[resultTypesStringArray count]];
+            NSArray *addressComponentsArray = [result objectForKey:@"address_components"];
+            NSMutableArray *addressComponents = [NSMutableArray array];
+            for (NSString *type in resultTypesStringArray){
+                AddressComponentType addressType = [self addressComponentTypeFromString:type];
+                NSNumber *addressTypeNumber = [NSNumber numberWithInt:[self addressComponentTypeFromString:type]];
+                [resultsTypesArray addObject:addressTypeNumber];
             }
-        
-        NSDictionary *geoDico = [dico objectForKey:@"geometry"];
-        
-        double longitude = [[[geoDico objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
-        double latitude = [[[geoDico objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
-        
-        if (WS_DEBUG)
-            NSLog(@"Latitude - Longitude: %f %f", latitude, longitude);
-        
-        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotLatitude:andLongitude:)]){
-            [afDelegate afGeocodingWS:self gotLatitude:latitude andLongitude:longitude];
+            
+            for (NSDictionary *addressCompDico in addressComponentsArray){
+                
+                NSString *longName = [addressCompDico objectForKey:@"long_name"];
+                NSString *shortName = [addressCompDico objectForKey:@"short_name"];
+                NSArray *typesStringArray = [addressCompDico objectForKey:@"types"];
+                NSMutableArray *typesArray = [NSMutableArray arrayWithCapacity:[typesStringArray count]];
+               
+                for (NSString *type in typesStringArray){
+                    NSNumber *addressTypeNumber = [NSNumber numberWithInt:[self addressComponentTypeFromString:type]];
+                    [typesArray addObject:addressTypeNumber];
+                }
+                
+                AddressComponent *addressComp = [[AddressComponent alloc] init];
+                addressComp.longName = [longName copy];
+                addressComp.shortName = [shortName copy];
+                addressComp.componentTypes = [NSArray arrayWithArray:typesArray];
+                
+                [addressComponents addObject:addressComp];
+            }
+            
+            NSDictionary *geoDico = [result objectForKey:@"geometry"];
+            
+            Geometry *geometry = [[Geometry alloc] init];
+            
+            double longitude = [[[geoDico objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
+            double latitude = [[[geoDico objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
+            
+            geometry.location = CLLocationCoordinate2DMake(latitude, longitude);
+            
+            geometry.locationType = [self locationTypeFromString:[geoDico objectForKey:@"location_type"]];
+            
+            longitude = [[[[geoDico objectForKey:@"viewport"] objectForKey:@"northeast"] objectForKey:@"lng"] doubleValue];
+            latitude = [[[[geoDico objectForKey:@"viewport"] objectForKey:@"northeast"] objectForKey:@"lat"] doubleValue];
+            
+            geometry.viewportNE = CLLocationCoordinate2DMake(latitude, longitude);
+            
+            longitude = [[[[geoDico objectForKey:@"viewport"] objectForKey:@"southwest"] objectForKey:@"lng"] doubleValue];
+            latitude = [[[[geoDico objectForKey:@"viewport"] objectForKey:@"southwest"] objectForKey:@"lat"] doubleValue];
+            
+            geometry.viewportSW = CLLocationCoordinate2DMake(latitude, longitude);
+            
+            longitude = [[[[geoDico objectForKey:@"bounds"] objectForKey:@"northeast"] objectForKey:@"lng"] doubleValue];
+            latitude = [[[[geoDico objectForKey:@"bounds"] objectForKey:@"northeast"] objectForKey:@"lat"] doubleValue];
+            
+            geometry.boundsNE = CLLocationCoordinate2DMake(latitude, longitude);
+            
+            longitude = [[[[geoDico objectForKey:@"bounds"] objectForKey:@"southwest"] objectForKey:@"lng"] doubleValue];
+            latitude = [[[[geoDico objectForKey:@"bounds"] objectForKey:@"southwest"] objectForKey:@"lat"] doubleValue];
+            
+            geometry.boundsSW = CLLocationCoordinate2DMake(latitude, longitude);
+            
+            if (WS_DEBUG)
+                NSLog(@"Latitude - Longitude: %f %f",geometry.location.latitude, geometry.location.longitude);
+            
+            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotLatitude:andLongitude:)]){
+                [afDelegate afGeocodingWS:self gotLatitude:latitude andLongitude:longitude];
+            }
         }
+        
+        
     }
+}
+
+-(LocationType) locationTypeFromString:(NSString *)str{
+    if ([str isEqualToString:@"ROOFTOP"]){
+        return LocationTypeRooftop;
+    } else if ([str isEqualToString:@"RANGE_INTERPOLATED"]){
+        return LocationTypeRangeInterpolated;
+    } else if ([str isEqualToString:@"GEOMETRIC_CENTER"]){
+        return LocationTypeGeometricCenter;
+    } else if ([str isEqualToString:@"APPROXIMATE"]){
+        return LocationTypeApproximate;
+    }  
+    return nil;
+}
+    
+-(AddressComponentType) addressComponentTypeFromString:(NSString *)str{
+    
+    if ([str isEqualToString:@"street_address"]){
+        return AddressComponentTypeStreetAddress;
+    }else if ([str isEqualToString:@"route"]){
+        return AddressComponentTypeRoute;
+    }else if ([str isEqualToString:@"intersection"]){
+        return AddressComponentTypeIntersection;
+    }else if ([str isEqualToString:@"political"]){
+        return AddressComponentTypePolitical;
+    }else if ([str isEqualToString:@"country"]){
+        return AddressComponentTypeCountry;
+    }else if ([str isEqualToString:@"administrative_area_level_1"]){
+        return AddressComponentTypeAdministrativeAreaLevel1;
+    }else if ([str isEqualToString:@"administrative_area_level_2"]){
+        return AddressComponentTypeAdministrativeAreaLevel2;
+    }else if ([str isEqualToString:@"administrative_area_level_3"]){
+        return AddressComponentTypeAdministrativeAreaLevel3;
+    }else if ([str isEqualToString:@"colloquial_area"]){
+        return AddressComponentTypeColloquialArea;
+    }else if ([str isEqualToString:@"locality"]){
+        return AddressComponentTypeLocality;
+    }else if ([str isEqualToString:@"sublocality"]){
+        return AddressComponentTypeSublocality;
+    }else if ([str isEqualToString:@"neighborhood"]){
+        return AddressComponentTypeNeighborhood;
+    }else if ([str isEqualToString:@"premise"]){
+        return AddressComponentTypePremise;
+    }else if ([str isEqualToString:@"subpremise"]){
+        return AddressComponentTypeSubpremise;
+    }else if ([str isEqualToString:@"postal_code"]){
+        return AddressComponentTypePostalCode;
+    }else if ([str isEqualToString:@"natural_feature"]){
+        return AddressComponentTypeNaturalFeature;
+    }else if ([str isEqualToString:@"park"]){
+        return AddressComponentTypePark;
+    }else if ([str isEqualToString:@"point_of_interest"]){
+        return AddressComponentTypePointOfInterest;
+    }else if ([str isEqualToString:@"post_box"]){
+        return AddressComponentTypePostBox;
+    }else if ([str isEqualToString:@"street_number"]){
+        return AddressComponentTypeStreetNumber;
+    }else if ([str isEqualToString:@"floor"]){
+        return AddressComponentTypeFloor;
+    }else if ([str isEqualToString:@"room"]){
+        return AddressComponentTypeRoom;
+    }
+    return nil;
 }
 
 -(void)requestRedirected:(ASIHTTPRequest *)req{
@@ -242,6 +379,41 @@
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSStarted:)]){
         [afDelegate afGeocodingWSStarted:self];
     }
+}
+
+@end
+
+@implementation AddressComponent
+
+@synthesize componentTypes,longName,shortName;
+
+-(void)dealloc{
+    [longName release];
+    longName = nil;
+    [shortName release];
+    shortName = nil;
+    [componentTypes release];
+    componentTypes = nil;
+    
+    [super dealloc];
+}
+
+@end
+
+@implementation Geometry
+
+@synthesize location,locationType,viewportNE,viewportSW;
+
+-(void)dealloc{
+    [location release];
+    location = nil;
+    [viewportNE release];
+    viewportNE = nil;
+    [viewportSW release];
+    viewportSW = nil;
+    
+    
+    [super dealloc];
 }
 
 @end

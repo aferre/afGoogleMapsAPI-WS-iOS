@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 #import "SBJsonPublic.h"
 #import "ASIHTTPRequest.h"
 #import "ASIHTTPRequestDelegate.h"
@@ -359,8 +360,11 @@ typedef enum Language {
     Language language;
     
     RC region;
+    
+    NSDictionary *jsonResult;
 }
 
+@property (nonatomic,retain) NSDictionary *jsonResult;
 @property (nonatomic,assign) BOOL useHTTPS;
 @property (nonatomic,assign) BOOL useSensor;
 @property (nonatomic,assign) ReturnFormat format;
