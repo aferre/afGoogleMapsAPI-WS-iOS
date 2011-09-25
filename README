@@ -10,6 +10,35 @@ Currently supports only JSON format.
 
 	Geocoding:
 
+# TODO
+
+	Distance Matrix:
+		
+		Tests.
+
+	Geocoding:
+
+		Tests.
+
+	Places:
+
+		From scratch.
+
+	Elevation:
+
+		From scratch.
+
+	Directions:
+
+		Add wrappers for results parameters.
+
+	All:
+	
+		Get rid of custom locales and use Locales from iOS framework.
+
+		Internationalize.
+
+		
 # Install
 
 Simply copy the files related to the WS you want to use to your project (you need ASIHTTP and JSON frameworks to use the wrapper), along with the afGoogleMapsAPIRequest files.
