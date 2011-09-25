@@ -7,7 +7,6 @@
 //
 
 #import "afGoogleMapsAPIRequest.h"
-#import "ASIHTTPRequest.h"
 
 @implementation afGoogleMapsAPIRequest
 

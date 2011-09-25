@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import <MapKit/MapKit.h>
 #import "afGoogleMapsAPIRequest.h"
 
 #define GOOGLE_GEOCODING_API_PATH_COMPONENT @"geocode"
@@ -46,6 +47,7 @@ typedef enum LocationType {
 } LocationType;
 
 @protocol afGoogleMapsGeocodingDelegate;
+@class Result;
 
 @interface afGMapsGeocodingRequest : afGoogleMapsAPIRequest{
     
@@ -94,6 +96,12 @@ typedef enum LocationType {
 - (void) setLatitude:(double)lat andLongitude:(double)lng;
 
 - (void) setTheAddress:(NSString *)taddress;
+
+-(LocationType) locationTypeFromString:(NSString *)str;
+
+-(AddressComponentType) addressComponentTypeFromString:(NSString *)str;
+
+-(Result *)parseJSONResult:(NSDictionary *)result;
 
 @end
 

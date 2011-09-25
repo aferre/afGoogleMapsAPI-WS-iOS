@@ -70,7 +70,7 @@
 
 -(void) setTheAddress:(NSString *)taddress{
     reverseGeocoding = NO;
-    self.address = [NSString stringWithString:[taddress stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    self.address = taddress;
 }
 
 -(void) setLatitude:(double)lat andLongitude:(double)lng{
@@ -133,7 +133,7 @@
     }
     else{
         //adress to latlng
-        rootURL = [rootURL stringByAppendingFormat:@"address=%@",address];
+        rootURL = [rootURL stringByAppendingFormat:@"address=%@",[address stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
     }
     
     //bounds
@@ -214,25 +214,25 @@
     //
     
     //Now we need to obtain our coordinates
-    NSArray *results  = [jsonResult objectForKey:@"results"];
+    NSArray *gmResults  = [jsonResult objectForKey:@"results"];
     
     if (WS_DEBUG)    
-        NSLog(@"%d objects", [results count]);
+        NSLog(@"%d objects", [gmResults count]);
     
-    if ([results count] > 1){
+    if ([gmResults count] > 1){
         int i;
-        NSMutableArray *custResults = [NSMutableArray arrayWithCapacity:[results count]];
+        NSMutableArray *custResults = [NSMutableArray arrayWithCapacity:[gmResults count]];
         
-        for (i = 0 ; i<[results count] ; i++){
-            NSDictionary *jsonResult = [results objectAtIndex:i];
+        for (i = 0 ; i<[gmResults count] ; i++){
+            NSDictionary *jsonResultDico = [gmResults objectAtIndex:i];
             
-            Result *result = [self parseJSONResult:jsonResult];
+            Result *result = [self parseJSONResult:jsonResultDico];
             [custResults addObject:result];   
         }
         
         if (reverseGeocoding){
             NSMutableArray *ar = [NSMutableArray arrayWithCapacity:[custResults count]];
-            for (i = 0 ; i<[results count] ; i++){
+            for (i = 0 ; i<[gmResults count] ; i++){
                 [ar addObject:((Result *)[custResults objectAtIndex:i]).formattedAddress];
             } 
             if (WS_DEBUG)
@@ -253,8 +253,8 @@
             }
         } 
     }
-    else if ([results count] == 1){
-        Result *result = [self parseJSONResult:jsonResult];
+    else if ([gmResults count] == 1){
+        Result *result = [self parseJSONResult:[gmResults objectAtIndex:0]];
         
         if (reverseGeocoding){
             if (WS_DEBUG)
@@ -291,7 +291,7 @@
     
     for (NSString *type in resultTypesStringArray){
         AddressComponentType addressType = [self addressComponentTypeFromString:type];
-        NSNumber *addressTypeNumber = [NSNumber numberWithInt:[self addressComponentTypeFromString:type]];
+        NSNumber *addressTypeNumber = [NSNumber numberWithInt:addressType];
         [resultsTypesArray addObject:addressTypeNumber];
     }
     
@@ -367,7 +367,6 @@
     } else if ([str isEqualToString:@"APPROXIMATE"]){
         return LocationTypeApproximate;
     }  
-    return nil;
 }
 
 -(AddressComponentType) addressComponentTypeFromString:(NSString *)str{
@@ -417,7 +416,6 @@
     }else if ([str isEqualToString:@"room"]){
         return AddressComponentTypeRoom;
     }
-    return nil;
 }
 
 -(void)requestRedirected:(ASIHTTPRequest *)req{

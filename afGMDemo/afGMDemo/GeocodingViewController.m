@@ -28,6 +28,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self reverseSw:revGeocodingSw];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -132,20 +133,21 @@
 }
 
 -(void) afGeocodingWSStarted:(afGMapsGeocodingRequest *)ws {
+    txtView.text = @"";
+}
+
+-(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotCoordinates:(CLLocationCoordinate2D) coordinates fromAddress:(NSString *)address{
+    txtView.text = [NSString stringWithFormat:@"Got latitude and longitude : %f %f from address %@",coordinates.latitude,coordinates.longitude,address]; 
+
+}
+
+-(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotAddress:(NSString *)address fromLatitude:(double)latitude andLongitude:(double)longitud{
+    txtView.text = [NSString stringWithFormat:@"Got laddress : %@ from lat %f and long %f",address,latitude,longitud]; 
+}
+
+-(void) afGeocodingWSFailed:(afGMapsGeocodingRequest *)ws withError:(NSError *)er{
     
-}
-
--(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotLatitude:(double) latitude andLongitude:(double)longitude{
-    txtView.text = [NSString stringWithFormat:@"Got latitude and longitude : %f %f",latitude,longitude]; 
-}
-
--(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotAddress:(NSString *)address{
-        txtView.text = [NSString stringWithFormat:@"Got laddress : %@",address]; 
-}
-
--(void) afGeocodingWSFailed:(afGMapsGeocodingRequest *)ws withError:(NSString *)er{
-    
-    txtView.text = [NSString stringWithFormat:@"Failed with error %@",er]; 
+    txtView.text = [NSString stringWithFormat:@"Failed with error %@",[er localizedDescription]]; 
 }
 
 @end
