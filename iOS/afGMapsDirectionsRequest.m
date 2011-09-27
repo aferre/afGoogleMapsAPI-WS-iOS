@@ -12,7 +12,7 @@
 
 @synthesize afDelegate,travelMode,avoidMode,waypoints,alternatives;
 
-@synthesize unitsSystem,origin,destination;
+@synthesize unitsSystem,origin,destination,directionsRequestStatusCode,routes;
 
 #pragma mark ------------------------------------------
 #pragma mark ------ INIT
@@ -127,7 +127,7 @@
     
     NSLog(@"URL is %@",rootURL);
     
-    return [NSURL URLWithString:rootURL];
+    return [super finalizeURLString:rootURL];
 }
 
 
@@ -169,123 +169,62 @@
 
 -(void) requestFinished:(ASIHTTPRequest *)req{
     
-    NSString *jsonString = [[NSString alloc] initWithData:[req responseData] encoding:NSUTF8StringEncoding];
-    
-    if (WS_DEBUG) NSLog(@"Request finished with data %@",jsonString);
-    
-    /* NSDictionary *results = [resStr JSONValue];
-     
-     NSString *status = [results objectForKey:@"status"];
-     if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"] ){
-     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-     [afDelegate afDirectionsWSFailed:self withError:status];
-     }
-     return;
-     }
-     
-     //Now we need to obtain our coordinates
-     NSArray *placemark  = [results objectForKey:@"results"];
-     
-     if (WS_DEBUG)    
-     NSLog(@"%d objects", [placemark count]);
-     
-     
-     NSDictionary *dico = [placemark objectAtIndex:0];
-     
-     if (WS_DEBUG)    
-     for (id object in dico){
-     NSLog(@"%@",object);
-     }
-     
-     NSDictionary *geoDico = [dico objectForKey:@"geometry"];
-     
-     double longitude = [[[geoDico objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
-     double latitude = [[[geoDico objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
-     
-     if (WS_DEBUG)
-     NSLog(@"Latitude - Longitude: %f %f", latitude, longitude);
-     
-     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotLatitude:andLongitude:)]){
-     [afDelegate afGeocodingWS:self gotLatitude:latitude andLongitude:longitude];
-     }
-     
-     
-     */
+    if (WS_DEBUG) NSLog(@"Request finished with data %@",[req responseString]);
     
     SBJsonParser *json;
     NSError *jsonError;
-    NSDictionary *jsonResults;
     
     // Init JSON
     json = [ [ SBJsonParser new ] autorelease ];
     
-    // Get result in a NSDictionary
-    jsonResults = [ json objectWithString:jsonString error:&jsonError ];
+    if (jsonResult != nil) {
+        [jsonResult release];
+        jsonResult = nil;
+    }
+    
+    jsonResult = [[ json objectWithString:[req responseString] error:&jsonError ] copy];
     
     // Check if there is an error
-    if (jsonResults == nil) {
+    if (jsonResult == nil) {
         
         NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                      NSLocalizedString(@"GoogleMaps Directions API returned no content@",@"")]
+                                                              forKey:NSLocalizedDescriptionKey];
         
+        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
+            [afDelegate afDirectionsWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
+        }
+        return;
     } else {
-        NSString *status = [jsonResults objectForKey:@"status"];
-        if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"] ){
+        NSString *status = [jsonResult objectForKey:@"status"];
+        if (![status isEqualToString:@"OK"] ){
+            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                          NSLocalizedString(@"GoogleMaps Directions API returned status code %@",@""),
+                                                                          status]
+                                                                  forKey:NSLocalizedDescriptionKey];
+            
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-                [afDelegate afDirectionsWSFailed:self withError:status];
+                [afDelegate afDirectionsWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
             }
             return;
         }
         
-        NSArray *routesArr = [jsonResults objectForKey:@"routes"];
         
-        NSDictionary *routesDico = [routesArr objectAtIndex:0];
+        NSArray *routesJsonArr = [jsonResult objectForKey:@"routes"];
+        NSMutableArray *returnedRoutes = [NSMutableArray arrayWithCapacity:[routesJsonArr count]];
         
-        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWS:gotResult:)]){
-            [afDelegate afDirectionsWS:self gotResult:routesDico];
+        for (NSDictionary *routeJsonDico in routesJsonArr) {
+            
+            Route *route = [Route parseJsonDico:routeJsonDico];
+            [returnedRoutes addObject:route];
         }
-        /*
-         NSArray *legsArray = [routesDico objectForKey:@"legs"];
-         
-         NSDictionary *legsDico = [legsArray objectAtIndex:0];
-         
-         NSArray *stepsArray = [legsDico objectForKey:@"steps"];
-         
-         MKMapPoint* pointArr = malloc(sizeof(CLLocationCoordinate2D) * stepsArray.count);
-         CLLocationDegrees latitude;
-         CLLocationDegrees longitude;
-         #if TARGET_IPHONE_SIMULATOR
-         latitude = 48.5;
-         longitude = 2.37;
-         #else
-         latitude = self.mapView.userLocation.location.coordinate.latitude;
-         longitude = self.mapView.userLocation.location.coordinate.longitude;
-         #endif
-         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-         
-         MKMapPoint point = MKMapPointForCoordinate(coordinate);
-         
-         pointArr[0] = point;
-         int i=1;
-         for (NSDictionary *stepDico in stepsArray){
-         // NSDictionary *start=[stepDico objectForKey:@"start_location"];
-         NSDictionary *end=[stepDico objectForKey:@"end_location"];
-         
-         latitude = [[end objectForKey:@"lat"] doubleValue];
-         longitude = [[end objectForKey:@"lng"] doubleValue];
-         
-         // create our coordinate and add it to the correct spot in the array
-         coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-         
-         // point = MKMapPointMake([[end objectForKey:@"lat"] doubleValue], [[end objectForKey:@"lng"] doubleValue]);
-         point = MKMapPointForCoordinate(coordinate);
-         pointArr[i] = point;
-         i++;
-         }
-         
-         self.routeLine = [MKPolyline polylineWithPoints:pointArr count:stepsArray.count];
-         [self.mapView addOverlay:self.routeLine];
-         free(pointArr);
-         */
+        
+        self.routes = [[NSArray alloc] initWithArray:returnedRoutes];
+        NSLog(@"Retrieved %u routes",[routes count]);
+        
+        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWS:gotRoutes:)])
+            [afDelegate afDirectionsWS:self gotRoutes:self.routes];
     }
 }
 
@@ -299,6 +238,114 @@
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSStarted:)]){
         [afDelegate afDirectionsWSStarted:self];
     }
+}
+
+@end
+
+@implementation Step
+
+@synthesize htmlInstructions,endLocation,durationValue,distanceValue,startLocation,distanceText,durationText;
+
++(Step *)parseJsonDico:(NSDictionary *) stepDico{
+    
+    Step *s = [[[self alloc] init] autorelease];
+    
+    s.htmlInstructions = [[stepDico objectForKey:@"html_instructions"] copy];
+    
+    NSDictionary *durationDico = [stepDico objectForKey:@"duration"];
+    
+    s.durationValue = [[durationDico objectForKey:@"value"] copy];
+    
+    s.durationText = [[durationDico objectForKey:@"text"] copy];
+    
+    NSDictionary *distanceDico = [stepDico objectForKey:@"distance"];
+    
+    s.distanceValue = [[distanceDico objectForKey:@"value"] copy];
+    
+    s.distanceText = [[distanceDico objectForKey:@"text"] copy];
+    
+    NSDictionary *startLocationDico = [stepDico objectForKey:@"start_location"];
+    s.startLocation = CLLocationCoordinate2DMake([[startLocationDico objectForKey:@"lat"] doubleValue], [[startLocationDico objectForKey:@"lng"] doubleValue]);
+    
+    NSDictionary *endLocationDico = [stepDico objectForKey:@"end_location"];
+    s.endLocation = CLLocationCoordinate2DMake([[endLocationDico objectForKey:@"lat"] doubleValue], [[endLocationDico objectForKey:@"lng"] doubleValue]);
+    
+    return s;
+}
+
+@end
+
+@implementation Leg
+
+@synthesize endLocation,endAddress,durationText,durationValue,distanceValue,distanceText,startAddress,startLocation,steps;
+
++(Leg *)parseJsonDico:(NSDictionary *)legDico{
+    Leg *l = [[[self alloc] init] autorelease];
+    
+    NSDictionary *startLocationDico = [legDico objectForKey:@"start_location"];
+    l.startLocation = CLLocationCoordinate2DMake([[startLocationDico objectForKey:@"lat"] doubleValue], [[startLocationDico objectForKey:@"lng"] doubleValue]);
+    
+    NSDictionary *endLocationDico = [legDico objectForKey:@"end_location"];
+    l.endLocation = CLLocationCoordinate2DMake([[endLocationDico objectForKey:@"lat"] doubleValue], [[endLocationDico objectForKey:@"lng"] doubleValue]);
+    
+    l.startAddress = [[legDico objectForKey:@"start_address"] copy];
+    
+    l.endAddress = [[legDico objectForKey:@"end_address"] copy];
+    
+    NSDictionary *durationDico = [legDico objectForKey:@"duration"];
+    
+    l.durationValue = [[durationDico objectForKey:@"value"] copy];
+    
+    l.durationText = [[durationDico objectForKey:@"text"] copy];
+    
+    NSDictionary *distanceDico = [legDico objectForKey:@"distance"];
+    
+    l.distanceValue = [[distanceDico objectForKey:@"value"] copy];
+    
+    l.distanceText = [[distanceDico objectForKey:@"text"] copy];
+    
+    NSArray *stepsJsonArray = [legDico objectForKey:@"steps"];
+    
+    NSMutableArray *stepsArray = [NSMutableArray arrayWithCapacity:[stepsJsonArray count]];
+    
+    for (NSDictionary *stepDico in stepsJsonArray) {
+        Step *s = [Step parseJsonDico:stepDico];
+        
+        [stepsArray addObject:s];
+    }
+    l.steps = stepsArray;
+    
+    return l;
+}
+@end
+
+@implementation Route
+
+@synthesize copyrights,legs,summary,warnings,waypointsOrder;
+
++ (Route *) parseJsonDico:(NSDictionary *)routeDico{
+    
+    Route *r = [[[self alloc] init] autorelease ];
+    
+    r.copyrights = [[routeDico objectForKey:@"copyrights"] copy];
+    
+    r.summary = [[routeDico objectForKey:@"summary"] copy];
+    
+    r.warnings = [[routeDico objectForKey:@"warnings"] copy];
+    
+    r.waypointsOrder = [[routeDico objectForKey:@"waypoint_order"] copy];
+    
+    NSArray *legsArray = [routeDico objectForKey:@"legs"];
+    
+    NSMutableArray *legs = [NSMutableArray arrayWithCapacity:[legsArray count]];
+    
+    for (NSDictionary *legJsonDico in legsArray){
+        Leg *leg = [Leg parseJsonDico:legJsonDico];
+        [legs addObject:leg];
+    }
+    
+    r.legs = legs;
+    return r;
 }
 
 @end

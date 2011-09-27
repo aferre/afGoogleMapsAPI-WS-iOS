@@ -13,29 +13,22 @@
 
 @protocol afGoogleMapsDirectionsDelegate;
 
-/*mode (optional, defaults to driving) — specifies what mode of transport to use when calculating directions. Valid values are specified in Travel Modes.
- 
- waypoints (optional) specifies an array of waypoints. Waypoints alter a route by routing it through the specified location(s). A waypoint is specified as either a latitude/longitude coordinate or as an address which will be geocoded. (For more information on waypoints, see Using Waypoints in Routes below.)
- 
- alternatives (optional), if set to true, specifies that the Directions service may provide more than one route alternative in the response. Note that providing route alternatives may increase the response time from the server.
- 
- avoid (optional) indicates that the calculated route(s) should avoid the indicated features. Currently, this parameter supports the following two arguments:
- tolls indicates that the calculated route should avoid toll roads/bridges.
- highways indicates that the calculated route should avoid highways.
- (For more information see Route Restrictions below.)
- 
- units (optional) — specifies what unit system to use when displaying results. Valid values are specified in Unit Systems below.
- 
- region (optional) — The region code, specified as a ccTLD ("top-level domain") two-character value. (For more information see Region Biasing below.)
- 
- language (optional) — The language in which to return results. See the supported list of domain languages. Note that we often update supported languages so this list may not be exhaustive. If language is not supplied, the Directions service will attempt to use the native language of the browser wherever possible. See Region Biasing for more information.
- 
- sensor (required) — Indicates whether or not the directions request comes from a device with a location sensor. This value must be either true or false.*/
+typedef enum DirectionsRequestStatusCode { 
+    DirectionsRequestStatusCodeOK = 0,
+    DirectionsRequestStatusCodeNotFound,
+    DirectionsRequestStatusCodeZeroResults,
+    DirectionsRequestStatusCodeMaxWaypointsExceeded,
+    DirectionsRequestStatusCodeInvalidRequest,
+    DirectionsRequestStatusCodeOverQueryLimit,
+    DirectionsRequestStatusCodeRequestDenied,
+    DirectionsRequestStatusCodeUnknowError
+} DirectionsRequestStatusCode;
 
 @interface afGMapsDirectionsRequest : afGoogleMapsAPIRequest {
     
     id<afGoogleMapsDirectionsDelegate>  afDelegate;
     
+    //provided
     NSString *origin;
     
     NSString *destination;
@@ -49,16 +42,25 @@
     BOOL alternatives;
     
     UnitsSystem unitsSystem;
+    
+    //returned
+    
+    NSArray *routes;
+    
+    DirectionsRequestStatusCode directionsRequestStatusCode;
+    
 }
 
-@property (nonatomic,assign) id<afGoogleMapsDirectionsDelegate> afDelegate;
-@property (nonatomic,assign) TravelMode travelMode;
-@property (nonatomic,assign) AvoidMode avoidMode;
-@property (nonatomic,retain) NSArray *waypoints;
-@property (nonatomic,assign) BOOL alternatives;
-@property (nonatomic,assign) UnitsSystem unitsSystem;
-@property (nonatomic,assign) NSString *origin;
-@property (nonatomic,assign) NSString *destination;
+@property (nonatomic, assign) id<afGoogleMapsDirectionsDelegate> afDelegate;
+@property (nonatomic, assign) TravelMode travelMode;
+@property (nonatomic, assign) AvoidMode avoidMode;
+@property (nonatomic, retain) NSArray *waypoints;
+@property (nonatomic, assign) BOOL alternatives;
+@property (nonatomic, assign) UnitsSystem unitsSystem;
+@property (nonatomic, retain) NSString *origin;
+@property (nonatomic, retain) NSString *destination;
+@property (nonatomic, assign) DirectionsRequestStatusCode directionsRequestStatusCode;
+@property (nonatomic, retain) NSArray *routes;
 
 +(id) directionsRequest;
 
@@ -72,8 +74,73 @@
 
 -(void) afDirectionsWSStarted:(afGMapsDirectionsRequest *)ws ;
 
--(void) afDirectionsWS:(afGMapsDirectionsRequest *)ws gotResult:(NSDictionary *)res;
+-(void) afDirectionsWS:(afGMapsDirectionsRequest *)ws gotRoutes:(NSArray *)routes;
 
--(void) afDirectionsWSFailed:(afGMapsDirectionsRequest *)ws withError:(NSString *)er;
+-(void) afDirectionsWSFailed:(afGMapsDirectionsRequest *)ws withError:(NSError *)er;
+
+@end
+
+@interface Route : NSObject {
+    NSString *summary;
+    NSArray *legs;
+    NSArray *waypointsOrder;
+    NSString *copyrights;
+    NSArray *warnings;
+}
+
+@property (nonatomic,retain) NSString *summary;
+@property (nonatomic,retain) NSArray *legs;
+@property (nonatomic,retain) NSArray *waypointsOrder;
+@property (nonatomic,retain) NSString *copyrights;
+@property (nonatomic,retain) NSArray *warnings;
+
++ (Route *) parseJsonDico:(NSDictionary *)routeDico;
+
+@end
+
+@interface Step : NSObject {
+    NSString *htmlInstructions;
+    NSNumber *distanceValue;
+    NSNumber *durationValue;
+    NSString *durationText;
+    NSString *distanceText;
+    CLLocationCoordinate2D startLocation;
+    CLLocationCoordinate2D endLocation;
+}
+
+@property (nonatomic,retain) NSString *htmlInstructions;
+@property (nonatomic,retain) NSNumber *distanceValue;
+@property (nonatomic,retain) NSNumber *durationValue;
+@property (nonatomic,retain) NSString *distanceText;
+@property (nonatomic,retain) NSString *durationText;
+@property (nonatomic,assign) CLLocationCoordinate2D startLocation;
+@property (nonatomic,assign) CLLocationCoordinate2D endLocation;
+
++ (Step *) parseJsonDico:(NSDictionary *)stepDico;
+
+@end
+
+@interface Leg : NSObject {
+    NSArray *steps;
+    NSNumber *distanceValue;
+    NSString *distanceText;
+    NSNumber *durationValue;
+    NSString *durationText;
+    CLLocationCoordinate2D startLocation;
+    CLLocationCoordinate2D endLocation;
+    NSString *startAddress;
+    NSString *endAddress;
+}
+
+@property (nonatomic,retain) NSArray *steps;
+@property (nonatomic,retain) NSNumber *distanceValue;
+@property (nonatomic,retain) NSString *distanceText;
+@property (nonatomic,retain) NSNumber *durationValue;
+@property (nonatomic,retain) NSString *durationText;
+@property (nonatomic,assign) CLLocationCoordinate2D startLocation;
+@property (nonatomic,assign) CLLocationCoordinate2D endLocation;
+@property (nonatomic,retain) NSString *startAddress;
+@property (nonatomic,retain) NSString *endAddress;
++ (Leg *) parseJsonDico:(NSDictionary *)legDico;
 
 @end
