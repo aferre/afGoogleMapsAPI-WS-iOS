@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#import <MapKit/MapKit.h>
 #import "afGoogleMapsAPIRequest.h"
 
 #define GOOGLE_GEOCODING_API_PATH_COMPONENT @"geocode"

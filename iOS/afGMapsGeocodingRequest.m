@@ -9,6 +9,8 @@
 #import "afGMapsGeocodingRequest.h"
 #import "ASIHTTPRequest.h"
 
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 @implementation afGMapsGeocodingRequest
 
 @synthesize reverseGeocoding, afDelegate,address,latlng,boundsP1,boundsP2,useBounds,providedCoordinates;
@@ -133,7 +135,7 @@
     }
     else{
         //adress to latlng
-        rootURL = [rootURL stringByAppendingFormat:@"address=%@",[address stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+        rootURL = [rootURL stringByAppendingFormat:@"address=%@",address];
     }
     
     //bounds
@@ -157,7 +159,7 @@
     
     NSLog(@"URL is %@",rootURL);
     
-    return [NSURL URLWithString:rootURL];
+    return [super finalizeURLString:rootURL];
     
 }
 
@@ -174,9 +176,10 @@
 }
 
 -(void) requestFailed:(ASIHTTPRequest *)req{
-    if (WS_DEBUG) NSLog(@"Request failed");
-    NSLog(@"%@ %@",[[req error]localizedDescription], [[req error] localizedFailureReason]);
-    
+    if (WS_DEBUG) {
+        NSLog(@"Request failed");
+        NSLog(@"%@ %@",[[req error]localizedDescription], [[req error] localizedFailureReason]);
+    }
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
         [afDelegate afGeocodingWSFailed:self withError:[self error]];
     }
@@ -184,97 +187,114 @@
 
 -(void) requestFinished:(ASIHTTPRequest *)req{
     
-    if (WS_DEBUG) NSLog(@"Request finished");
+    if (WS_DEBUG) NSLog(@"Request finished %@",[req responseString]);
     
-    NSString *jsonString = [[NSString alloc] initWithData:[req responseData] encoding:NSUTF8StringEncoding];
+    SBJsonParser *json;
+    NSError *jsonError;
     
-    jsonResult = [[jsonString JSONValue] copy];
+    json = [ [ SBJsonParser new ] autorelease ];
     
-    //
-    //ERROR CHECK
-    //
-    NSString *topLevelStatus = [jsonResult objectForKey:@"status"];
-    if ([topLevelStatus isEqualToString:@"OK"]){
+    jsonResult = [[ json objectWithString:[req responseString] error:&jsonError ] copy];
+    
+    if (jsonResult == nil) {
+        NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
         
-    }
-    else {
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                      NSLocalizedString(@"GoogleMaps Geocoding API returned no content",@"")]
+                                                              forKey:NSLocalizedDescriptionKey];
+        
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
-            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                          NSLocalizedString(@"GoogleMaps Geocoding API returned status code %@",@""),
-                                                                          topLevelStatus]
-                                                                  forKey:NSLocalizedDescriptionKey];
-            
             [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
         }
         return;
-    }
-    
-    //
-    //DATA PROCESSING
-    //
-    
-    //Now we need to obtain our coordinates
-    NSArray *gmResults  = [jsonResult objectForKey:@"results"];
-    
-    if (WS_DEBUG)    
-        NSLog(@"%d objects", [gmResults count]);
-    
-    if ([gmResults count] > 1){
-        int i;
-        NSMutableArray *custResults = [NSMutableArray arrayWithCapacity:[gmResults count]];
-        
-        for (i = 0 ; i<[gmResults count] ; i++){
-            NSDictionary *jsonResultDico = [gmResults objectAtIndex:i];
+    } 
+    else{
+        //
+        //ERROR CHECK
+        //
+        NSString *topLevelStatus = [jsonResult objectForKey:@"status"];
+        if ([topLevelStatus isEqualToString:@"OK"]){
             
-            Result *result = [self parseJSONResult:jsonResultDico];
-            [custResults addObject:result];   
+        }
+        else {
+            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
+                NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                              NSLocalizedString(@"GoogleMaps Geocoding API returned status code %@",@""),
+                                                                              topLevelStatus]
+                                                                      forKey:NSLocalizedDescriptionKey];
+                
+                [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
+            }
+            return;
         }
         
-        if (reverseGeocoding){
-            NSMutableArray *ar = [NSMutableArray arrayWithCapacity:[custResults count]];
+        //
+        //DATA PROCESSING
+        //
+        
+        //Now we need to obtain our coordinates
+        NSArray *gmResults  = [jsonResult objectForKey:@"results"];
+        
+        if (WS_DEBUG)    
+            NSLog(@"%d objects", [gmResults count]);
+        
+        if ([gmResults count] > 1){
+            int i;
+            NSMutableArray *custResults = [NSMutableArray arrayWithCapacity:[gmResults count]];
+            
             for (i = 0 ; i<[gmResults count] ; i++){
-                [ar addObject:((Result *)[custResults objectAtIndex:i]).formattedAddress];
+                NSDictionary *jsonResultDico = [gmResults objectAtIndex:i];
+                
+                Result *result = [self parseJSONResult:jsonResultDico];
+                [custResults addObject:result];   
+            }
+            
+            if (reverseGeocoding){
+                NSMutableArray *ar = [NSMutableArray arrayWithCapacity:[custResults count]];
+                for (i = 0 ; i<[gmResults count] ; i++){
+                    [ar addObject:((Result *)[custResults objectAtIndex:i]).formattedAddress];
+                } 
+                if (WS_DEBUG)
+                    NSLog(@"Address: %@ ",ar);
+                
+                if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotMultipleAddresses:fromLatitude:andLongitude:)]){
+                    
+                    [afDelegate afGeocodingWS:self gotMultipleAddresses:ar fromLatitude:providedCoordinates.latitude andLongitude:providedCoordinates.longitude];
+                }
+            }
+            else{
+                
+                if (WS_DEBUG)
+                    NSLog(@"Latitude - Longitude: %f %f",((Result *)[custResults objectAtIndex:0]).geometry.location.latitude, ((Result *)[custResults objectAtIndex:0]).geometry.location.longitude);
+                
+                if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotCoordinates:fromAddress:)]){
+                    [afDelegate afGeocodingWS:self gotCoordinates:((Result *)[custResults objectAtIndex:0]).geometry.location fromAddress:address];
+                }
             } 
-            if (WS_DEBUG)
-                NSLog(@"Address: %@ ",ar);
-            
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotMultipleAddresses:fromLatitude:andLongitude:)]){
-                           
-                [afDelegate afGeocodingWS:self gotMultipleAddresses:ar fromLatitude:providedCoordinates.latitude andLongitude:providedCoordinates.longitude];
-            }
         }
-        else{
+        else if ([gmResults count] == 1){
+            Result *result = [self parseJSONResult:[gmResults objectAtIndex:0]];
             
-            if (WS_DEBUG)
-                NSLog(@"Latitude - Longitude: %f %f",((Result *)[custResults objectAtIndex:0]).geometry.location.latitude, ((Result *)[custResults objectAtIndex:0]).geometry.location.longitude);
-            
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotCoordinates:fromAddress:)]){
-                [afDelegate afGeocodingWS:self gotCoordinates:((Result *)[custResults objectAtIndex:0]).geometry.location fromAddress:address];
+            if (reverseGeocoding){
+                if (WS_DEBUG)
+                    NSLog(@"Address: %@ ",result.formattedAddress);
+                
+                if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotAddress:fromLatitude:andLongitude:)]){
+                    [afDelegate afGeocodingWS:self gotAddress:result.formattedAddress fromLatitude:providedCoordinates.latitude andLongitude:providedCoordinates.longitude];
+                }
             }
-        } 
-    }
-    else if ([gmResults count] == 1){
-        Result *result = [self parseJSONResult:[gmResults objectAtIndex:0]];
-        
-        if (reverseGeocoding){
-            if (WS_DEBUG)
-                NSLog(@"Address: %@ ",result.formattedAddress);
-            
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotAddress:fromLatitude:andLongitude:)]){
-                [afDelegate afGeocodingWS:self gotAddress:result.formattedAddress fromLatitude:providedCoordinates.latitude andLongitude:providedCoordinates.longitude];
-            }
+            else{
+                if (WS_DEBUG)
+                    NSLog(@"Latitude - Longitude: %f %f",result.geometry.location.latitude, result.geometry.location.longitude);
+                
+                if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotCoordinates:fromAddress:)]){
+                    [afDelegate afGeocodingWS:self gotCoordinates:result.geometry.location fromAddress:address];
+                }
+            } 
         }
-        else{
-            if (WS_DEBUG)
-                NSLog(@"Latitude - Longitude: %f %f",result.geometry.location.latitude, result.geometry.location.longitude);
+        else {
             
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotCoordinates:fromAddress:)]){
-                [afDelegate afGeocodingWS:self gotCoordinates:result.geometry.location fromAddress:address];
-            }
-        } 
-    }
-    else {
-        
+        }
     }
 }
 
@@ -318,7 +338,6 @@
     }
     
     res.addressComponents = addressComponents;
-    [addressComponents release];
     
     NSDictionary *geoDico = [result objectForKey:@"geometry"];
     
