@@ -65,11 +65,6 @@
     [rootURL appendFormat:@"%@",GOOGLE_DISTANCE_API_PATH_COMPONENT];
     
     switch (format) {
-        case ReturnJSON:
-        {
-            [rootURL appendFormat:@"/json?"];
-        }
-            break;
         case ReturnXML:
         {
              [rootURL appendFormat:@"/xml?"];
@@ -87,14 +82,13 @@
     
     int i = 0;
     for (NSString *origin in origins) {
-        NSString *str = [origin stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         i++;
         if([origin isEqualToString:@""]){
             
         }else if (i == [origins count])
-            [rootURL appendFormat:@"%@",str];
+            [rootURL appendFormat:@"%@",origin];
         else
-            [rootURL appendFormat:@"%@|",str];
+            [rootURL appendFormat:@"%@|",origin];
     }
     
     //destinations
@@ -102,14 +96,13 @@
     
     i = 0;
     for (NSString *dest in destinations) {
-        NSString *str = [dest stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         i++;
         if([dest isEqualToString:@""]){
             
         }else if (i == [destinations count])
-            [rootURL appendFormat:@"%@",str];
+            [rootURL appendFormat:@"%@",dest];
         else
-           [rootURL appendFormat:@"%@|",str];
+           [rootURL appendFormat:@"%@|",dest];
     }
     
     //mode
@@ -144,15 +137,8 @@
        [rootURL appendFormat:@"&sensor=true"];
     else
         [rootURL appendFormat:@"&sensor=false"];
-   //  [rootURL replaceOccurrencesOfString:@"|" withString:@"%7C" options:NSCaseInsensitiveSearch range:NSRangeFromString(rootURL)];
     
-    NSString * finalURL = [rootURL stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  
-    NSLog(@"URL IS %@",finalURL);  
-   
-    NSLog(@"NSURL IS %@",[NSURL URLWithString:finalURL]);
-    
-    return [NSURL URLWithString:finalURL];
+    return [super finalizeURLString:rootURL];
     
 }
 
@@ -189,6 +175,15 @@
     
     if (jsonResult == nil) {
         NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
+        
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                      NSLocalizedString(@"GoogleMaps Distance API returned no content",@"")]
+                                                              forKey:NSLocalizedDescriptionKey];
+        
+        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
+            [afDelegate afDistanceWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Distance API Error" code:666 userInfo:errorInfo]];
+        }
+        return;
     } else {
         
         /*
@@ -289,7 +284,7 @@
         
         
         //ELEMENT = DEST
-        //ELEMENT 0 = DEST = 0
+        //ELEMENT 0 = DEST 0
         NSArray *elements = [dico objectForKey:@"elements"];
         
         NSDictionary *childEle = [elements objectAtIndex:0];
@@ -330,8 +325,10 @@
 -(void) dealloc{
     
     afDelegate = nil;
+    
     [origins release];
     origins = nil;
+    
     [destinations  release];
     destinations = nil;
     

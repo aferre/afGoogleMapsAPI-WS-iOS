@@ -52,7 +52,7 @@
 
 -(void) afDistanceWS:(afGMapsDistanceRequest *)ws gotDistance:(NSNumber *) distance unit:(UnitsSystem)unit;
 
--(void) afDistanceWSFailed:(afGMapsDistanceRequest *)ws withError:(NSString *)er;
+-(void) afDistanceWSFailed:(afGMapsDistanceRequest *)ws withError:(NSError *)er;
 
 -(void) afDistanceWS:(afGMapsDistanceRequest *)ws origin:(NSString *) origin destination:(NSString *)destination failedWithError:(NSError *) err;
 
