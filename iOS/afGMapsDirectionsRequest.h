@@ -141,6 +141,7 @@ typedef enum DirectionsRequestStatusCode {
 @property (nonatomic,assign) CLLocationCoordinate2D endLocation;
 @property (nonatomic,retain) NSString *startAddress;
 @property (nonatomic,retain) NSString *endAddress;
+
 + (Leg *) parseJsonDico:(NSDictionary *)legDico;
 
 @end

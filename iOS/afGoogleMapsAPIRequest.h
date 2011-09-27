@@ -18,6 +18,8 @@
 #define GOOGLE_API_ROOT_URL_HTTP @"http://maps.googleapis.com/maps/api/"
 #define GOOGLE_API_ROOT_URL_HTTPS @"https://maps.googleapis.com/maps/api/"
 
+#define CUSTOM_ERROR_NUMBER 666
+
 typedef enum UnitsSystem { 
     UnitsDefault = 0,
     UnitsMetric,

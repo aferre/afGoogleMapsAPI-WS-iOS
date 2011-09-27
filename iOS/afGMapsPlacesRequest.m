@@ -13,4 +13,9 @@
 
 @synthesize afDelegate;
 
+-(void) dealloc{
+    
+    
+    [super dealloc];
+}
 @end

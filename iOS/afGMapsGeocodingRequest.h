@@ -53,24 +53,22 @@ typedef enum LocationType {
     
     BOOL reverseGeocoding;
     
-    NSString *address;
-    
-    NSString *latlng;
-    
     BOOL useBounds;
+    
+    //provided
+    NSString *providedAddress;
+    
+    CLLocationCoordinate2D providedCoordinates;
     
     CGPoint boundsP1;
     
     CGPoint boundsP2;
-    
-    CLLocationCoordinate2D providedCoordinates;
 }
 
 @property (nonatomic,assign) id<afGoogleMapsGeocodingDelegate> afDelegate;
 @property (nonatomic,assign) BOOL reverseGeocoding;
 @property (nonatomic,assign) BOOL useBounds;
-@property (nonatomic,retain) NSString *address;
-@property (nonatomic,retain) NSString *latlng;
+@property (nonatomic,retain) NSString *providedAddress;
 @property (nonatomic,assign) CGPoint boundsP1;
 @property (nonatomic,assign) CGPoint boundsP2;
 @property (nonatomic,assign) CLLocationCoordinate2D providedCoordinates;

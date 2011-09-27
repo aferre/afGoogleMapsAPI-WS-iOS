@@ -191,7 +191,6 @@
 		389D91091392E89E005A7B40 = {
 			isa = PBXGroup;
 			children = (
-				3819B2F4142F87900036F542 /* CoreLocation.framework */,
 				389D911E1392E89F005A7B40 /* afGMDemo */,
 				389D91171392E89E005A7B40 /* Frameworks */,
 				389D91151392E89E005A7B40 /* Products */,
@@ -209,6 +208,7 @@
 		389D91171392E89E005A7B40 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3819B2F4142F87900036F542 /* CoreLocation.framework */,
 				389D91931392E973005A7B40 /* Security.framework */,
 				389D91911392E949005A7B40 /* CFNetwork.framework */,
 				389D918F1392E941005A7B40 /* libz.1.2.3.dylib */,

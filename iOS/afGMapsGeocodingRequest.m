@@ -13,7 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 @implementation afGMapsGeocodingRequest
 
-@synthesize reverseGeocoding, afDelegate,address,latlng,boundsP1,boundsP2,useBounds,providedCoordinates;
+@synthesize reverseGeocoding, afDelegate,providedAddress,boundsP1,boundsP2,useBounds,providedCoordinates;
 
 #pragma mark ------------------------------------------
 #pragma mark ------ INIT
@@ -72,12 +72,11 @@
 
 -(void) setTheAddress:(NSString *)taddress{
     reverseGeocoding = NO;
-    self.address = taddress;
+    self.providedAddress = taddress;
 }
 
 -(void) setLatitude:(double)lat andLongitude:(double)lng{
     reverseGeocoding = YES;
-    latlng = [NSString stringWithFormat:@"%f,%f",lat,lng];
     providedCoordinates = CLLocationCoordinate2DMake(lat, lng);
 }
 
@@ -131,11 +130,11 @@
     
     if (reverseGeocoding){
         //latlng to address
-        rootURL = [rootURL stringByAppendingFormat:@"latlng=%@",latlng];
+        rootURL = [rootURL stringByAppendingFormat:@"latlng=%@",[NSString stringWithFormat:@"%f,%f",providedCoordinates.latitude,providedCoordinates.longitude]];
     }
     else{
         //adress to latlng
-        rootURL = [rootURL stringByAppendingFormat:@"address=%@",address];
+        rootURL = [rootURL stringByAppendingFormat:@"address=%@",providedAddress];
     }
     
     //bounds
@@ -204,7 +203,7 @@
                                                               forKey:NSLocalizedDescriptionKey];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
-            [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
+            [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
         }
         return;
     } 
@@ -223,7 +222,7 @@
                                                                               topLevelStatus]
                                                                       forKey:NSLocalizedDescriptionKey];
                 
-                [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
+                [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
             }
             return;
         }
@@ -268,7 +267,7 @@
                     NSLog(@"Latitude - Longitude: %f %f",((Result *)[custResults objectAtIndex:0]).geometry.location.latitude, ((Result *)[custResults objectAtIndex:0]).geometry.location.longitude);
                 
                 if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotCoordinates:fromAddress:)]){
-                    [afDelegate afGeocodingWS:self gotCoordinates:((Result *)[custResults objectAtIndex:0]).geometry.location fromAddress:address];
+                    [afDelegate afGeocodingWS:self gotCoordinates:((Result *)[custResults objectAtIndex:0]).geometry.location fromAddress:providedAddress];
                 }
             } 
         }
@@ -288,7 +287,7 @@
                     NSLog(@"Latitude - Longitude: %f %f",result.geometry.location.latitude, result.geometry.location.longitude);
                 
                 if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotCoordinates:fromAddress:)]){
-                    [afDelegate afGeocodingWS:self gotCoordinates:result.geometry.location fromAddress:address];
+                    [afDelegate afGeocodingWS:self gotCoordinates:result.geometry.location fromAddress:providedAddress];
                 }
             } 
         }
@@ -449,6 +448,14 @@
     }
 }
 
+
+-(void) dealloc{
+    
+    [providedAddress release];
+    providedAddress = nil;
+    
+    [super dealloc];
+}
 @end
 
 @implementation AddressComponent

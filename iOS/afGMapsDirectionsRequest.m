@@ -163,7 +163,7 @@
     if (WS_DEBUG) NSLog(@"Request failed");
     NSLog(@"%@ %@",[[req error]localizedDescription], [[req error] localizedFailureReason]);
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-        [afDelegate afDirectionsWSFailed:self withError:[[self error] localizedDescription]];
+        [afDelegate afDirectionsWSFailed:self withError:[self error]];
     }
 }
 
@@ -187,13 +187,14 @@
     // Check if there is an error
     if (jsonResult == nil) {
         
-        NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
+        NSLog(@"Error when reading JSON (%@).", [ jsonError localizedDescription ]);
+        
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
                                                                       NSLocalizedString(@"GoogleMaps Directions API returned no content@",@"")]
                                                               forKey:NSLocalizedDescriptionKey];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-            [afDelegate afDirectionsWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
+            [afDelegate afDirectionsWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
         }
         return;
     } else {
@@ -205,7 +206,7 @@
                                                                   forKey:NSLocalizedDescriptionKey];
             
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-                [afDelegate afDirectionsWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:666 userInfo:errorInfo]];
+                [afDelegate afDirectionsWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
             }
             return;
         }
@@ -240,6 +241,24 @@
     }
 }
 
+-(void) dealloc{
+    
+    afDelegate = nil;
+    
+    [routes release];
+    routes = nil;
+    
+    [destination release];
+    destination = nil;
+    
+    [origin release];
+    origin = nil;
+    
+    [waypoints release];
+    waypoints = nil;
+    
+    [super dealloc];
+}
 @end
 
 @implementation Step
@@ -273,11 +292,31 @@
     return s;
 }
 
+-(void) dealloc{
+    
+    [htmlInstructions release];
+    htmlInstructions = nil;
+    
+    [distanceText release];
+    distanceText = nil;
+    
+    [distanceValue release];
+    distanceValue = nil;
+    
+    [durationText release];
+    durationText = nil;
+    
+    [durationValue  release];
+    durationValue = nil;
+    
+    [super dealloc];
+}
 @end
 
 @implementation Leg
 
-@synthesize endLocation,endAddress,durationText,durationValue,distanceValue,distanceText,startAddress,startLocation,steps;
+@synthesize endLocation,endAddress,durationText,durationValue;
+@synthesize distanceValue,distanceText,startAddress,startLocation,steps;
 
 +(Leg *)parseJsonDico:(NSDictionary *)legDico{
     Leg *l = [[[self alloc] init] autorelease];
@@ -317,6 +356,25 @@
     
     return l;
 }
+
+-(void) dealloc{
+    [steps release];
+    steps = nil;
+    [distanceText release];
+    distanceText = nil;
+    [distanceValue release];
+    distanceValue = nil;
+    [durationText release];
+    durationText = nil;
+    [durationValue  release];
+    durationValue = nil;
+    [startAddress release];
+    startAddress = nil;
+    [endAddress release];
+    endAddress = nil;
+    
+    [super dealloc];
+}
 @end
 
 @implementation Route
@@ -348,4 +406,19 @@
     return r;
 }
 
+-(void) dealloc{
+    
+    [copyrights release];
+    copyrights = nil;
+    [summary release];
+    summary = nil;
+    [warnings release];
+    warnings = nil;
+    [waypointsOrder release];
+    waypointsOrder = nil;
+    [legs release];
+    legs = nil;
+    
+    [super dealloc];
+}
 @end

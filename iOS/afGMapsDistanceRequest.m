@@ -67,7 +67,7 @@
     switch (format) {
         case ReturnXML:
         {
-             [rootURL appendFormat:@"/xml?"];
+            [rootURL appendFormat:@"/xml?"];
         }
             break;
         default:
@@ -78,7 +78,7 @@
     }
     
     //origins
-     [rootURL appendFormat:@"origins="];
+    [rootURL appendFormat:@"origins="];
     
     int i = 0;
     for (NSString *origin in origins) {
@@ -102,12 +102,12 @@
         }else if (i == [destinations count])
             [rootURL appendFormat:@"%@",dest];
         else
-           [rootURL appendFormat:@"%@|",dest];
+            [rootURL appendFormat:@"%@|",dest];
     }
     
     //mode
     if (travelMode != TravelModeDefault)
-         [rootURL appendFormat:@"&mode=%@",[afGoogleMapsAPIRequest travelMode:travelMode]];
+        [rootURL appendFormat:@"&mode=%@",[afGoogleMapsAPIRequest travelMode:travelMode]];
     
     //language
     if (language != LangDEFAULT)
@@ -115,13 +115,13 @@
     
     //avoid
     if (avoidMode != AvoidModeNone)
-         [rootURL appendFormat:@"&avoid=%@",[afGoogleMapsAPIRequest avoidMode:avoidMode]];
+        [rootURL appendFormat:@"&avoid=%@",[afGoogleMapsAPIRequest avoidMode:avoidMode]];
     
     //units
     if (unitsSystem != UnitsDefault)
         switch (unitsSystem) {
             case UnitsImperial:
-               [rootURL appendFormat:@"&units=imperial"];
+                [rootURL appendFormat:@"&units=imperial"];
                 break;
                 
             case UnitsMetric:
@@ -134,7 +134,7 @@
     
     //sensor
     if (useSensor) 
-       [rootURL appendFormat:@"&sensor=true"];
+        [rootURL appendFormat:@"&sensor=true"];
     else
         [rootURL appendFormat:@"&sensor=false"];
     
@@ -181,7 +181,7 @@
                                                               forKey:NSLocalizedDescriptionKey];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
-            [afDelegate afDistanceWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Distance API Error" code:666 userInfo:errorInfo]];
+            [afDelegate afDistanceWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Distance API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
         }
         return;
     } else {
@@ -196,17 +196,14 @@
          */
         
         NSString *topLevelStatus = [jsonResult objectForKey:@"status"];
-        if ([topLevelStatus isEqualToString:@"OK"]){
-            
-        }
-        else {
+        if (![topLevelStatus isEqualToString:@"OK"]){
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
                 NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
                                                                               NSLocalizedString(@"GoogleMaps Distance Matrix API returned status code %@",@""),
                                                                               topLevelStatus]
                                                                       forKey:NSLocalizedDescriptionKey];
                 
-                [afDelegate afDistanceWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:666 userInfo:errorInfo]];
+                [afDelegate afDistanceWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
             }
             return;
         }
@@ -273,39 +270,13 @@
                                                                                       elementStatus]
                                                                               forKey:NSLocalizedDescriptionKey];
                         
-                        [afDelegate afDistanceWS:self origin:providedOrigin destination:providedDest failedWithError:[NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:666 userInfo:errorInfo]];
+                        [afDelegate afDistanceWS:self origin:providedOrigin destination:providedDest failedWithError:[NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
                         
                     }
                 }
             }
         }
         
-        NSDictionary *dico = [rows objectAtIndex:0];
-        
-        
-        //ELEMENT = DEST
-        //ELEMENT 0 = DEST 0
-        NSArray *elements = [dico objectForKey:@"elements"];
-        
-        NSDictionary *childEle = [elements objectAtIndex:0];
-        
-        NSString *status = [childEle objectForKey:@"status"];
-        if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"]){
-            
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
-                [afDelegate afDistanceWSFailed:self withError:status];
-            }
-        }
-        else {
-            NSDictionary *distanceDico = [childEle objectForKey:@"distance"];
-            
-            NSNumber *distance = [NSNumber numberWithDouble:[[distanceDico objectForKey:@"value"] doubleValue]];
-            
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:gotDistance:unit:)]){
-                [afDelegate afDistanceWS:self gotDistance:distance unit:unitsSystem];
-                
-            }
-        }
     }
 }
 
