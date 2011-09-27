@@ -28,7 +28,7 @@
 -(NSURL *) makeURL{
     NSString *rootURL = [self getURLString];
     
-    return [NSURL URLWithString:rootURL];
+    return [super finalizeURLString:rootURL];
 }
 
 #pragma mark ------------------------------------------

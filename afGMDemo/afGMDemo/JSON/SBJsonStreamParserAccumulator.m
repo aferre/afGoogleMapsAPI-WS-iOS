@@ -34,7 +34,10 @@
 @synthesize value;
 
 - (void)dealloc {
-    [value release];
+    if (value !=nil){
+        [value release];
+        value = nil;
+    }
     [super dealloc];
 }
 

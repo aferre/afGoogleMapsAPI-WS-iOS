@@ -13,6 +13,7 @@
 		3810D83113981DAD00B5972E /* DistanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D82F13981DAD00B5972E /* DistanceViewController.xib */; };
 		3810D83513981E1300B5972E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3810D83313981E1300B5972E /* SettingsViewController.m */; };
 		3810D83613981E1300B5972E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D83413981E1300B5972E /* SettingsViewController.xib */; };
+		3819B2F5142F87900036F542 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3819B2F4142F87900036F542 /* CoreLocation.framework */; };
 		389D91191392E89E005A7B40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91181392E89E005A7B40 /* UIKit.framework */; };
 		389D911B1392E89F005A7B40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911A1392E89F005A7B40 /* Foundation.framework */; };
 		389D911D1392E89F005A7B40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911C1392E89F005A7B40 /* CoreGraphics.framework */; };
@@ -66,6 +67,7 @@
 		3810D83213981E1200B5972E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		3810D83313981E1300B5972E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		3810D83413981E1300B5972E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		3819B2F4142F87900036F542 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		389D91141392E89E005A7B40 /* afGMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = afGMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		389D91181392E89E005A7B40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		389D911A1392E89F005A7B40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3819B2F5142F87900036F542 /* CoreLocation.framework in Frameworks */,
 				389D91941392E973005A7B40 /* Security.framework in Frameworks */,
 				389D91921392E949005A7B40 /* CFNetwork.framework in Frameworks */,
 				389D91901392E941005A7B40 /* libz.1.2.3.dylib in Frameworks */,
@@ -188,6 +191,7 @@
 		389D91091392E89E005A7B40 = {
 			isa = PBXGroup;
 			children = (
+				3819B2F4142F87900036F542 /* CoreLocation.framework */,
 				389D911E1392E89F005A7B40 /* afGMDemo */,
 				389D91171392E89E005A7B40 /* Frameworks */,
 				389D91151392E89E005A7B40 /* Products */,
