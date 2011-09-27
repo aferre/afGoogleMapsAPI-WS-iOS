@@ -86,7 +86,11 @@
 }
 
 - (IBAction)launchReq:(id)sender {
-
+    
+    [originTF resignFirstResponder];
+    [destinationTF resignFirstResponder];
+    [waypointsTF resignFirstResponder];
+    
     afGMapsDirectionsRequest *req = [afGMapsDirectionsRequest directionsRequest];
     req.afDelegate = self;
     
@@ -129,7 +133,7 @@
     
     [req setAlternatives:self.alternativesSw.on];
     if (![self.waypointsTF.text isEqualToString:@""])
-    [req setWaypoints:[NSArray arrayWithObject:self.waypointsTF.text]];
+        [req setWaypoints:[NSArray arrayWithObject:self.waypointsTF.text]];
     
     [req startAsynchronous];
 }
@@ -139,11 +143,20 @@
 #pragma mark ------------------------------------------
 
 -(void) afDirectionsWSStarted:(afGMapsDirectionsRequest *)ws{
-    
+    self.txtView.text = @"";
 }
 
--(void) afDirectionsWS:(afGMapsDirectionsRequest *)ws gotResult:(NSDictionary *)res{
-    self.txtView.text = [NSString stringWithFormat:@"Got result %@",res];
+-(void) afDirectionsWS:(afGMapsDirectionsRequest *)ws gotRoutes:(NSArray *)res{
+    
+    Route *r = [res objectAtIndex:0];
+    NSMutableString *str = [NSMutableString stringWithFormat:@"Got %u routes %@",[res count], res];
+    [str appendFormat:@"Route 1"];
+    for (Leg *leg in r.legs){
+        for (Step *step in leg.steps){
+            [str appendFormat:@"\n%@",step.htmlInstructions];
+        }
+    }
+    self.txtView.text = str;
 }
 
 -(void) afDirectionsWSFailed:(afGMapsDirectionsRequest *)ws withError:(NSString *)er{
