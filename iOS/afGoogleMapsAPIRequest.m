@@ -1101,38 +1101,32 @@
             return @"te";
         }
             break;
-        case 
-        LangTHAI:
+        case LangTHAI:
         {
             return @"th";
         }
             break;
-        case 
-        LangTURKISH:
+        case LangTURKISH:
         {
             return @"tr";
         }
             break;
-        case 
-        LangUKRAINIAN:
+        case LangUKRAINIAN:
         {
             return @"uk";
         }
             break;
-        case 
-        LangVIETNAMESE:
+        case LangVIETNAMESE:
         {
             return @"vi";
         }
             break;
-        case 
-        LangCHINESE_SIMPLIFIED:
+        case LangCHINESE_SIMPLIFIED:
         {
             return @"zh-CN";
         }
             break;
-        case 
-        LangCHINESE_TRADITIONAL:
+        case LangCHINESE_TRADITIONAL:
         {
             return @"zh-TW";
         }
@@ -1140,6 +1134,15 @@
             
     }
     return @"";
+}
+
+-(NSURL *) finalizeURLString:(NSString *)str{
+    
+    NSString * finalURL = [str stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+    finalURL = [finalURL stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    
+    return [NSURL URLWithString:finalURL];
 }
 
 -(void) dealloc{

@@ -11,6 +11,8 @@
 #import "SBJsonPublic.h"
 #import "ASIHTTPRequest.h"
 #import "ASIHTTPRequestDelegate.h"
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 #define WS_DEBUG YES
 #define GOOGLE_API_ROOT_URL_HTTP @"http://maps.googleapis.com/maps/api/"
@@ -380,6 +382,8 @@ typedef enum Language {
 +(NSString *) avoidMode:(AvoidMode) avoidMode;
 
 - (NSString *) getURLString;
+
+- (NSURL *) finalizeURLString:(NSString *)str;
 
 -(id) initDefault;
 
