@@ -49,11 +49,6 @@
     rootURL = [rootURL stringByAppendingFormat:@"%@",GOOGLE_DIRECTIONS_API_PATH_COMPONENT];
     
     switch (format) {
-        case ReturnJSON:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
-        }
-            break;
         case ReturnXML:
         {
             rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
@@ -67,9 +62,9 @@
     }
     
     //origin
-    rootURL = [rootURL stringByAppendingFormat:@"origin=%@",[origin stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    rootURL = [rootURL stringByAppendingFormat:@"origin=%@",origin];
     //destination
-    rootURL = [rootURL stringByAppendingFormat:@"&destination=%@",[destination stringByReplacingOccurrencesOfString:@" " withString:@"+"]];
+    rootURL = [rootURL stringByAppendingFormat:@"&destination=%@",destination];
     
     //mode
     if (travelMode != TravelModeDefault)

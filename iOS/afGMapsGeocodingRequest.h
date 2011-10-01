@@ -93,11 +93,9 @@ typedef enum LocationType {
 
 - (void) setTheAddress:(NSString *)taddress;
 
--(LocationType) locationTypeFromString:(NSString *)str;
++(AddressComponentType) addressComponentTypeFromString:(NSString *)str;
 
--(AddressComponentType) addressComponentTypeFromString:(NSString *)str;
-
--(Result *)parseJSONResult:(NSDictionary *)result;
++(LocationType) locationTypeFromString:(NSString *)str;
 
 @end
 
@@ -129,6 +127,8 @@ typedef enum LocationType {
 @property (nonatomic,retain) NSString * longName;
 @property (nonatomic,retain) NSString *shortName;
 @property (nonatomic,retain) NSArray *componentTypes;
+
++ (AddressComponent *) parseJsonDico:(NSDictionary *)jsonDico;
 @end
 
 @interface Geometry : NSObject {
@@ -146,6 +146,7 @@ typedef enum LocationType {
 @property (nonatomic,assign) CLLocationCoordinate2D boundsSW;
 @property (nonatomic,assign) CLLocationCoordinate2D boundsNE;
 @property (nonatomic,assign) LocationType locationType;
++ (Geometry *) parseJsonDico:(NSDictionary *)jsonDico;
 @end
 
 @interface Result : NSObject {
@@ -159,4 +160,6 @@ typedef enum LocationType {
 @property (nonatomic,retain) NSString *formattedAddress;
 @property (nonatomic,retain) NSArray *addressComponents;
 @property (nonatomic,retain) Geometry *geometry;
+
++ (Result *) parseJsonDico:(NSDictionary *)jsonDico;
 @end

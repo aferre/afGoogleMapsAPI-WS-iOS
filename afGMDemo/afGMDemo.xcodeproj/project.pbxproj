@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		38476B2714374BD50030EEBE /* afGoogleMaps-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 38476B2814374BD50030EEBE /* Build configuration list for PBXAggregateTarget "afGoogleMaps-Universal" */;
+			buildPhases = (
+				38476B4514374D670030EEBE /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "afGoogleMaps-Universal";
+			productName = "afGoogleMaps-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		3810D829139811AA00B5972E /* DirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3810D827139811AA00B5972E /* DirectionsViewController.m */; };
 		3810D82A139811AA00B5972E /* DirectionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D828139811AA00B5972E /* DirectionsViewController.xib */; };
@@ -14,6 +28,78 @@
 		3810D83513981E1300B5972E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3810D83313981E1300B5972E /* SettingsViewController.m */; };
 		3810D83613981E1300B5972E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D83413981E1300B5972E /* SettingsViewController.xib */; };
 		3819B2F5142F87900036F542 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3819B2F4142F87900036F542 /* CoreLocation.framework */; };
+		38476B1B14374BC60030EEBE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38476B1A14374BC60030EEBE /* CoreFoundation.framework */; };
+		38476B2114374BC60030EEBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38476B1F14374BC60030EEBE /* InfoPlist.strings */; };
+		38476B2C14374C670030EEBE /* afGoogleMapsAPIRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B2D14374C670030EEBE /* afGMapsDirectionsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91381392E8AF005A7B40 /* afGMapsDirectionsRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B2E14374C670030EEBE /* afGMapsElevationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38CC36D81396C4B3006C1381 /* afGMapsElevationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B2F14374C670030EEBE /* afGMapsPlacesRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B3014374C670030EEBE /* afGMapsDistanceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D913A1392E8AF005A7B40 /* afGMapsDistanceRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B3114374C670030EEBE /* afGMapsGeocodingRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D913C1392E8AF005A7B40 /* afGMapsGeocodingRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B3514374CE40030EEBE /* afGoogleMaps.h in Headers */ = {isa = PBXBuildFile; fileRef = 38476B3214374C8E0030EEBE /* afGoogleMaps.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B3614374CFC0030EEBE /* afGoogleMapsAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913F1392E8AF005A7B40 /* afGoogleMapsAPIRequest.m */; };
+		38476B3714374CFC0030EEBE /* afGMapsDirectionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91391392E8AF005A7B40 /* afGMapsDirectionsRequest.m */; };
+		38476B3814374CFC0030EEBE /* afGMapsElevationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */; };
+		38476B3914374CFC0030EEBE /* afGMapsPlacesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */; };
+		38476B3A14374CFC0030EEBE /* afGMapsDistanceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913B1392E8AF005A7B40 /* afGMapsDistanceRequest.m */; };
+		38476B3B14374CFC0030EEBE /* afGMapsGeocodingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913D1392E8AF005A7B40 /* afGMapsGeocodingRequest.m */; };
+		38476B3C14374D170030EEBE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3819B2F4142F87900036F542 /* CoreLocation.framework */; };
+		38476B3D14374D170030EEBE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91931392E973005A7B40 /* Security.framework */; };
+		38476B3E14374D170030EEBE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91911392E949005A7B40 /* CFNetwork.framework */; };
+		38476B3F14374D170030EEBE /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D918F1392E941005A7B40 /* libz.1.2.3.dylib */; };
+		38476B4014374D170030EEBE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D918D1392E93A005A7B40 /* MobileCoreServices.framework */; };
+		38476B4114374D170030EEBE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D918B1392E936005A7B40 /* SystemConfiguration.framework */; };
+		38476B4214374D170030EEBE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91181392E89E005A7B40 /* UIKit.framework */; };
+		38476B4314374D170030EEBE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911A1392E89F005A7B40 /* Foundation.framework */; };
+		38476B4414374D170030EEBE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911C1392E89F005A7B40 /* CoreGraphics.framework */; };
+		38476B4614374DC70030EEBE /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91471392E915005A7B40 /* NSObject+SBJson.m */; };
+		38476B4714374DC70030EEBE /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D914A1392E915005A7B40 /* SBJsonParser.m */; };
+		38476B4814374DC70030EEBE /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D914D1392E915005A7B40 /* SBJsonStreamParser.m */; };
+		38476B4914374DC70030EEBE /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D914F1392E915005A7B40 /* SBJsonStreamParserAccumulator.m */; };
+		38476B4A14374DC70030EEBE /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91511392E915005A7B40 /* SBJsonStreamParserAdapter.m */; };
+		38476B4B14374DC70030EEBE /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91531392E915005A7B40 /* SBJsonStreamParserState.m */; };
+		38476B4C14374DC70030EEBE /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91551392E915005A7B40 /* SBJsonStreamWriter.m */; };
+		38476B4D14374DC70030EEBE /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91571392E915005A7B40 /* SBJsonStreamWriterAccumulator.m */; };
+		38476B4E14374DC70030EEBE /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91591392E915005A7B40 /* SBJsonStreamWriterState.m */; };
+		38476B4F14374DC70030EEBE /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D915B1392E915005A7B40 /* SBJsonTokeniser.m */; };
+		38476B5014374DC70030EEBE /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D915D1392E915005A7B40 /* SBJsonUTF8Stream.m */; };
+		38476B5114374DC70030EEBE /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D915F1392E915005A7B40 /* SBJsonWriter.m */; };
+		38476B5214374DC70030EEBE /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D916D1392E920005A7B40 /* ASIAuthenticationDialog.m */; };
+		38476B5314374DC70030EEBE /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91701392E920005A7B40 /* ASIDataCompressor.m */; };
+		38476B5414374DC70030EEBE /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91721392E920005A7B40 /* ASIDataDecompressor.m */; };
+		38476B5514374DC70030EEBE /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91741392E920005A7B40 /* ASIDownloadCache.m */; };
+		38476B5614374DC70030EEBE /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91761392E920005A7B40 /* ASIFormDataRequest.m */; };
+		38476B5714374DC70030EEBE /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91781392E920005A7B40 /* ASIHTTPRequest.m */; };
+		38476B5814374DC70030EEBE /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D917C1392E920005A7B40 /* ASIInputStream.m */; };
+		38476B5914374DC70030EEBE /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D917E1392E920005A7B40 /* ASINetworkQueue.m */; };
+		38476B5A14374DC70030EEBE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91811392E920005A7B40 /* Reachability.m */; };
+		38476B5B14374DE70030EEBE /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91461392E915005A7B40 /* NSObject+SBJson.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B5C14374DE70030EEBE /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91481392E915005A7B40 /* SBJson.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B5D14374DE70030EEBE /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91491392E915005A7B40 /* SBJsonParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B5E14374DE70030EEBE /* SBJsonPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914B1392E915005A7B40 /* SBJsonPublic.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B5F14374DE70030EEBE /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914C1392E915005A7B40 /* SBJsonStreamParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6014374DE70030EEBE /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914E1392E915005A7B40 /* SBJsonStreamParserAccumulator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6114374DE70030EEBE /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91501392E915005A7B40 /* SBJsonStreamParserAdapter.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6214374DE70030EEBE /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91521392E915005A7B40 /* SBJsonStreamParserState.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6314374DE70030EEBE /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91541392E915005A7B40 /* SBJsonStreamWriter.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6414374DE70030EEBE /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91561392E915005A7B40 /* SBJsonStreamWriterAccumulator.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6514374DE70030EEBE /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91581392E915005A7B40 /* SBJsonStreamWriterState.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6614374DE70030EEBE /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915A1392E915005A7B40 /* SBJsonTokeniser.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6714374DE70030EEBE /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915C1392E915005A7B40 /* SBJsonUTF8Stream.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6814374DE70030EEBE /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915E1392E915005A7B40 /* SBJsonWriter.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6914374DE70030EEBE /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916C1392E920005A7B40 /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6A14374DE70030EEBE /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916E1392E920005A7B40 /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6B14374DE70030EEBE /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916F1392E920005A7B40 /* ASIDataCompressor.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6C14374DE70030EEBE /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91711392E920005A7B40 /* ASIDataDecompressor.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6D14374DE70030EEBE /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91731392E920005A7B40 /* ASIDownloadCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6E14374DE70030EEBE /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91751392E920005A7B40 /* ASIFormDataRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B6F14374DE70030EEBE /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91771392E920005A7B40 /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B7014374DE70030EEBE /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91791392E920005A7B40 /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B7114374DE70030EEBE /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917A1392E920005A7B40 /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B7214374DE70030EEBE /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917B1392E920005A7B40 /* ASIInputStream.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B7314374DE70030EEBE /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917D1392E920005A7B40 /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B7414374DE70030EEBE /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917F1392E920005A7B40 /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B7514374DE70030EEBE /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91801392E920005A7B40 /* Reachability.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		389D91191392E89E005A7B40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91181392E89E005A7B40 /* UIKit.framework */; };
 		389D911B1392E89F005A7B40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911A1392E89F005A7B40 /* Foundation.framework */; };
 		389D911D1392E89F005A7B40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911C1392E89F005A7B40 /* CoreGraphics.framework */; };
@@ -68,6 +154,12 @@
 		3810D83313981E1300B5972E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		3810D83413981E1300B5972E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		3819B2F4142F87900036F542 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		38476B1914374BC60030EEBE /* afGoogleMapsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = afGoogleMapsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38476B1A14374BC60030EEBE /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		38476B1E14374BC60030EEBE /* afGoogleMapsiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "afGoogleMapsiOS-Info.plist"; sourceTree = "<group>"; };
+		38476B2014374BC60030EEBE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		38476B2214374BC60030EEBE /* afGoogleMapsiOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "afGoogleMapsiOS-Prefix.pch"; sourceTree = "<group>"; };
+		38476B3214374C8E0030EEBE /* afGoogleMaps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGoogleMaps.h; sourceTree = "<group>"; };
 		389D91141392E89E005A7B40 /* afGMDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = afGMDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		389D91181392E89E005A7B40 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		389D911A1392E89F005A7B40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -150,6 +242,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		38476B1614374BC60030EEBE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38476B3C14374D170030EEBE /* CoreLocation.framework in Frameworks */,
+				38476B3D14374D170030EEBE /* Security.framework in Frameworks */,
+				38476B3E14374D170030EEBE /* CFNetwork.framework in Frameworks */,
+				38476B3F14374D170030EEBE /* libz.1.2.3.dylib in Frameworks */,
+				38476B4014374D170030EEBE /* MobileCoreServices.framework in Frameworks */,
+				38476B4114374D170030EEBE /* SystemConfiguration.framework in Frameworks */,
+				38476B4214374D170030EEBE /* UIKit.framework in Frameworks */,
+				38476B4314374D170030EEBE /* Foundation.framework in Frameworks */,
+				38476B4414374D170030EEBE /* CoreGraphics.framework in Frameworks */,
+				38476B1B14374BC60030EEBE /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		389D91111392E89E005A7B40 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,10 +297,29 @@
 			name = ViewCons;
 			sourceTree = "<group>";
 		};
+		38476B1C14374BC60030EEBE /* afGoogleMapsiOS */ = {
+			isa = PBXGroup;
+			children = (
+				38476B1D14374BC60030EEBE /* Supporting Files */,
+			);
+			path = afGoogleMapsiOS;
+			sourceTree = "<group>";
+		};
+		38476B1D14374BC60030EEBE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				38476B1E14374BC60030EEBE /* afGoogleMapsiOS-Info.plist */,
+				38476B1F14374BC60030EEBE /* InfoPlist.strings */,
+				38476B2214374BC60030EEBE /* afGoogleMapsiOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		389D91091392E89E005A7B40 = {
 			isa = PBXGroup;
 			children = (
 				389D911E1392E89F005A7B40 /* afGMDemo */,
+				38476B1C14374BC60030EEBE /* afGoogleMapsiOS */,
 				389D91171392E89E005A7B40 /* Frameworks */,
 				389D91151392E89E005A7B40 /* Products */,
 			);
@@ -201,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				389D91141392E89E005A7B40 /* afGMDemo.app */,
+				38476B1914374BC60030EEBE /* afGoogleMapsiOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +346,7 @@
 				389D91181392E89E005A7B40 /* UIKit.framework */,
 				389D911A1392E89F005A7B40 /* Foundation.framework */,
 				389D911C1392E89F005A7B40 /* CoreGraphics.framework */,
+				38476B1A14374BC60030EEBE /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -312,6 +442,7 @@
 		38CC36D01396C2C2006C1381 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				38476B3214374C8E0030EEBE /* afGoogleMaps.h */,
 				389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */,
 				389D913F1392E8AF005A7B40 /* afGoogleMapsAPIRequest.m */,
 				389D91381392E8AF005A7B40 /* afGMapsDirectionsRequest.h */,
@@ -330,7 +461,69 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		38476B2B14374C560030EEBE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38476B3514374CE40030EEBE /* afGoogleMaps.h in Headers */,
+				38476B2C14374C670030EEBE /* afGoogleMapsAPIRequest.h in Headers */,
+				38476B2D14374C670030EEBE /* afGMapsDirectionsRequest.h in Headers */,
+				38476B2E14374C670030EEBE /* afGMapsElevationRequest.h in Headers */,
+				38476B2F14374C670030EEBE /* afGMapsPlacesRequest.h in Headers */,
+				38476B3014374C670030EEBE /* afGMapsDistanceRequest.h in Headers */,
+				38476B3114374C670030EEBE /* afGMapsGeocodingRequest.h in Headers */,
+				38476B5B14374DE70030EEBE /* NSObject+SBJson.h in Headers */,
+				38476B5C14374DE70030EEBE /* SBJson.h in Headers */,
+				38476B5D14374DE70030EEBE /* SBJsonParser.h in Headers */,
+				38476B5E14374DE70030EEBE /* SBJsonPublic.h in Headers */,
+				38476B5F14374DE70030EEBE /* SBJsonStreamParser.h in Headers */,
+				38476B6014374DE70030EEBE /* SBJsonStreamParserAccumulator.h in Headers */,
+				38476B6114374DE70030EEBE /* SBJsonStreamParserAdapter.h in Headers */,
+				38476B6214374DE70030EEBE /* SBJsonStreamParserState.h in Headers */,
+				38476B6314374DE70030EEBE /* SBJsonStreamWriter.h in Headers */,
+				38476B6414374DE70030EEBE /* SBJsonStreamWriterAccumulator.h in Headers */,
+				38476B6514374DE70030EEBE /* SBJsonStreamWriterState.h in Headers */,
+				38476B6614374DE70030EEBE /* SBJsonTokeniser.h in Headers */,
+				38476B6714374DE70030EEBE /* SBJsonUTF8Stream.h in Headers */,
+				38476B6814374DE70030EEBE /* SBJsonWriter.h in Headers */,
+				38476B6914374DE70030EEBE /* ASIAuthenticationDialog.h in Headers */,
+				38476B6A14374DE70030EEBE /* ASICacheDelegate.h in Headers */,
+				38476B6B14374DE70030EEBE /* ASIDataCompressor.h in Headers */,
+				38476B6C14374DE70030EEBE /* ASIDataDecompressor.h in Headers */,
+				38476B6D14374DE70030EEBE /* ASIDownloadCache.h in Headers */,
+				38476B6E14374DE70030EEBE /* ASIFormDataRequest.h in Headers */,
+				38476B6F14374DE70030EEBE /* ASIHTTPRequest.h in Headers */,
+				38476B7014374DE70030EEBE /* ASIHTTPRequestConfig.h in Headers */,
+				38476B7114374DE70030EEBE /* ASIHTTPRequestDelegate.h in Headers */,
+				38476B7214374DE70030EEBE /* ASIInputStream.h in Headers */,
+				38476B7314374DE70030EEBE /* ASINetworkQueue.h in Headers */,
+				38476B7414374DE70030EEBE /* ASIProgressDelegate.h in Headers */,
+				38476B7514374DE70030EEBE /* Reachability.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		38476B1814374BC60030EEBE /* afGoogleMapsiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 38476B2514374BC60030EEBE /* Build configuration list for PBXNativeTarget "afGoogleMapsiOS" */;
+			buildPhases = (
+				38476B1514374BC60030EEBE /* Sources */,
+				38476B1614374BC60030EEBE /* Frameworks */,
+				38476B1714374BC60030EEBE /* Resources */,
+				38476B2B14374C560030EEBE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = afGoogleMapsiOS;
+			productName = afGoogleMapsiOS;
+			productReference = 38476B1914374BC60030EEBE /* afGoogleMapsiOS.framework */;
+			productType = "com.apple.product-type.bundle";
+		};
 		389D91131392E89E005A7B40 /* afGMDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 389D91351392E89F005A7B40 /* Build configuration list for PBXNativeTarget "afGMDemo" */;
@@ -369,11 +562,21 @@
 			projectRoot = "";
 			targets = (
 				389D91131392E89E005A7B40 /* afGMDemo */,
+				38476B1814374BC60030EEBE /* afGoogleMapsiOS */,
+				38476B2714374BD50030EEBE /* afGoogleMaps-Universal */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		38476B1714374BC60030EEBE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38476B2114374BC60030EEBE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		389D91121392E89E005A7B40 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -389,7 +592,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		38476B4514374D670030EEBE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Sets the target folders and the final framework product.\nFMK_NAME=afGoogleMapsiOS\nFMK_VERSION=A\n\n# Install dir will be the final output to the framework.\n# The following line create it in the root folder of the current project.\nINSTALL_DIR=${SRCROOT}/Products/${FMK_NAME}.framework\n\n# Working dir will be deleted after the framework creation.\nWRK_DIR=build\nDEVICE_DIR=${WRK_DIR}/Release-iphoneos/${FMK_NAME}.framework\nSIMULATOR_DIR=${WRK_DIR}/Release-iphonesimulator/${FMK_NAME}.framework\n\n# Building both architectures.\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphoneos\nxcodebuild -configuration \"Release\" -target \"${FMK_NAME}\" -sdk iphonesimulator\n\n# Cleaning the oldest.\nif [ -d \"${INSTALL_DIR}\" ]\nthen\nrm -rf \"${INSTALL_DIR}\"\nfi\n\n# Creates and renews the final product folder.\nmkdir -p \"${INSTALL_DIR}\"\nmkdir -p \"${INSTALL_DIR}/Versions\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources\"\nmkdir -p \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Headers\"\n\n# Creates the internal links.\n# It MUST uses relative path, otherwise will not work when the folder is copied/moved.\nln -s \"${FMK_VERSION}\" \"${INSTALL_DIR}/Versions/Current\"\nln -s \"Versions/Current/Headers\" \"${INSTALL_DIR}/Headers\"\nln -s \"Versions/Current/Resources\" \"${INSTALL_DIR}/Resources\"\nln -s \"Versions/Current/${FMK_NAME}\" \"${INSTALL_DIR}/${FMK_NAME}\"\n\n# Copies the headers and resources files to the final product folder.\ncp -R \"${DEVICE_DIR}/Headers/\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Headers/\"\ncp -R \"${DEVICE_DIR}/\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/\"\n\n# Removes the binary and header from the resources folder.\nrm -r \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/Headers\" \"${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources/${FMK_NAME}\"\n\n# Uses the Lipo Tool to merge both binary files (i386 + armv6/armv7) into one Universal final product.\nlipo -create \"${DEVICE_DIR}/${FMK_NAME}\" \"${SIMULATOR_DIR}/${FMK_NAME}\" -output \"${INSTALL_DIR}/Versions/${FMK_VERSION}/${FMK_NAME}\"\n\nrm -r \"${WRK_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		38476B1514374BC60030EEBE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38476B4614374DC70030EEBE /* NSObject+SBJson.m in Sources */,
+				38476B4714374DC70030EEBE /* SBJsonParser.m in Sources */,
+				38476B4814374DC70030EEBE /* SBJsonStreamParser.m in Sources */,
+				38476B4914374DC70030EEBE /* SBJsonStreamParserAccumulator.m in Sources */,
+				38476B4A14374DC70030EEBE /* SBJsonStreamParserAdapter.m in Sources */,
+				38476B4B14374DC70030EEBE /* SBJsonStreamParserState.m in Sources */,
+				38476B4C14374DC70030EEBE /* SBJsonStreamWriter.m in Sources */,
+				38476B4D14374DC70030EEBE /* SBJsonStreamWriterAccumulator.m in Sources */,
+				38476B4E14374DC70030EEBE /* SBJsonStreamWriterState.m in Sources */,
+				38476B4F14374DC70030EEBE /* SBJsonTokeniser.m in Sources */,
+				38476B5014374DC70030EEBE /* SBJsonUTF8Stream.m in Sources */,
+				38476B5114374DC70030EEBE /* SBJsonWriter.m in Sources */,
+				38476B5214374DC70030EEBE /* ASIAuthenticationDialog.m in Sources */,
+				38476B5314374DC70030EEBE /* ASIDataCompressor.m in Sources */,
+				38476B5414374DC70030EEBE /* ASIDataDecompressor.m in Sources */,
+				38476B5514374DC70030EEBE /* ASIDownloadCache.m in Sources */,
+				38476B5614374DC70030EEBE /* ASIFormDataRequest.m in Sources */,
+				38476B5714374DC70030EEBE /* ASIHTTPRequest.m in Sources */,
+				38476B5814374DC70030EEBE /* ASIInputStream.m in Sources */,
+				38476B5914374DC70030EEBE /* ASINetworkQueue.m in Sources */,
+				38476B5A14374DC70030EEBE /* Reachability.m in Sources */,
+				38476B3614374CFC0030EEBE /* afGoogleMapsAPIRequest.m in Sources */,
+				38476B3714374CFC0030EEBE /* afGMapsDirectionsRequest.m in Sources */,
+				38476B3814374CFC0030EEBE /* afGMapsElevationRequest.m in Sources */,
+				38476B3914374CFC0030EEBE /* afGMapsPlacesRequest.m in Sources */,
+				38476B3A14374CFC0030EEBE /* afGMapsDistanceRequest.m in Sources */,
+				38476B3B14374CFC0030EEBE /* afGMapsGeocodingRequest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		389D91101392E89E005A7B40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,6 +686,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		38476B1F14374BC60030EEBE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				38476B2014374BC60030EEBE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		389D91211392E89F005A7B40 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -460,6 +721,78 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		38476B2314374BC60030EEBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "afGoogleMapsiOS/afGoogleMapsiOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "afGoogleMapsiOS/afGoogleMapsiOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		38476B2414374BC60030EEBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "afGoogleMapsiOS/afGoogleMapsiOS-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "afGoogleMapsiOS/afGoogleMapsiOS-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		38476B2914374BD50030EEBE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		38476B2A14374BD50030EEBE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		389D91331392E89F005A7B40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -523,6 +856,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		38476B2514374BC60030EEBE /* Build configuration list for PBXNativeTarget "afGoogleMapsiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38476B2314374BC60030EEBE /* Debug */,
+				38476B2414374BC60030EEBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		38476B2814374BD50030EEBE /* Build configuration list for PBXAggregateTarget "afGoogleMaps-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				38476B2914374BD50030EEBE /* Debug */,
+				38476B2A14374BD50030EEBE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		389D910E1392E89E005A7B40 /* Build configuration list for PBXProject "afGMDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

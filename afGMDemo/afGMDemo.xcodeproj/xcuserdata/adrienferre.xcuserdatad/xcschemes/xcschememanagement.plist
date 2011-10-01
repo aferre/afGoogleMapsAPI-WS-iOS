@@ -9,9 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>afGoogleMaps-Universal.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>afGoogleMapsiOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>38476B1814374BC60030EEBE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>38476B2714374BD50030EEBE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>389D91131392E89E005A7B40</key>
 		<dict>
 			<key>primary</key>
