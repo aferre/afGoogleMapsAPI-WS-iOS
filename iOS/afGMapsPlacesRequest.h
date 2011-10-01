@@ -10,6 +10,7 @@
 #import "afGoogleMapsAPIRequest.h"
 
 #define GOOGLE_PLACES_API_PATH_COMPONENT @"directions"
+#define API_KEY @"AIzaSyCA944VvzTcPpT4mM4PG-ibNPXkLt0fGiU"
 
 @protocol afGoogleMapsPlacesDelegate;
 

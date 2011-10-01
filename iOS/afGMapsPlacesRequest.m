@@ -11,11 +11,18 @@
 
 @implementation afGMapsPlacesRequest
 
-@synthesize afDelegate;
-
 -(void) dealloc{
-    
     
     [super dealloc];
 }
+
+-(NSString *)getURLString{
+    
+    NSString *rootURL = [super getURLString];
+    
+    rootURL = [rootURL stringByAppendingFormat:@"place"];
+    
+    return rootURL;
+}
+
 @end
