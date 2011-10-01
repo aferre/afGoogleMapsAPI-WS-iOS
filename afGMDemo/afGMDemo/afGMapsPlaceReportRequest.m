@@ -83,7 +83,7 @@
         [dico setObject:coordDico forKey:@"location"];
         [dico setObject:name forKey:@"name"];
         [dico setObject:types forKey:@"types"];
-        
+        [dico setObject:[NSNumber numberWithDouble:accuracy] forKey:@"accuracy"];
         if (language != LangDEFAULT)
             [dico setObject:[afGoogleMapsAPIRequest languageCode:language] forKey:@"language"];
     }
