@@ -16,7 +16,7 @@
 #pragma mark ------ INIT
 #pragma mark ------------------------------------------
 
-+(id) directionsRequest{
++(id) request{
     return [[[self alloc] initDefault] autorelease];
 }
 

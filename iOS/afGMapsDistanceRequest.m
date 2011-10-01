@@ -18,7 +18,7 @@
 #pragma mark ------------------------------------------
 
 
-+(id) distanceRequest{
++(id) request{
     return [[[self alloc] initDefault] autorelease];
 }
 

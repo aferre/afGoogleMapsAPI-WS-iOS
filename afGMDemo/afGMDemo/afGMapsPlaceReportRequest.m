@@ -15,7 +15,7 @@
 #pragma mark ------ INIT
 #pragma mark ------------------------------------------
 
-+ (id) placesReportRequest{
++ (id) request{
     return [[[self alloc] initDefault] autorelease];
 }
 
@@ -84,8 +84,7 @@
         [dico setObject:name forKey:@"name"];
         [dico setObject:types forKey:@"types"];
         [dico setObject:[NSNumber numberWithDouble:accuracy] forKey:@"accuracy"];
-        if (language != LangDEFAULT)
-            [dico setObject:[afGoogleMapsAPIRequest languageCode:language] forKey:@"language"];
+        [dico setObject:[afGoogleMapsAPIRequest languageCode:language] forKey:@"language"];
     }
     else{
         [dico setObject:reference forKey:@"reference"];
@@ -109,6 +108,16 @@
     [self setRequestMethod:@"POST"];
     
     [super startSynchronous];
+}
+
+-(void) setReference:(NSString *)refe{
+    self.reference = refe;
+    isDeleting = YES;
+}
+
+-(void) setName:(NSString *)nam{
+    self.name = nam;
+    isDeleting = NO;
 }
 
 #pragma mark ------------------------------------------

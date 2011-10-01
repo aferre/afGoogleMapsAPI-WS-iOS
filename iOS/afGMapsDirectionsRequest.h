@@ -62,7 +62,7 @@ typedef enum DirectionsRequestStatusCode {
 @property (nonatomic, assign) DirectionsRequestStatusCode directionsRequestStatusCode;
 @property (nonatomic, retain) NSArray *routes;
 
-+(id) directionsRequest;
++(id) request;
 
 -(id) initDefault;
 

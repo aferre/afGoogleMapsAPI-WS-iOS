@@ -38,7 +38,7 @@
 
 - (id) initDefault;
 
-+ (id) distanceRequest;
++ (id) request;
 
 - (NSURL *)makeURL;
 

@@ -17,7 +17,7 @@
 #pragma mark ------ INIT
 #pragma mark ------------------------------------------
 
-+(id)elevationRequest{
++(id)request{
     return [[[self alloc] initWithURL:[NSURL URLWithString:@""]] autorelease];
 }
 

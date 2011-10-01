@@ -91,7 +91,7 @@
     [destinationTF resignFirstResponder];
     [waypointsTF resignFirstResponder];
     
-    afGMapsDirectionsRequest *req = [afGMapsDirectionsRequest directionsRequest];
+    afGMapsDirectionsRequest *req = [afGMapsDirectionsRequest request];
     req.afDelegate = self;
     
     BOOL useHTTPS = [[NSUserDefaults standardUserDefaults] boolForKey:@"HTTPS"];

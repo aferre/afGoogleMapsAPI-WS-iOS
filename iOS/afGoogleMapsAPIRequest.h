@@ -353,6 +353,13 @@ typedef enum Language {
     LangCHINESE_TRADITIONAL
 } Language;
 
+typedef enum LocationType { 
+    LocationTypeRooftop = 0,
+    LocationTypeRangeInterpolated,
+    LocationTypeGeometricCenter,
+    LocationTypeApproximate
+} LocationType;
+
 @interface afGoogleMapsAPIRequest : ASIHTTPRequest <ASIHTTPRequestDelegate>{
     
     BOOL useHTTPS;
@@ -389,4 +396,22 @@ typedef enum Language {
 
 -(id) initDefault;
 
+@end
+
+@interface Geometry : NSObject {
+    LocationType locationType;
+    CLLocationCoordinate2D location;
+    CLLocationCoordinate2D viewportSW;
+    CLLocationCoordinate2D viewportNE;
+    CLLocationCoordinate2D boundsSW;
+    CLLocationCoordinate2D boundsNE;
+}
+
+@property (nonatomic,assign) CLLocationCoordinate2D location;
+@property (nonatomic,assign) CLLocationCoordinate2D viewportSW;
+@property (nonatomic,assign) CLLocationCoordinate2D viewportNE;
+@property (nonatomic,assign) CLLocationCoordinate2D boundsSW;
+@property (nonatomic,assign) CLLocationCoordinate2D boundsNE;
+@property (nonatomic,assign) LocationType locationType;
++ (Geometry *) parseJsonDico:(NSDictionary *)jsonDico;
 @end

@@ -87,7 +87,7 @@
     [dest2TF resignFirstResponder];
     [dest3TF resignFirstResponder];
     
-    afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
+    afGMapsDistanceRequest *req = [afGMapsDistanceRequest request];
     
     req.afDelegate = self;
     

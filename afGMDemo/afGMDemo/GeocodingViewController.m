@@ -97,7 +97,7 @@
 
 - (IBAction)launchReq:(id)sender {
     
-    afGMapsGeocodingRequest *req =[afGMapsGeocodingRequest geocodingRequest];
+    afGMapsGeocodingRequest *req =[afGMapsGeocodingRequest request];
     req.afDelegate = self;
     
     BOOL useHTTPS = [[NSUserDefaults standardUserDefaults] boolForKey:@"HTTPS"];
