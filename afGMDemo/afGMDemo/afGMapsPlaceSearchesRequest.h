@@ -10,9 +10,9 @@
 
 @protocol afGoogleMapsPlaceSearchesDelegate;
 
-@interface afGMapsPlaceSearchesRequest : afGMapsPlacesRequest{
-    
-}
+@interface afGMapsPlaceSearchesRequest : afGMapsPlacesRequest
+
+@property (nonatomic,assign) id<afGoogleMapsPlaceSearchesDelegate> afDelegate;
 
 @end
 

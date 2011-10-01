@@ -10,13 +10,7 @@
 
 @protocol afGoogleMapsPlaceCheckinDelegate;
 
-@interface afGMapsPlaceCheckinRequest : afGMapsPlacesRequest {    
-    
-    
-    id<afGoogleMapsPlaceCheckinDelegate>  afDelegate;
-    
-    NSString *reference;
-}
+@interface afGMapsPlaceCheckinRequest : afGMapsPlacesRequest
 
 @property (nonatomic,assign) id<afGoogleMapsPlaceCheckinDelegate> afDelegate;
 @property (nonatomic,retain) NSString * reference;
@@ -27,7 +21,7 @@
 @optional
 -(void) afPlaceCheckinWSStarted:(afGMapsPlaceCheckinRequest *)ws ;
 
--(void) afPlaceCheckinWSSucceeded:(afGMapsDistanceRequest *)ws;
+-(void) afPlaceCheckinWSSucceeded:(afGMapsPlaceCheckinRequest *)ws;
 
 -(void) afPlaceCheckinWSFailed:(afGMapsPlaceCheckinRequest *)ws withError:(NSError *)er;
 

@@ -10,6 +10,8 @@
 
 @implementation afGMapsPlaceDetailsRequest
 
+@synthesize afDelegate;
+
 - (id)init
 {
     self = [super init];

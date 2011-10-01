@@ -12,7 +12,6 @@
 
 @interface afGMapsPlaceReportRequest : afGMapsPlacesRequest    
 
-
 @property (nonatomic,assign) CLLocationCoordinate2D location;
 //meters
 @property (nonatomic,assign) double accuracy;

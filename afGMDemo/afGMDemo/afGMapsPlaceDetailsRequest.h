@@ -10,9 +10,9 @@
 
 @protocol afGoogleMapsPlaceDetailsDelegate;
 
-@interface afGMapsPlaceDetailsRequest : afGMapsPlacesRequest{
-    
-}
+@interface afGMapsPlaceDetailsRequest : afGMapsPlacesRequest
+
+@property (nonatomic,assign) id<afGoogleMapsPlaceDetailsDelegate> afDelegate;
 
 @end
 
