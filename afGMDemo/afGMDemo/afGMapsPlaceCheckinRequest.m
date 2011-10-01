@@ -77,8 +77,10 @@
         return;
     
     [self setURL:[self makeURL]];
-    [self appendPostData:[[NSString stringWithFormat:@"\"reference\" : \"%@\"",reference] dataUsingEncoding:NSUTF8StringEncoding]];
+    NSDictionary *dico = [NSDictionary dictionaryWithObject:reference forKey:@"reference"];
+    [self appendPostData:[[dico JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding]];
     [self setRequestMethod:@"POST"];
+    
     [super startAsynchronous];
 }
 
