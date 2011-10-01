@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "38476B1814374BC60030EEBE"
-               BuildableName = "afGoogleMapsiOS.bundle"
+               BuildableName = "afGoogleMapsiOS.framework"
                BlueprintName = "afGoogleMapsiOS"
                ReferencedContainer = "container:afGMDemo.xcodeproj">
             </BuildableReference>
