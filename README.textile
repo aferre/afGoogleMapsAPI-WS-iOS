@@ -26,15 +26,14 @@ Currently supports only JSON format.
 h3. Distance
 
 cf Google Distance Matrix API page for the behaviour of the WS.
-@
-afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
+@afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
 
 req.afDelegate = self;
 
 NSMutableArray *orAr = [NSMutableArray array];
 
-[orAr addObject:\@"Paris"];
-[orAr addObject:\@"Berlin"];
+[orAr addObject:@ "Paris"];
+[orAr addObject:@ "Berlin"];
 
 NSMutableArray *deAr = [NSMutableArray array];
 
