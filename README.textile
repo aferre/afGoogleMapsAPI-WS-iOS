@@ -2,7 +2,7 @@ iOS wrapper for the GoogleMaps API Web Services.
 
 h1. How to
 
-## Install
+h2. Install
 
 Drag/drop the files in the iOS folder to your project in xcode. Use the Copy to target checkbox to make sure you won't 
 loose it on the way. 
@@ -10,7 +10,7 @@ OR
 Drag/drop the *.framework file to your project in xcode. Use the Copy to target checkbox to make sure you won't loose 
 it on the way.
 
-## Handle errors
+h2. Handle errors
 
 When handling the errors returned by an afGoogleMapsAPIRequest, you should know a couple of things.
 
@@ -19,19 +19,14 @@ First, every HTTP related error is directly returned without any alteration. The
 The errors returned/caused by the afGoogleMapsAPI framwork or the Google Maps API Web Services are all wrapped under a 
 common error code 666, which can be customized in afGoogleMapsAPIRequest.h.
 
-## Use classes
+h2. Use classes
 
 Currently supports only JSON format.
 
-### Distance
+h3. Distance
 
 cf Google Distance Matrix API page for the behaviour of the WS.
 
-Install
-Just copy afGMapsDistanceRequest and afGoogleMapsAPIRequest files to your project (you need both ASIHTTP and JSON 
-frameworks for the wrapper to work).
-
-How to use
 afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
 
 req.afDelegate = self;
@@ -82,15 +77,10 @@ origin:(NSString *) origin returnedOrigin:(NSString *)returnedOrigin destination
 returnedDestination:(NSString *)returnedDest duration:(NSNumber *)durationInSec textDuration:(NSString *)textDuration 
 unit:(UnitsSystem)unit;
 
-### Geocoding
+h3. Geocoding
 
 cf Google Geocoding API page for the behaviour of the WS.
 
-Install
-Just copy afGMapsGeocodingRequest and afGoogleMapsAPIRequest files to your project (you need both ASIHTTP and JSON 
-frameworks for the wrapper to work).
-
-How to use
 Create a request to geocode an address:
 
 afGMapsGeocodingRequest *req = [afGMapsGeocodingRequest addressForLatitude:lat andLongitude:lng];
@@ -130,8 +120,7 @@ andLongitude:(double)longitude;
 -(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotMultipleAddresses:(NSArray *)addresses 
 fromLatitude:(double)latitude andLongitude:(double)longitude;
 
-
-### Directions
+h3. Directions
 
 cf Google Directions API page for the behaviour of the WS.
 
@@ -165,28 +154,31 @@ You need to make your controller implement the delegate methods:
 They are all optional, meaning that it won't matter if you don't implement them, but you'll need them for obvious 
 reasons. Actually, you could make a synchronous request and then retrieve the values you need on the request itself.
 
-### Places
+h3. Places
 
 You'll need a Google Maps API key to use this WS. 
 Go to http://code.google.com/intl/fr-FR/apis/maps/documentation/places/#Authentication and follow the procedure. 
 Obviously you won't be able to use the framework out of the box as you'll need to provide this key in 
 afGoogleMapsAPIRequest.h (#define API_KEY).
 
-Searches
-Details
-Checkin
+h4. Searches
+
+h4. Details
+
+h4. Checkin
 afGMapsPlaceCheckinRequest *req = [afGMapsPlaceCheckinRequest request];
 req.afDelegate = self;
 req.reference = ...;
 [req startAsynchronous];
 You'll need to implement the following delegate functions. All are optional:
 
--(void) afPlaceCheckinWSStarted:(afGMapsPlaceCheckinRequest *)ws ;
+	-(void) afPlaceCheckinWSStarted:(afGMapsPlaceCheckinRequest *)ws ;
 
--(void) afPlaceCheckinWSSucceeded:(afGMapsPlaceCheckinRequest *)ws;
+    	-(void) afPlaceCheckinWSSucceeded:(afGMapsPlaceCheckinRequest *)ws;
 
--(void) afPlaceCheckinWSFailed:(afGMapsPlaceCheckinRequest *)ws withError:(NSError *)er;
-Report
+    	-(void) afPlaceCheckinWSFailed:(afGMapsPlaceCheckinRequest *)ws withError:(NSError *)er;
+
+h4. Report
 //delete request
 afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
 req.afDelegate = self;
