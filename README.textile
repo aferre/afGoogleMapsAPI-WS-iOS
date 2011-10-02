@@ -27,11 +27,8 @@ h3. Distance
 
 cf Google Distance Matrix API page for the behaviour of the WS.
 <code>afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
-
 req.afDelegate = self;
-
 NSMutableArray *orAr = [NSMutableArray array];
-
 [orAr addObject:@ "Paris"];
 [orAr addObject:@ "Berlin"];
 
