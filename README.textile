@@ -26,7 +26,7 @@ Currently supports only JSON format.
 h3. Distance
 
 cf Google Distance Matrix API page for the behaviour of the WS.
-@afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
+<code>afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
 
 req.afDelegate = self;
 
@@ -37,8 +37,8 @@ NSMutableArray *orAr = [NSMutableArray array];
 
 NSMutableArray *deAr = [NSMutableArray array];
 
-[deAr addObject:@"Marseille"];
-[deAr addObject:@"Barcelone"];
+[deAr addObject:@ "Marseille"];
+[deAr addObject:@ "Barcelone"];
 
 [req setOrigins:orAr];
 
@@ -54,7 +54,7 @@ NSMutableArray *deAr = [NSMutableArray array];
 [req setTravelMode:TravelModeDriving]; //optional, driving default
 
 [req startAsynchronous];
-@
+</code>
 Then, simply make your class inherit the afGoogleMapsDistanceDelegate protocol, and implement the following delegate 
 functions (if needed, all optional):
 
