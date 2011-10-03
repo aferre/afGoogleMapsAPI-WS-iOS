@@ -7,6 +7,9 @@
 //
 
 #import "afGMapsPlacesRequest.h"
+#import "AddressComponent.h"
+
+@class Details;
 
 @protocol afGoogleMapsPlaceDetailsDelegate;
 
@@ -14,9 +17,39 @@
 
 @property (nonatomic,assign) id<afGoogleMapsPlaceDetailsDelegate> afDelegate;
 
+//provided
+@property (nonatomic,retain) NSString *reference;
+
+//returned
+@property (nonatomic,retain) Details *details;
+@property (nonatomic,retain) NSArray *htmlAttributions;
+
 @end
 
 @protocol afGoogleMapsPlaceDetailsDelegate <NSObject>
 @optional
+-(void) afPlaceDetailsWSStarted:(afGMapsPlaceDetailsRequest *)ws ;
 
+-(void) afPlaceDetailsWS:(afGMapsPlaceDetailsRequest *)ws gotDetails:(Details *)details htmlAttributions:(NSArray *)htmlAttributions;
+
+-(void) afPlaceDetailsWSFailed:(afGMapsPlaceDetailsRequest *)ws withError:(NSError *)er;
+
+@end
+
+@interface Details : NSObject {
+    
+}
+@property (nonatomic,retain) NSString *vicinity;
+@property (nonatomic,retain) NSString *name;
+@property (nonatomic,retain) NSString *formattedPhoneNumber;
+@property (nonatomic,retain) NSString *formattedAddress;
+@property (nonatomic,retain) NSArray *addressComponents;
+@property (nonatomic,retain) NSArray *types;
+@property (nonatomic,retain) NSURL *urlURL;
+@property (nonatomic,retain) NSURL *urlICON;
+@property (nonatomic,retain) NSString *reference;
+@property (nonatomic,retain) NSString *theId;
+@property (nonatomic,assign) double rating;
+
++(Details *) parseJsonDico:(NSDictionary *)jsonDico;
 @end
