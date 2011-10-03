@@ -1,0 +1,254 @@
+iOS wrapper for the GoogleMaps API Web Services.
+
+h1. How to
+
+h2. Install
+
+Drag/drop the files in the iOS folder to your project in xcode. Use the Copy to target checkbox to make sure you won't 
+loose it on the way. 
+OR
+Drag/drop the *.framework file to your project in xcode. Use the Copy to target checkbox to make sure you won't loose 
+it on the way.
+
+h2. Handle errors
+
+When handling the errors returned by an afGoogleMapsAPIRequest, you should know a couple of things.
+
+First, every HTTP related error is directly returned without any alteration. They are provided by the ASI-HTTP library.
+
+The errors returned/caused by the afGoogleMapsAPI framwork or the Google Maps API Web Services are all wrapped under a 
+common error code 666, which can be customized in afGoogleMapsAPIRequest.h.
+
+h2. Use classes
+
+Currently supports only JSON format.
+
+h3. Distance
+
+cf Google Distance Matrix API page for the behaviour of the WS.
+afGMapsDistanceRequest *req = [afGMapsDistanceRequest distanceRequest];
+req.afDelegate = self;
+NSMutableArray *orAr = [NSMutableArray array];
+[orAr addObject:@ "Paris"];
+[orAr addObject:@ "Berlin"];
+
+NSMutableArray *deAr = [NSMutableArray array];
+
+[deAr addObject:@ "Marseille"];
+[deAr addObject:@ "Barcelone"];
+
+[req setOrigins:orAr];
+
+[req setDestinations:deAr];
+
+[req setUseSensor:YES];
+[req setUseHTTPS:NO];
+
+[req setAvoidMode:AvoidModeTolls]; //optional, none default
+
+[req setUnitsSystem:UnitsMetric]; //optional, metrics default
+
+[req setTravelMode:TravelModeDriving]; //optional, driving default
+
+[req startAsynchronous];
+
+Then, simply make your class inherit the afGoogleMapsDistanceDelegate protocol, and implement the following delegate 
+functions (if needed, all optional):
+
+ -(void) afDistanceWSStarted:(afGMapsDistanceRequest *)ws ;
+
+ -(void) afDistanceWS:(afGMapsDistanceRequest *)ws gotDistance:(NSNumber *) distance unit:(UnitsSystem)unit;
+
+ -(void) afDistanceWSFailed:(afGMapsDistanceRequest *)ws withError:(NSString *)er;
+
+ -(void) afDistanceWS:(afGMapsDistanceRequest *)ws origin:(NSString *) origin destination:(NSString *)destination 
+failedWithError:(NSError *) err;
+
+ -(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *) distance origin:(NSString *) origin 
+destination:(NSString *)destination unit:(UnitsSystem)unit;
+This request will give you all the informations availbale. Variables called "returnedXXX" like "returnedDest" 
+are the returned descriptions of GoogleMaps API WS.
+
+ -(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *) distance textDistance:(NSString *)textDistance 
+origin:(NSString *) origin returnedOrigin:(NSString *)returnedOrigin destination:(NSString *)destination 
+returnedDestination:(NSString *)returnedDest duration:(NSNumber *)durationInSec textDuration:(NSString *)textDuration 
+unit:(UnitsSystem)unit;
+
+h3. Geocoding
+
+cf Google Geocoding API page for the behaviour of the WS.
+
+Create a request to geocode an address:
+
+afGMapsGeocodingRequest *req = [afGMapsGeocodingRequest addressForLatitude:lat andLongitude:lng];
+
+Or to reverse geocode coordinates:
+
+afGMapsGeocodingRequest *req = [afGMapsGeocodingRequest coordinatesForAddress:coord];
+
+req.afDelegate = self;
+
+[req setUseSensor:YES];
+
+[req startAsynchronous];
+
+Then, simply make your class inherit the afGoogleMapsGeocodingDelegate protocol, and implement the following delegate 
+functions (all optional):
+
+-(void) afGeocodingWSStarted:(afGMapsGeocodingRequest *)ws;
+
+-(void) afGeocodingWSFailed:(afGMapsGeocodingRequest *)ws withError:(NSError *)er;
+
+Use those if requesting coordinates from address. If multiple coordinates are returned, the second delegate function 
+will be called. If not, the first one will be called.
+
+-(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotCoordinates:(CLLocationCoordinate2D) coordinates 
+fromAddress:(NSString *)address;
+
+-(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotMultipleCoordinates:(NSArray *)coordinates 
+fromAddress:(NSString *)address;
+
+Use those if requesting address from coordinates. If multiple addresses are returned, the second delegate function 
+will be called. If not, the first one will be called.
+
+-(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotAddress:(NSString *)address fromLatitude:(double)latitude 
+andLongitude:(double)longitude;
+
+-(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotMultipleAddresses:(NSArray *)addresses 
+fromLatitude:(double)latitude andLongitude:(double)longitude;
+
+h3. Directions
+
+cf Google Directions API page for the behaviour of the WS.
+
+Here is an example:
+
+afGoogleMapsDirectionsRequest *req = [af GoogleMapsDirestionsRequest directionsRequest];
+req.afDelegate = self;
+
+[req setUseSensor:YES];
+[req setUseHTTPS:NO];
+
+[req setAvoidMode:AvoidModeTolls]; //optional, none default
+[req setUnitsSystem:UnitsMetric]; //optional, metrics default
+
+[req setTravelMode:TravelModeBicycling]; //optional, driving default
+
+[req setOrigin:@"Paris"];
+
+[req setDestination:@"Boulogne billancourt"];
+
+[req setAlternatives:YES]; //optional, NO default
+
+[req startAsynchronous];
+You need to make your controller implement the delegate methods:
+
+-(void) afDirectionsWSStarted:(afGMapsDirectionsRequest *)ws ;
+
+-(void) afDirectionsWS:(afGMapsDirectionsRequest *)ws gotRoutes:(NSArray *)routes;
+
+-(void) afDirectionsWSFailed:(afGMapsDirectionsRequest *)ws withError:(NSError *)er;
+They are all optional, meaning that it won't matter if you don't implement them, but you'll need them for obvious 
+reasons. Actually, you could make a synchronous request and then retrieve the values you need on the request itself.
+
+h3. Places
+
+You'll need a Google Maps API key to use this WS. 
+Go to http://code.google.com/intl/fr-FR/apis/maps/documentation/places/#Authentication and follow the procedure. 
+Obviously you won't be able to use the framework out of the box as you'll need to provide this key in 
+afGoogleMapsAPIRequest.h (#define API_KEY).
+
+
+h4. Searches
+
+
+h4. Details
+
+
+h4. Checkin
+
+afGMapsPlaceCheckinRequest *req = [afGMapsPlaceCheckinRequest request];
+req.afDelegate = self;
+req.reference = ...;
+[req startAsynchronous];
+You'll need to implement the following delegate functions. All are optional:
+
+	-(void) afPlaceCheckinWSStarted:(afGMapsPlaceCheckinRequest *)ws ;
+
+    	-(void) afPlaceCheckinWSSucceeded:(afGMapsPlaceCheckinRequest *)ws;
+
+    	-(void) afPlaceCheckinWSFailed:(afGMapsPlaceCheckinRequest *)ws withError:(NSError *)er;
+
+h4. Report
+
+//delete request
+afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
+req.afDelegate = self;
+req.reference = ...;
+
+
+//add request
+afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
+req.afDelegate = self;
+req.location = CLLocationCoordinate2DMake(latitude, longitude);
+req.name = @"name";
+req.accuracy = 20; // 20 meters
+req.types = ...; // optional
+req.language = LangDEFAULT; // optional
+
+[req startAsynchronous];
+You'll need to implement the following delegate functions. All are optional:
+
+-(void) afPlaceReportWSStarted:(afGMapsPlaceReportRequest *)ws ;
+For the succesfull completion of a Report request, you can either use the first delegate afPlaceReportWSSucceeded:, 
+or you can you one of the other depending on the request's configuration. Note that if you implement 
+afPlaceReportWS:succesfullyAdded:withId: or afPlaceReportWS:succesfullyDeleted:, they'll be called called but 
+afPlaceReportWSSucceeded: won't be.
+
+-(void) afPlaceReportWSSucceeded:(afGMapsPlaceReportRequest *)ws;
+
+-(void) afPlaceReportWS:(afGMapsPlaceReportRequest *)ws succesfullyAdded:(NSString *)ref withId:(NSString *)theid;
+
+-(void) afPlaceReportWS:(afGMapsPlaceReportRequest *)ws succesfullyDeleted:(NSString *)ref;
+For the failed completion of a Report request, you can either use the first delegate afPlaceReportWSFailed:withError:, 
+or you can you one of the other depending on the request's configuration. Note that if you implement 
+afPlaceReportWSFailed:toAdd:withError: or afPlaceReportWSFailed:toDelete:withError:, they'll be called called but 
+afPlaceReportWSFailed:withError: won't be.
+
+-(void) afPlaceReportWSFailed:(afGMapsPlaceReportRequest *)ws withError:(NSError *)er;
+
+-(void) afPlaceReportWSFailed:(afGMapsPlaceReportRequest *)ws toAdd:(NSString *)ref withError:(NSError *)er;
+
+-(void) afPlaceReportWSFailed:(afGMapsPlaceReportRequest *)ws toDelete:(NSString *)ref withError:(NSError *)er;
+	
+h1. TODO
+
+	Distance Matrix:
+		
+		Tests.
+
+	Geocoding:
+
+		Tests.
+
+	Places:
+
+		From scratch.
+
+	Elevation:
+
+		From scratch.
+
+	Directions:
+
+		Add wrappers for results parameters.
+
+	All:
+	
+		Get rid of custom locales and use Locales from iOS framework.
+
+		Internationalize.
+
+h1. Notes
+
+# A wiki with more informations is available at https://github.com/aferre/afGoogleMapsAPI-WS-iOS/wiki
