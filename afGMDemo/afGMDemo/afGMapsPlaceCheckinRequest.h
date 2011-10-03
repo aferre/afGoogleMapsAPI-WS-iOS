@@ -13,6 +13,7 @@
 @interface afGMapsPlaceCheckinRequest : afGMapsPlacesRequest
 
 @property (nonatomic,assign) id<afGoogleMapsPlaceCheckinDelegate> afDelegate;
+//provided
 @property (nonatomic,retain) NSString * reference;
 
 @end

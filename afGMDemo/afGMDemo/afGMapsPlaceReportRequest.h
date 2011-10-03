@@ -12,6 +12,8 @@
 
 @interface afGMapsPlaceReportRequest : afGMapsPlacesRequest    
 
+//provided 
+
 @property (nonatomic,assign) CLLocationCoordinate2D location;
 //meters
 @property (nonatomic,assign) double accuracy;
@@ -19,7 +21,10 @@
 @property (nonatomic,retain) NSString *reference;
 @property (nonatomic,retain) NSArray *types;
 @property (nonatomic,assign) id<afGoogleMapsPlaceReportDelegate> afDelegate;
+
+//computed
 @property (nonatomic,assign) BOOL isDeleting;
+
 @end
 
 @protocol afGoogleMapsPlaceReportDelegate <NSObject>

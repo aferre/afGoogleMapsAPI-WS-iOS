@@ -17,6 +17,8 @@
     
     id <afGoogleMapsDistanceDelegate> afDelegate;
     
+    //provided
+    
     NSArray *origins;
     
     NSArray *destinations;
