@@ -8,34 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "afGoogleMapsAPIRequest.h"
+#import "Geometry.h"
 
 #define GOOGLE_GEOCODING_API_PATH_COMPONENT @"geocode"
-
-typedef enum AddressComponentType { 
-    AddressComponentTypeStreetAddress = 0,
-    AddressComponentTypeRoute,
-    AddressComponentTypeIntersection,
-    AddressComponentTypePolitical,
-    AddressComponentTypeCountry,
-    AddressComponentTypeAdministrativeAreaLevel1,
-    AddressComponentTypeAdministrativeAreaLevel2,
-    AddressComponentTypeAdministrativeAreaLevel3,
-    AddressComponentTypeColloquialArea,
-    AddressComponentTypeLocality,
-    AddressComponentTypeSublocality,
-    AddressComponentTypeNeighborhood,
-    AddressComponentTypePremise,
-    AddressComponentTypeSubpremise,
-    AddressComponentTypePostalCode,
-    AddressComponentTypeNaturalFeature,
-    AddressComponentTypeAirport,
-    AddressComponentTypePark,
-    AddressComponentTypePointOfInterest,
-    AddressComponentTypePostBox,
-    AddressComponentTypeStreetNumber,
-    AddressComponentTypeFloor,
-    AddressComponentTypeRoom
-} AddressComponentType;
 
 @protocol afGoogleMapsGeocodingDelegate;
 @class Result;
@@ -110,18 +85,6 @@ typedef enum AddressComponentType {
 
 -(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotMultipleAddresses:(NSArray *)addresses fromLatitude:(double)latitude andLongitude:(double)longitude;
 
-@end
-
-@interface AddressComponent : NSObject {
-    NSArray *componentTypes;
-    NSString *longName;
-    NSString *shortName;
-}
-@property (nonatomic,retain) NSString * longName;
-@property (nonatomic,retain) NSString *shortName;
-@property (nonatomic,retain) NSArray *componentTypes;
-
-+ (AddressComponent *) parseJsonDico:(NSDictionary *)jsonDico;
 @end
 
 @interface Result : NSObject {
