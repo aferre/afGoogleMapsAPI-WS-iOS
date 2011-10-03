@@ -10,7 +10,7 @@
 
 @implementation afGMapsPlaceSearchesRequest
 
-@synthesize location,name,afDelegate,radius,types;
+@synthesize location,name,afDelegate,radius,types,htmlAttributions,places;
 
 
 #pragma mark ------------------------------------------
@@ -176,44 +176,23 @@
                                                                           status]
                                                                   forKey:NSLocalizedDescriptionKey];
             NSError *err = [NSError errorWithDomain:@"GoogleMaps Place Report API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
-            
-            if (isDeleting){
-                if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWSFailed:toDelete:withError:)]){
-                    [afDelegate afPlaceSearchesWSFailed:self toDelete:reference withError:err];
-                    
-                }else if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWSFailed:withError:)]){
-                    [afDelegate afPlaceSearchesWSFailed:self withError:err];
-                }
-                
+            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWSFailed:withError:)]){
+                [afDelegate afPlaceSearchesWSFailed:self withError:err];
             }
-            else{
-                if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWSFailed:toAdd:withError:)]){
-                    [afDelegate afPlaceSearchesWSFailed:self toAdd:name withError:err];
-                }else if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWSFailed:withError:)]){
-                    [afDelegate afPlaceSearchesWSFailed:self withError:err];
-                }
-                
-            } 
             return;
         }
-        if (isDeleting){
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWS:succesfullyDeleted:)]){
-                [afDelegate afPlaceSearchesWS:self succesfullyDeleted:reference];
-            }else if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWSSucceeded)]){
-                [afDelegate afPlaceSearchesWSSucceeded:self];
-            }
-        }
-        else{
-            NSString *newRef = [jsonResult objectForKey:@"reference"];
-            NSString *newId = [jsonResult objectForKey:@"id"];
-            
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWS:succesfullyAdded:withId:)]){
-                [afDelegate afPlaceSearchesWS:self succesfullyAdded:newRef withId:newId];
-            }else if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWSSucceeded)]){
-                [afDelegate afPlaceSearchesWSSucceeded:self];
-            }
+        NSArray *jsonPlaces = [jsonResult objectForKey:@"results"];
+        places = [[NSMutableArray alloc] initWithCapacity:[jsonPlaces count]];
+        for (NSDictionary *jsonDico in jsonPlaces){
+            Place *place = [Place parseJsonDico:jsonDico];
+            [places addObject:place];
         }
         
+        htmlAttributions = [[jsonResult objectForKey:@"html_attributions"] copy];
+        
+        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceSearchesWS:foundPlaces:htmlAttributions:)]){
+            [afDelegate afPlaceSearchesWS:self foundPlaces:places htmlAttributions:htmlAttributions];
+        }
     }
 }
 
@@ -240,23 +219,4 @@
     types = nil;
 }
 
-@end
-
-@implementation Place
-
-@synthesize theid,reference,iconURL,geometry,types,vicinity,name;
-
-+(Place *)parseJsonDico:(NSDictionary *)jsonDico{
-    
-    Place *p = [[[Place alloc]init]autorelease];
-    
-    p.theid = [[jsonDico objectForKey:@"id"] copy];
-    p.reference = [[jsonDico    objectForKey:@"reference"] copy];
-    p.iconURL = [[NSURL alloc] initWithString:[jsonDico objectForKey:@"icon"]];
-    p.geometry = [Geometry parseJsonDico:[jsonDico objectForKey:@"geomtery"]];
-    p.vicinity = [[jsonDico objectForKey:@"vicinity"] copy];
-    p.name = [[jsonDico objectForKey:@"name"] copy];
-    p.types = [[jsonDico objectForKey:@"types"] copy];
-    return p;
-}
 @end
