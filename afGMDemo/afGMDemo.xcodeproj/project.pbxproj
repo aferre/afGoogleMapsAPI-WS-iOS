@@ -27,6 +27,9 @@
 		3810D83113981DAD00B5972E /* DistanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D82F13981DAD00B5972E /* DistanceViewController.xib */; };
 		3810D83513981E1300B5972E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3810D83313981E1300B5972E /* SettingsViewController.m */; };
 		3810D83613981E1300B5972E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D83413981E1300B5972E /* SettingsViewController.xib */; };
+		38140F6F1438BBA6008F089D /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 38140F6E1438BBA6008F089D /* Geometry.m */; };
+		38140F721438BBF3008F089D /* AddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38140F711438BBF3008F089D /* AddressComponent.m */; };
+		38140F751438BC64008F089D /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 38140F741438BC64008F089D /* Place.m */; };
 		3819B2F5142F87900036F542 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3819B2F4142F87900036F542 /* CoreLocation.framework */; };
 		382EBE0B143750000097553C /* afGMapsPlaceSearchesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EBE0A143750000097553C /* afGMapsPlaceSearchesRequest.m */; };
 		382EBE0F1437501A0097553C /* afGMapsPlaceDetailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 382EBE0E1437501A0097553C /* afGMapsPlaceDetailsRequest.m */; };
@@ -157,6 +160,12 @@
 		3810D83213981E1200B5972E /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		3810D83313981E1300B5972E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		3810D83413981E1300B5972E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		38140F6D1438BBA6008F089D /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		38140F6E1438BBA6008F089D /* Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geometry.m; sourceTree = "<group>"; };
+		38140F701438BBF3008F089D /* AddressComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressComponent.h; sourceTree = "<group>"; };
+		38140F711438BBF3008F089D /* AddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressComponent.m; sourceTree = "<group>"; };
+		38140F731438BC63008F089D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		38140F741438BC64008F089D /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		3819B2F4142F87900036F542 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		382EBE09143750000097553C /* afGMapsPlaceSearchesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceSearchesRequest.h; sourceTree = "<group>"; };
 		382EBE0A143750000097553C /* afGMapsPlaceSearchesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceSearchesRequest.m; sourceTree = "<group>"; };
@@ -307,6 +316,19 @@
 				3810D828139811AA00B5972E /* DirectionsViewController.xib */,
 			);
 			name = ViewCons;
+			sourceTree = "<group>";
+		};
+		38140F6B1438BB89008F089D /* Returned objects */ = {
+			isa = PBXGroup;
+			children = (
+				38140F6D1438BBA6008F089D /* Geometry.h */,
+				38140F6E1438BBA6008F089D /* Geometry.m */,
+				38140F701438BBF3008F089D /* AddressComponent.h */,
+				38140F711438BBF3008F089D /* AddressComponent.m */,
+				38140F731438BC63008F089D /* Place.h */,
+				38140F741438BC64008F089D /* Place.m */,
+			);
+			name = "Returned objects";
 			sourceTree = "<group>";
 		};
 		38476B1C14374BC60030EEBE /* afGoogleMapsiOS */ = {
@@ -463,6 +485,7 @@
 				38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */,
 				38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */,
 				38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */,
+				38140F6B1438BB89008F089D /* Returned objects */,
 				382EBE09143750000097553C /* afGMapsPlaceSearchesRequest.h */,
 				382EBE0A143750000097553C /* afGMapsPlaceSearchesRequest.m */,
 				382EBE0D1437501A0097553C /* afGMapsPlaceDetailsRequest.h */,
@@ -704,6 +727,9 @@
 				382EBE0F1437501A0097553C /* afGMapsPlaceDetailsRequest.m in Sources */,
 				382EBE12143750350097553C /* afGMapsPlaceCheckinRequest.m in Sources */,
 				382EBE15143750490097553C /* afGMapsPlaceReportRequest.m in Sources */,
+				38140F6F1438BBA6008F089D /* Geometry.m in Sources */,
+				38140F721438BBF3008F089D /* AddressComponent.m in Sources */,
+				38140F751438BC64008F089D /* Place.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,7 +884,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "afGMDemo/afGMDemo-Prefix.pch";
 				INFOPLIST_FILE = "afGMDemo/afGMDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -871,7 +899,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "afGMDemo/afGMDemo-Prefix.pch";
 				INFOPLIST_FILE = "afGMDemo/afGMDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
