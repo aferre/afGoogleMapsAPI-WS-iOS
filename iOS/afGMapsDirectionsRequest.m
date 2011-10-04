@@ -44,22 +44,7 @@
 
 -(NSURL *) makeURL{
     
-    NSString *rootURL = [super getURLString];
-    
-    rootURL = [rootURL stringByAppendingFormat:@"%@",GOOGLE_DIRECTIONS_API_PATH_COMPONENT];
-    
-    switch (format) {
-        case ReturnXML:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
-        }
-            break;
-        default:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
-        }
-            break;
-    }
+    NSString *rootURL = [super makeURLStringWithServicePrefix:GOOGLE_DIRECTIONS_API_PATH_COMPONENT];
     
     //origin
     rootURL = [rootURL stringByAppendingFormat:@"origin=%@",origin];

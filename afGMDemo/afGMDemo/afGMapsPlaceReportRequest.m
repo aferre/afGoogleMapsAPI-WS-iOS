@@ -37,26 +37,13 @@
 
 -(NSURL *) makeURL{
     
-    NSString *rootURL = [super getURLString];
+    NSString *rootURL;
     
     if (isDeleting)
-        rootURL = [rootURL stringByAppendingFormat:@"delete"];
+        rootURL = [super makeURLStringWithServicePrefix:@"delete"];
     else
-        rootURL = [rootURL stringByAppendingFormat:@"add"];
-    
-    switch (format) {
-        case ReturnXML:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
-        }
-            break;
-        default:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
-        }
-            break;
-    }
-    
+        rootURL = [super makeURLStringWithServicePrefix:@"add"];
+  
     return [super finalizeURLString:rootURL];
 }
 
@@ -172,7 +159,7 @@
             if (isDeleting){
                 if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceReportWSFailed:toDelete:withError:)]){
                     [afDelegate afPlaceReportWSFailed:self toDelete:reference withError:err];
-                
+                    
                 }else if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceReportWSFailed:withError:)]){
                     [afDelegate afPlaceReportWSFailed:self withError:err];
                 }

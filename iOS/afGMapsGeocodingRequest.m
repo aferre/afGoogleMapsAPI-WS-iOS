@@ -108,22 +108,7 @@
 #pragma mark ------------------------------------------
 
 -(NSURL *) makeURL{
-    NSString *rootURL = [self getURLString];
-    
-    rootURL = [rootURL stringByAppendingFormat:@"%@",GOOGLE_GEOCODING_API_PATH_COMPONENT];
-    
-    switch (format) {
-        case ReturnXML:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
-        }
-            break;
-        default:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
-        }
-            break;
-    }
+    NSString *rootURL = [super makeURLStringWithServicePrefix:GOOGLE_GEOCODING_API_PATH_COMPONENT];
     
     if (reverseGeocoding){
         //latlng to address

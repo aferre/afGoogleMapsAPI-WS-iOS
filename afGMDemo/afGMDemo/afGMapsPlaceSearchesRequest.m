@@ -38,22 +38,7 @@
 
 -(NSURL *) makeURL{
     
-    NSString *rootURL = [super getURLString];
-    
-    rootURL = [rootURL stringByAppendingFormat:@"search"];
-    
-    switch (format) {
-        case ReturnXML:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
-        }
-            break;
-        default:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
-        }
-            break;
-    }
+    NSString *rootURL = [super makeURLStringWithServicePrefix:@"search"];
     
     //location
     rootURL = [rootURL stringByAppendingFormat:@"&location=%f,%f",location.latitude,location.longitude];

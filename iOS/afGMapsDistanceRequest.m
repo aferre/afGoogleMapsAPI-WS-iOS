@@ -44,13 +44,13 @@
 #pragma mark ------------------------------------------
 
 -(void) startAsynchronous{
-    [self setURL:[self  makeURL]];
+    [self setURL:[self makeURL]];
     [super startAsynchronous];
 }
 
 -(void) startSynchronous{
     
-    [self setURL:[self  makeURL]];
+    [self setURL:[self makeURL]];
     [super startSynchronous];
 }
 
@@ -60,22 +60,8 @@
 
 -(NSURL *)makeURL{
     
-    NSMutableString *rootURL = [NSMutableString stringWithString: [self getURLString]];
+    NSMutableString *rootURL = [NSMutableString stringWithString:[super makeURLStringWithServicePrefix:GOOGLE_DISTANCE_API_PATH_COMPONENT]];
     
-    [rootURL appendFormat:@"%@",GOOGLE_DISTANCE_API_PATH_COMPONENT];
-    
-    switch (format) {
-        case ReturnXML:
-        {
-            [rootURL appendFormat:@"/xml?"];
-        }
-            break;
-        default:
-        {
-            [rootURL appendFormat:@"/json?"];
-        }
-            break;
-    }
     
     //origins
     [rootURL appendFormat:@"origins="];

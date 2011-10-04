@@ -38,22 +38,7 @@
 
 -(NSURL *) makeURL{
     
-    NSString *rootURL = [super getURLString];
-    
-    rootURL = [rootURL stringByAppendingFormat:@"details"];
-    
-    switch (format) {
-        case ReturnXML:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
-        }
-            break;
-        default:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
-        }
-            break;
-    }
+    NSString *rootURL = [super makeURLStringWithServicePrefix:@"details"];
     
     //reference
     rootURL = [rootURL stringByAppendingFormat:@"&reference=%f",reference];

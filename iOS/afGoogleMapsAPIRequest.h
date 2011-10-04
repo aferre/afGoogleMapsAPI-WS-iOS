@@ -394,6 +394,8 @@ typedef enum LocationType {
 
 - (NSURL *) finalizeURLString:(NSString *)str;
 
+- (NSString *) makeURLStringWithServicePrefix:(NSString *)servicePrefix;
+
 -(id) initDefault;
 
 @end

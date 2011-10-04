@@ -25,6 +25,13 @@
     return rootURL;
 }
 
+-(NSString *)makeURLStringWithServicePrefix:(NSString *)servicePrefix{
+    NSString *rootURL = [self getURLString];
+    
+    rootURL = [rootURL stringByAppendingFormat:@"/%@",servicePrefix];
+    
+    return rootURL;
+}
 
 -(NSURL *)finalizeURLString:(NSString *)str {
     

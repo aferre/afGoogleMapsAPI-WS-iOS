@@ -11,4 +11,9 @@
 #import "afGMapsDistanceRequest.h"
 #import "afGMapsElevationRequest.h"
 #import "afGMapsGeocodingRequest.h"
+
 #import "afGMapsPlacesRequest.h"
+#import "afGMapsPlaceSearchesRequest.h"
+#import "afGMapsPlaceReportRequest.h"
+#import "afGMapsPlaceCheckinRequest.h"
+#import "afGMapsPlaceDetailsRequest.h"

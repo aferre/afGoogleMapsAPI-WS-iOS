@@ -26,7 +26,7 @@
 #pragma mark ------------------------------------------
 
 -(NSURL *) makeURL{
-    NSString *rootURL = [self getURLString];
+    NSString *rootURL = [super makeURLStringWithServicePrefix:GOOGLE_ELEVATION_API_PATH_COMPONENT];
     
     return [super finalizeURLString:rootURL];
 }

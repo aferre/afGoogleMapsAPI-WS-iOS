@@ -37,22 +37,7 @@
 
 -(NSURL *) makeURL{
     
-    NSString *rootURL = [super getURLString];
-    
-    rootURL = [rootURL stringByAppendingFormat:@"check-in"];
-    
-    switch (format) {
-        case ReturnXML:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
-        }
-            break;
-        default:
-        {
-            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
-        }
-            break;
-    }
+    NSString *rootURL = [super makeURLStringWithServicePrefix:@"check-in"];
     
     return [super finalizeURLString:rootURL];
 }

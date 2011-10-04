@@ -1137,6 +1137,27 @@
     return @"";
 }
 
+-(NSString *) makeURLStringWithServicePrefix:(NSString *)servicePrefix{
+    
+    NSString *rootURL = [self getURLString];
+    
+    rootURL = [rootURL stringByAppendingFormat:@"%@",servicePrefix];
+    
+    switch (format) {
+        case ReturnXML:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
+        }
+            break;
+        default:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
+        }
+            break;
+    }
+    return rootURL;
+}
+
 -(NSURL *) finalizeURLString:(NSString *)str{
     
     //sensor
