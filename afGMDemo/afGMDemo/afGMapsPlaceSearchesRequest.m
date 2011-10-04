@@ -83,22 +83,11 @@
     if (language != LangDEFAULT){
         rootURL = [rootURL stringByAppendingFormat:@"&language=%@",[afGoogleMapsAPIRequest languageCode:language]];   
     }
-    //name
     
+    //name
     if (name) if (![name isEqualToString:@""])
         rootURL = [rootURL stringByAppendingFormat:@"&name=%@",name];
-    
-    //sensor
-    if (useSensor) 
-        rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
-    else
-        rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
-    
-    //key
-    rootURL = [rootURL stringByAppendingFormat:@"&key=%@",API_KEY];
-    
-    NSLog(@"URL is %@",rootURL);
-    
+        
     return [super finalizeURLString:rootURL];
 }
 

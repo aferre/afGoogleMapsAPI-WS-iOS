@@ -147,12 +147,6 @@
     if (language != LangDEFAULT)
         rootURL = [rootURL stringByAppendingFormat:@"&language=%@",[afGoogleMapsAPIRequest languageCode:language]];
     
-    //sensor
-    if (useSensor) 
-        rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
-    else
-        rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
-    
     return [super finalizeURLString:rootURL];
 }
 

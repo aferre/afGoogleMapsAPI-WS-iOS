@@ -54,16 +54,6 @@
             break;
     }
     
-    //sensor
-    if (useSensor) 
-        rootURL = [rootURL stringByAppendingFormat:@"&sensor=true"];
-    else
-        rootURL = [rootURL stringByAppendingFormat:@"&sensor=false"];
-    
-    rootURL = [rootURL stringByAppendingFormat:@"&key=%@",API_KEY];
-    
-    NSLog(@"URL is %@",rootURL);
-    
     return [super finalizeURLString:rootURL];
 }
 

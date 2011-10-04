@@ -132,12 +132,6 @@
                 break;
         }
     
-    //sensor
-    if (useSensor) 
-        [rootURL appendFormat:@"&sensor=true"];
-    else
-        [rootURL appendFormat:@"&sensor=false"];
-    
     return [super finalizeURLString:rootURL];
     
 }

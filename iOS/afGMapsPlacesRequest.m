@@ -25,4 +25,12 @@
     return rootURL;
 }
 
+
+-(NSURL *)finalizeURLString:(NSString *)str {
+    
+    //key
+    str = [str stringByAppendingFormat:@"&key=%@",API_KEY];
+   
+    return [super finalizeURLString:str];
+}
 @end

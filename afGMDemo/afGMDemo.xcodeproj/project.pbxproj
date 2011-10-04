@@ -485,7 +485,6 @@
 				38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */,
 				38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */,
 				38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */,
-				38140F6B1438BB89008F089D /* Returned objects */,
 				382EBE09143750000097553C /* afGMapsPlaceSearchesRequest.h */,
 				382EBE0A143750000097553C /* afGMapsPlaceSearchesRequest.m */,
 				382EBE0D1437501A0097553C /* afGMapsPlaceDetailsRequest.h */,
@@ -498,6 +497,7 @@
 				389D913B1392E8AF005A7B40 /* afGMapsDistanceRequest.m */,
 				389D913C1392E8AF005A7B40 /* afGMapsGeocodingRequest.h */,
 				389D913D1392E8AF005A7B40 /* afGMapsGeocodingRequest.m */,
+				38140F6B1438BB89008F089D /* Returned objects */,
 			);
 			name = "New Group";
 			sourceTree = "<group>";

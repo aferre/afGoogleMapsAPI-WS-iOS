@@ -1139,9 +1139,17 @@
 
 -(NSURL *) finalizeURLString:(NSString *)str{
     
+    //sensor
+    if (useSensor) 
+        str = [str stringByAppendingFormat:@"&sensor=true"];
+    else
+        str = [str stringByAppendingFormat:@"&sensor=false"];
+    
     NSString * finalURL = [str stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
     finalURL = [finalURL stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+  
+    NSLog(@"URL is %@",finalURL);
     
     return [NSURL URLWithString:finalURL];
 }
