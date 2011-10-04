@@ -137,7 +137,7 @@
     if (WS_DEBUG) NSLog(@"Request failed");
     NSLog(@"%@ %@",[[req error]localizedDescription], [[req error] localizedFailureReason]);
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
-        [afDelegate afDistanceWSFailed:self withError:[[self error] localizedDescription]];
+        [afDelegate afDistanceWSFailed:self withError:[self error]];
     }
 }
 
@@ -158,9 +158,9 @@
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
                                                                       NSLocalizedString(@"GoogleMaps Distance API returned no content",@"")]
                                                               forKey:NSLocalizedDescriptionKey];
-        
+        NSError *err = [NSError errorWithDomain:@"GoogleMaps Distance API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
-            [afDelegate afDistanceWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Distance API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+            [afDelegate afDistanceWSFailed:self withError:err];
         }
         return;
     } else {
@@ -181,8 +181,8 @@
                                                                               NSLocalizedString(@"GoogleMaps Distance Matrix API returned status code %@",@""),
                                                                               topLevelStatus]
                                                                       forKey:NSLocalizedDescriptionKey];
-                
-                [afDelegate afDistanceWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+                NSError *err = [NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+                [afDelegate afDistanceWSFailed:self withError:err];
             }
             return;
         }
@@ -248,8 +248,9 @@
                                                                                       NSLocalizedString(@"GoogleMaps Distance Matrix API returned status code %@",@""),
                                                                                       elementStatus]
                                                                               forKey:NSLocalizedDescriptionKey];
+                        NSError * err = [NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
                         
-                        [afDelegate afDistanceWS:self origin:providedOrigin destination:providedDest failedWithError:[NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+                        [afDelegate afDistanceWS:self origin:providedOrigin destination:providedDest failedWithError:err];
                         
                     }
                 }

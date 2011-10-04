@@ -13,7 +13,8 @@
 
     UISwitch *revGeocodingSw;
     UITextField *addressTF;
-    UITextField *latlngTF;
+    UITextField *latTF;
+    UITextField *longTF;
     UISwitch *boundsSw;
     UITextField *p1latTF;
     UITextField *p1lngTF;
@@ -27,7 +28,8 @@
 
 @property (nonatomic, retain) IBOutlet UISwitch *revGeocodingSw;
 @property (nonatomic, retain) IBOutlet UITextField *addressTF;
-@property (nonatomic, retain) IBOutlet UITextField *latlngTF;
+@property (nonatomic, retain) IBOutlet UITextField *latTF;
+@property (nonatomic, retain) IBOutlet UITextField *longTF;
 @property (nonatomic, retain) IBOutlet UISwitch *boundsSw;
 @property (nonatomic, retain) IBOutlet UITextField *p1latTF;
 @property (nonatomic, retain) IBOutlet UITextField *p1lngTF;

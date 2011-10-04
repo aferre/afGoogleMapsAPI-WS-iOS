@@ -147,8 +147,8 @@
     txtView.text = @"";
 }
 
--(void) afDistanceWSFailed:(afGMapsDistanceRequest *)ws withError:(NSString *)er{
-    txtView.text = [NSString stringWithFormat:@"Failed with error : %@",er];  
+-(void) afDistanceWSFailed:(afGMapsDistanceRequest *)ws withError:(NSError *)er{
+    txtView.text = [NSString stringWithFormat:@"Failed with error : %@",[er localizedDescription]];  
 }
 
 

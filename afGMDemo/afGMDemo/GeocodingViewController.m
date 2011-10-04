@@ -11,7 +11,8 @@
 @implementation GeocodingViewController
 @synthesize revGeocodingSw;
 @synthesize addressTF;
-@synthesize latlngTF;
+@synthesize latTF;
+@synthesize longTF;
 @synthesize boundsSw;
 @synthesize p1latTF;
 @synthesize p1lngTF;
@@ -66,7 +67,8 @@
 {
     [self setRevGeocodingSw:nil];
     [self setAddressTF:nil];
-    [self setLatlngTF:nil];
+    [self setLatTF:nil];
+    [self setLongTF:nil];
     [self setBoundsSw:nil];
     [self setP1latTF:nil];
     [self setP1lngTF:nil];
@@ -84,7 +86,8 @@
 {
     [revGeocodingSw release];
     [addressTF release];
-    [latlngTF release];
+    [latTF release];
+    [longTF release];
     [boundsSw release];
     [p1latTF release];
     [p1lngTF release];
@@ -108,7 +111,7 @@
     [req setReverseGeocoding:self.revGeocodingSw.on];
     
     if (self.revGeocodingSw.on)
-        [req setLatlng:self.latlngTF.text];
+        [req setLatitude:[latTF.text doubleValue] andLongitude:[longTF.text doubleValue]];
     else
         [req setTheAddress:[NSString stringWithString: self.addressTF.text]];
     
@@ -122,7 +125,8 @@
 
 - (IBAction)reverseSw:(UISwitch *)sender {
     addressTF.enabled = !sender.on;
-    latlngTF.enabled = sender.on;
+    latTF.enabled = sender.on;
+    longTF.enabled = sender.on;
 }
 
 - (IBAction)boundsChanged:(UISwitch *)sender {

@@ -266,18 +266,6 @@
     }
 }
 
-+(LocationType) locationTypeFromString:(NSString *)str{
-    if ([str isEqualToString:@"ROOFTOP"]){
-        return LocationTypeRooftop;
-    } else if ([str isEqualToString:@"RANGE_INTERPOLATED"]){
-        return LocationTypeRangeInterpolated;
-    } else if ([str isEqualToString:@"GEOMETRIC_CENTER"]){
-        return LocationTypeGeometricCenter;
-    } else if ([str isEqualToString:@"APPROXIMATE"]){
-        return LocationTypeApproximate;
-    }  
-}
-
 -(void)requestRedirected:(ASIHTTPRequest *)req{
     
 }
@@ -307,8 +295,9 @@
 +(Result *)parseJsonDico:(NSDictionary *)result{
     
     Result *res = [[[Result alloc] init] autorelease];
-    NSString *formattedAddress = [result objectForKey:@"formatted_address"];
-    res.formattedAddress = [formattedAddress copy];
+    NSString *formattedAddress = [[result objectForKey:@"formatted_address"] copy];
+    res.formattedAddress = formattedAddress;
+    [formattedAddress release];
     
     NSArray *resultTypesStringArray = [result objectForKey:@"types"];
     NSMutableArray *resultsTypesArray = [NSMutableArray arrayWithCapacity:[resultTypesStringArray count]];
@@ -316,7 +305,7 @@
     NSMutableArray *addressComponents = [NSMutableArray array];
     
     for (NSString *type in resultTypesStringArray){
-        AddressComponentType addressType = [afGMapsGeocodingRequest addressComponentTypeFromString:type];
+        AddressComponentType addressType = [AddressComponent fromString:type];
         NSNumber *addressTypeNumber = [NSNumber numberWithInt:addressType];
         [resultsTypesArray addObject:addressTypeNumber];
     }
@@ -334,8 +323,7 @@
     
     Geometry *geometry = [Geometry parseJsonDico:geoDico];
     res.geometry = geometry;
-    [geometry release];
-    
+   
     return res;
 }
 

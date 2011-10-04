@@ -1168,7 +1168,7 @@
     NSString * finalURL = [str stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
     finalURL = [finalURL stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-  
+    
     NSLog(@"URL is %@",finalURL);
     
     return [NSURL URLWithString:finalURL];

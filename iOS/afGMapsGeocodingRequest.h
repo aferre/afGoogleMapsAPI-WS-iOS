@@ -8,6 +8,7 @@
 
 #import "afGoogleMapsAPIRequest.h"
 #import "Geometry.h"
+#import "AddressComponent.h"
 
 #define GOOGLE_GEOCODING_API_PATH_COMPONENT @"geocode"
 
@@ -59,10 +60,6 @@
 - (void) setLatitude:(double)lat andLongitude:(double)lng;
 
 - (void) setTheAddress:(NSString *)taddress;
-
-+(AddressComponentType) addressComponentTypeFromString:(NSString *)str;
-
-+(LocationType) locationTypeFromString:(NSString *)str;
 
 @end
 

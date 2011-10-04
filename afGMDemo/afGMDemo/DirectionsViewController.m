@@ -159,8 +159,8 @@
     self.txtView.text = str;
 }
 
--(void) afDirectionsWSFailed:(afGMapsDirectionsRequest *)ws withError:(NSString *)er{
-    self.txtView.text = [NSString stringWithFormat:@"Failed with error %@",er];
+-(void) afDirectionsWSFailed:(afGMapsDirectionsRequest *)ws withError:(NSError *)er{
+    self.txtView.text = [NSString stringWithFormat:@"Failed with error %@",[er localizedDescription]];
 }
 
 
