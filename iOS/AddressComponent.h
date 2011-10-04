@@ -42,6 +42,7 @@ typedef enum AddressComponentType {
 @property (nonatomic,retain) NSString * longName;
 @property (nonatomic,retain) NSString *shortName;
 @property (nonatomic,retain) NSArray *componentTypes;
++ (AddressComponentType) fromString:(NSString *)str;
 
 + (AddressComponent *) parseJsonDico:(NSDictionary *)jsonDico;
 @end

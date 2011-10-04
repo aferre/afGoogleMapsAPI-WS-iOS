@@ -112,7 +112,9 @@
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
                                                                       NSLocalizedString(@"GoogleMaps Place Report API returned no content@",@"")]
                                                               forKey:NSLocalizedDescriptionKey];
+        
         NSError *err = [NSError errorWithDomain:@"GoogleMaps Place Report API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+        
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceDetailsWSFailed:withError:)]){
             [afDelegate afPlaceDetailsWSFailed:self withError:err];
         }
@@ -172,6 +174,8 @@
         [reference release];
         reference = nil;   
     }
+    
+    [super dealloc];
 }
 @end
 
@@ -188,8 +192,13 @@
     sr.types = [jsonDico objectForKey:@"types"];
     sr.formattedAddress = [jsonDico objectForKey:@"formatted_address"];
     sr.formattedPhoneNumber= [jsonDico  objectForKey:@"formatted_phone_number"];
-    sr.urlURL = [[NSURL alloc] initWithString:[jsonDico objectForKey:@"url"]];
-    sr.urlICON = [[NSURL alloc] initWithString:[jsonDico objectForKey:@"icon"]];
+    NSURL *a = [[NSURL alloc] initWithString:[jsonDico objectForKey:@"url"]];
+    sr.urlURL = a;
+    [a release];
+    NSURL *b = [[NSURL alloc] initWithString:[jsonDico objectForKey:@"icon"]];
+    sr.urlICON = b;
+    [b release];
+    
     sr.theId = [jsonDico objectForKey:@"id"];
     sr.reference = [jsonDico objectForKey:@"reference"];
     sr.rating = [[jsonDico objectForKey:@"rating"] doubleValue];
@@ -201,8 +210,9 @@
         AddressComponent *addressComp = [AddressComponent parseJsonDico:addressCompDico];
         [addressComponents addObject:addressComp];
     }
-    sr.addressComponents = [[NSArray alloc] initWithArray:addressComponents];
-    
+    NSArray *ar = [[NSArray alloc] initWithArray:addressComponents];
+    sr.addressComponents = ar;
+    [ar release]; 
     return  sr;
 }
 
@@ -228,5 +238,7 @@
     urlICON = nil;
     reference = nil;
     theId = nil;
+    
+    [super dealloc];
 }
 @end

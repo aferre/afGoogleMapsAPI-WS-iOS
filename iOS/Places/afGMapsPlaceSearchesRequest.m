@@ -191,6 +191,8 @@
     
     [types release];
     types = nil;
+    
+    [super dealloc];
 }
 
 @end

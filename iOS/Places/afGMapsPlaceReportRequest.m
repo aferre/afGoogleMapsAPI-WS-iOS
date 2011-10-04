@@ -215,6 +215,8 @@
     
     [reference release];
     reference = nil;
+    
+    [super dealloc];
 }
 
 @end

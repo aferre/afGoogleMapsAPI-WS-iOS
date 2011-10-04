@@ -23,7 +23,7 @@
     [super dealloc];
 }
 
-+(AddressComponentType) addressComponentTypeFromString:(NSString *)str{
++(AddressComponentType) fromString:(NSString *)str{
     
     if ([str isEqualToString:@"street_address"]){
         return AddressComponentTypeStreetAddress;
@@ -74,19 +74,24 @@
 
 + (AddressComponent *) parseJsonDico:(NSDictionary *)jsonDico{
     AddressComponent *addressComp = [[[AddressComponent alloc] init] autorelease];
-    NSString *longName = [jsonDico objectForKey:@"long_name"];
-    NSString *shortName = [jsonDico objectForKey:@"short_name"];
+    NSString *longName = [[jsonDico objectForKey:@"long_name"] copy];
+    NSString *shortName = [[jsonDico objectForKey:@"short_name"] copy];
     NSArray *typesStringArray = [jsonDico objectForKey:@"types"];
     NSMutableArray *typesArray = [NSMutableArray arrayWithCapacity:[typesStringArray count]];
     
     for (NSString *type in typesStringArray){
-        NSNumber *addressTypeNumber = [NSNumber numberWithInt:[afGMapsGeocodingRequest addressComponentTypeFromString:type]];
+        NSNumber *addressTypeNumber = [NSNumber numberWithInt:[AddressComponent fromString:type]];
         [typesArray addObject:addressTypeNumber];
     }
     
-    addressComp.longName = [longName copy];
-    addressComp.shortName = [shortName copy];
-    addressComp.componentTypes = [[NSArray alloc] initWithArray:typesArray];
+    addressComp.longName = longName;
+    [longName release];
+    
+    addressComp.shortName = shortName;
+    [shortName release];
+    NSArray *ar = [[NSArray alloc] initWithArray:typesArray];
+    addressComp.componentTypes = ar;
+    [ar release]; 
     return addressComp;
 }
 @end

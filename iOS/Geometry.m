@@ -12,6 +12,18 @@
 
 @synthesize location,locationType,viewportNE,viewportSW,boundsSW,boundsNE;
 
++(LocationType) locationTypeFromString:(NSString *)str{
+    if ([str isEqualToString:@"ROOFTOP"]){
+        return LocationTypeRooftop;
+    } else if ([str isEqualToString:@"RANGE_INTERPOLATED"]){
+        return LocationTypeRangeInterpolated;
+    } else if ([str isEqualToString:@"GEOMETRIC_CENTER"]){
+        return LocationTypeGeometricCenter;
+    } else if ([str isEqualToString:@"APPROXIMATE"]){
+        return LocationTypeApproximate;
+    }  
+}
+
 +(Geometry *) parseJsonDico:(NSDictionary *)geoDico{
     Geometry *geometry = [[[Geometry alloc] init] autorelease];
     
@@ -20,7 +32,7 @@
     
     geometry.location = CLLocationCoordinate2DMake(latitude, longitude);
     
-    geometry.locationType = [afGMapsGeocodingRequest locationTypeFromString:[geoDico objectForKey:@"location_type"]];
+    geometry.locationType = [Geometry locationTypeFromString:[geoDico objectForKey:@"location_type"]];
     
     if ([[geoDico allKeys] containsObject:@"viewport"]){
         longitude = [[[[geoDico objectForKey:@"viewport"] objectForKey:@"northeast"] objectForKey:@"lng"] doubleValue];
