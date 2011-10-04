@@ -6,7 +6,6 @@
 //  Copyright 2011 Ferré. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "afGoogleMapsAPIRequest.h"
 
 #define GOOGLE_DIRECTIONS_API_PATH_COMPONENT @"directions"

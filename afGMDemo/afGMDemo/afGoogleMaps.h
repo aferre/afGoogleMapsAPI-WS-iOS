@@ -17,3 +17,7 @@
 #import "afGMapsPlaceReportRequest.h"
 #import "afGMapsPlaceCheckinRequest.h"
 #import "afGMapsPlaceDetailsRequest.h"
+
+#import "AddressComponent.h"
+#import "Geometry.h"
+#import "Place.h"

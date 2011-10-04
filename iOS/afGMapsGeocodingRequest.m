@@ -7,11 +7,7 @@
 //
 
 #import "afGMapsGeocodingRequest.h"
-#import "ASIHTTPRequest.h"
 #import "AddressComponent.h"
-
-#import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
 
 @implementation afGMapsGeocodingRequest
 

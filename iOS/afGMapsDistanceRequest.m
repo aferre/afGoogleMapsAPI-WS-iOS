@@ -8,7 +8,6 @@
 
 #import "afGMapsDistanceRequest.h"
 
-
 @implementation afGMapsDistanceRequest
 
 @synthesize afDelegate,origins,destinations,travelMode,avoidMode,unitsSystem;

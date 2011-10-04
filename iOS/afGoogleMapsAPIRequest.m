@@ -7,7 +7,6 @@
 //
 
 #import "afGoogleMapsAPIRequest.h"
-#import "afGMapsGeocodingRequest.h"
 
 @implementation afGoogleMapsAPIRequest
 

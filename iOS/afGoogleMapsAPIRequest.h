@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
 #import "SBJsonPublic.h"
 #import "ASIHTTPRequest.h"
 #import "ASIHTTPRequestDelegate.h"

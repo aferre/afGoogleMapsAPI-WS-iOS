@@ -9,7 +9,7 @@
 #import "afGMapsPlacesRequest.h"
 #import "AddressComponent.h"
 
-@class Details;
+@class PlaceDetails;
 
 @protocol afGoogleMapsPlaceDetailsDelegate;
 
@@ -21,7 +21,7 @@
 @property (nonatomic,retain) NSString *reference;
 
 //returned
-@property (nonatomic,retain) Details *details;
+@property (nonatomic,retain) PlaceDetails *details;
 @property (nonatomic,retain) NSArray *htmlAttributions;
 
 @end
@@ -30,13 +30,13 @@
 @optional
 -(void) afPlaceDetailsWSStarted:(afGMapsPlaceDetailsRequest *)ws ;
 
--(void) afPlaceDetailsWS:(afGMapsPlaceDetailsRequest *)ws gotDetails:(Details *)details htmlAttributions:(NSArray *)htmlAttributions;
+-(void) afPlaceDetailsWS:(afGMapsPlaceDetailsRequest *)ws gotDetails:(PlaceDetails *)details htmlAttributions:(NSArray *)htmlAttributions;
 
 -(void) afPlaceDetailsWSFailed:(afGMapsPlaceDetailsRequest *)ws withError:(NSError *)er;
 
 @end
 
-@interface Details : NSObject {
+@interface PlaceDetails : NSObject {
     
 }
 @property (nonatomic,retain) NSString *vicinity;
@@ -51,5 +51,5 @@
 @property (nonatomic,retain) NSString *theId;
 @property (nonatomic,assign) double rating;
 
-+(Details *) parseJsonDico:(NSDictionary *)jsonDico;
++(PlaceDetails *) parseJsonDico:(NSDictionary *)jsonDico;
 @end

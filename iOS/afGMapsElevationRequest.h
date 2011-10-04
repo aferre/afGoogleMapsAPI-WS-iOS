@@ -6,11 +6,9 @@
 //  Copyright 2011 Ferré. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "afGoogleMapsAPIRequest.h"
 
-#define GOOGLE_ELEVATION_API_PATH_COMPONENT @"directions"
+#define GOOGLE_ELEVATION_API_PATH_COMPONENT @"elevation"
 
 @protocol afGoogleMapsElevationDelegate;
 

@@ -16,16 +16,16 @@
     [super dealloc];
 }
 
--(NSString *)getURLString{
+-(NSString *) getURLString{
     
     NSString *rootURL = [super getURLString];
     
-    rootURL = [rootURL stringByAppendingFormat:@"place"];
+    rootURL = [rootURL stringByAppendingFormat:GOOGLE_PLACES_API_PATH_COMPONENT];
     
     return rootURL;
 }
 
--(NSString *)makeURLStringWithServicePrefix:(NSString *)servicePrefix{
+-(NSString *) makeURLStringWithServicePrefix:(NSString *)servicePrefix{
     NSString *rootURL = [self getURLString];
     
     rootURL = [rootURL stringByAppendingFormat:@"/%@",servicePrefix];

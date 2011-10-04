@@ -116,9 +116,10 @@
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
                                                                       NSLocalizedString(@"GoogleMaps Place Checkin API returned no content@",@"")]
                                                               forKey:NSLocalizedDescriptionKey];
+        NSError *err = [NSError errorWithDomain:@"GoogleMaps Place Checkin API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceCheckinWSFailed:withError:)]){
-            [afDelegate afPlaceCheckinWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Place Checkin API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+            [afDelegate afPlaceCheckinWSFailed:self withError:err];
         }
         return;
     } else {
@@ -128,9 +129,9 @@
                                                                           NSLocalizedString(@"GoogleMaps Place Checkin API returned status code %@",@""),
                                                                           status]
                                                                   forKey:NSLocalizedDescriptionKey];
-            
+            NSError *err = [NSError errorWithDomain:@"GoogleMaps Place Checkin API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceCheckinWSFailed:withError:)]){
-                [afDelegate afPlaceCheckinWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Place Checkin API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+                [afDelegate afPlaceCheckinWSFailed:self withError:err];
             }
             return;
         }

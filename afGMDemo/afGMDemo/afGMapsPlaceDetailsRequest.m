@@ -134,7 +134,7 @@
         
         NSDictionary *detailsJsonDico = [jsonResult objectForKey:@"result"];
         
-        details = [Details parseJsonDico:detailsJsonDico];
+        details = [PlaceDetails parseJsonDico:detailsJsonDico];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceDetailsWS:gotDetails:htmlAttributions:)]){
             [afDelegate afPlaceDetailsWS:self gotDetails:details htmlAttributions:htmlAttributions];
@@ -175,14 +175,14 @@
 }
 @end
 
-@implementation Details
+@implementation PlaceDetails
 
 @synthesize formattedPhoneNumber,formattedAddress,addressComponents,rating,reference,theId;
 @synthesize types,urlURL,urlICON,vicinity,name;
 
-+(Details *) parseJsonDico:(NSDictionary *)jsonDico{
++(PlaceDetails *) parseJsonDico:(NSDictionary *)jsonDico{
     
-    Details *sr = [[[Details alloc] init] autorelease];
+    PlaceDetails *sr = [[[PlaceDetails alloc] init] autorelease];
     sr.name = [jsonDico objectForKey:@"name"];
     sr.vicinity = [jsonDico objectForKey:@"vicinity"];
     sr.types = [jsonDico objectForKey:@"types"];
