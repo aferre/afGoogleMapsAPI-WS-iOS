@@ -6,43 +6,11 @@
 //  Copyright 2011 Ferré. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "afGoogleMapsAPIRequest.h"
+#import "Geometry.h"
+#import "AddressComponent.h"
 
 #define GOOGLE_GEOCODING_API_PATH_COMPONENT @"geocode"
-
-typedef enum AddressComponentType { 
-    AddressComponentTypeStreetAddress = 0,
-    AddressComponentTypeRoute,
-    AddressComponentTypeIntersection,
-    AddressComponentTypePolitical,
-    AddressComponentTypeCountry,
-    AddressComponentTypeAdministrativeAreaLevel1,
-    AddressComponentTypeAdministrativeAreaLevel2,
-    AddressComponentTypeAdministrativeAreaLevel3,
-    AddressComponentTypeColloquialArea,
-    AddressComponentTypeLocality,
-    AddressComponentTypeSublocality,
-    AddressComponentTypeNeighborhood,
-    AddressComponentTypePremise,
-    AddressComponentTypeSubpremise,
-    AddressComponentTypePostalCode,
-    AddressComponentTypeNaturalFeature,
-    AddressComponentTypeAirport,
-    AddressComponentTypePark,
-    AddressComponentTypePointOfInterest,
-    AddressComponentTypePostBox,
-    AddressComponentTypeStreetNumber,
-    AddressComponentTypeFloor,
-    AddressComponentTypeRoom
-} AddressComponentType;
-
-typedef enum LocationType { 
-    LocationTypeRooftop = 0,
-    LocationTypeRangeInterpolated,
-    LocationTypeGeometricCenter,
-    LocationTypeApproximate
-} LocationType;
 
 @protocol afGoogleMapsGeocodingDelegate;
 @class Result;
@@ -73,7 +41,7 @@ typedef enum LocationType {
 @property (nonatomic,assign) CGPoint boundsP2;
 @property (nonatomic,assign) CLLocationCoordinate2D providedCoordinates;
 
-+ (id) geocodingRequest;
++ (id) request;
 
 - (id) initDefault;
 
@@ -92,10 +60,6 @@ typedef enum LocationType {
 - (void) setLatitude:(double)lat andLongitude:(double)lng;
 
 - (void) setTheAddress:(NSString *)taddress;
-
-+(AddressComponentType) addressComponentTypeFromString:(NSString *)str;
-
-+(LocationType) locationTypeFromString:(NSString *)str;
 
 @end
 
@@ -117,36 +81,6 @@ typedef enum LocationType {
 
 -(void) afGeocodingWS:(afGMapsGeocodingRequest *)ws gotMultipleAddresses:(NSArray *)addresses fromLatitude:(double)latitude andLongitude:(double)longitude;
 
-@end
-
-@interface AddressComponent : NSObject {
-    NSArray *componentTypes;
-    NSString *longName;
-    NSString *shortName;
-}
-@property (nonatomic,retain) NSString * longName;
-@property (nonatomic,retain) NSString *shortName;
-@property (nonatomic,retain) NSArray *componentTypes;
-
-+ (AddressComponent *) parseJsonDico:(NSDictionary *)jsonDico;
-@end
-
-@interface Geometry : NSObject {
-    LocationType locationType;
-    CLLocationCoordinate2D location;
-    CLLocationCoordinate2D viewportSW;
-    CLLocationCoordinate2D viewportNE;
-    CLLocationCoordinate2D boundsSW;
-    CLLocationCoordinate2D boundsNE;
-}
-
-@property (nonatomic,assign) CLLocationCoordinate2D location;
-@property (nonatomic,assign) CLLocationCoordinate2D viewportSW;
-@property (nonatomic,assign) CLLocationCoordinate2D viewportNE;
-@property (nonatomic,assign) CLLocationCoordinate2D boundsSW;
-@property (nonatomic,assign) CLLocationCoordinate2D boundsNE;
-@property (nonatomic,assign) LocationType locationType;
-+ (Geometry *) parseJsonDico:(NSDictionary *)jsonDico;
 @end
 
 @interface Result : NSObject {

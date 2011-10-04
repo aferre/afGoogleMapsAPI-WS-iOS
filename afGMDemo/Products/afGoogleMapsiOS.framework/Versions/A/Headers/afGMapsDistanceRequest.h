@@ -6,7 +6,6 @@
 //  Copyright 2011 Ferré. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "afGoogleMapsAPIRequest.h"
 
 #define GOOGLE_DISTANCE_API_PATH_COMPONENT @"distancematrix"
@@ -16,6 +15,8 @@
 @interface afGMapsDistanceRequest : afGoogleMapsAPIRequest {
     
     id <afGoogleMapsDistanceDelegate> afDelegate;
+    
+    //provided
     
     NSArray *origins;
     
@@ -38,7 +39,7 @@
 
 - (id) initDefault;
 
-+ (id) distanceRequest;
++ (id) request;
 
 - (NSURL *)makeURL;
 

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
 #import "SBJsonPublic.h"
 #import "ASIHTTPRequest.h"
 #import "ASIHTTPRequestDelegate.h"
@@ -353,6 +352,13 @@ typedef enum Language {
     LangCHINESE_TRADITIONAL
 } Language;
 
+typedef enum LocationType { 
+    LocationTypeRooftop = 0,
+    LocationTypeRangeInterpolated,
+    LocationTypeGeometricCenter,
+    LocationTypeApproximate
+} LocationType;
+
 @interface afGoogleMapsAPIRequest : ASIHTTPRequest <ASIHTTPRequestDelegate>{
     
     BOOL useHTTPS;
@@ -386,6 +392,8 @@ typedef enum Language {
 - (NSString *) getURLString;
 
 - (NSURL *) finalizeURLString:(NSString *)str;
+
+- (NSString *) makeURLStringWithServicePrefix:(NSString *)servicePrefix;
 
 -(id) initDefault;
 

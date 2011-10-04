@@ -6,19 +6,16 @@
 //  Copyright 2011 Ferré. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "afGoogleMapsAPIRequest.h"
 
-#define GOOGLE_PLACES_API_PATH_COMPONENT @"directions"
+#define GOOGLE_PLACES_API_PATH_COMPONENT @"place"
+#define API_KEY @"AIzaSyCA944VvzTcPpT4mM4PG-ibNPXkLt0fGiU"
 
-@protocol afGoogleMapsPlacesDelegate;
 
 @interface afGMapsPlacesRequest : afGoogleMapsAPIRequest {
     
-    id<afGoogleMapsPlacesDelegate>  afDelegate;
+    
     
 }
-
-@property (nonatomic,assign) id<afGoogleMapsPlacesDelegate> afDelegate;
 
 @end

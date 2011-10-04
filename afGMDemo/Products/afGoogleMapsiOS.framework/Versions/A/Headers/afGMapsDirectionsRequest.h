@@ -6,7 +6,6 @@
 //  Copyright 2011 Ferré. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "afGoogleMapsAPIRequest.h"
 
 #define GOOGLE_DIRECTIONS_API_PATH_COMPONENT @"directions"
@@ -62,7 +61,7 @@ typedef enum DirectionsRequestStatusCode {
 @property (nonatomic, assign) DirectionsRequestStatusCode directionsRequestStatusCode;
 @property (nonatomic, retain) NSArray *routes;
 
-+(id) directionsRequest;
++(id) request;
 
 -(id) initDefault;
 
