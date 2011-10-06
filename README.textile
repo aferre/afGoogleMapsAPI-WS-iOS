@@ -160,32 +160,61 @@ afGoogleMapsAPIRequest.h (#define API_KEY).
 
 
 h4. Searches
+afGMapsPlaceSearchesRequest *req = [afGMapsPlaceSearchesRequest request];
+req.location = CLLocationCoordinate2DMake(13, 22);
+req.name = ...;
+req.radius = 1000;
+req.afDelegate = self;
+[req startAsynchronous];
 
+You'll need to implement the following delegate functions. All are optional:
+@-(void) afPlaceSearchesWSStarted:(afGMapsPlaceSearchesRequest *)ws ;
+
+-(void) afPlaceSearchesWS:(afGMapsPlaceSearchesRequest *)ws foundPlaces:(NSArray *)placesArray htmlAttributions:(NSArray *)htmlAttributions;
+
+-(void) afPlaceSearchesWSFailed:(afGMapsPlaceSearchesRequest *)ws withError:(NSError *)er;
+@
 
 h4. Details
 
+@afGMapsPlaceDetailsRequest *req = [afGMapsPlaceDetailsRequest request];
+req.afDelegate = self;
+req.reference = ...;
+    
+[req startAsynchronous];
+@
+You'll need to implement the following delegate functions. All are optional:
+
+@-(void) afPlaceDetailsWSStarted:(afGMapsPlaceDetailsRequest *)ws ;
+
+-(void) afPlaceDetailsWS:(afGMapsPlaceDetailsRequest *)ws gotDetails:(PlaceDetails *)details htmlAttributions:(NSArray *)htmlAttributions;
+
+-(void) afPlaceDetailsWSFailed:(afGMapsPlaceDetailsRequest *)ws withError:(NSError *)er;
+@
 
 h4. Checkin
 
-afGMapsPlaceCheckinRequest *req = [afGMapsPlaceCheckinRequest request];
+@afGMapsPlaceCheckinRequest *req = [afGMapsPlaceCheckinRequest request];
 req.afDelegate = self;
 req.reference = ...;
 [req startAsynchronous];
+@
 You'll need to implement the following delegate functions. All are optional:
 
-	-(void) afPlaceCheckinWSStarted:(afGMapsPlaceCheckinRequest *)ws ;
+@-(void) afPlaceCheckinWSStarted:(afGMapsPlaceCheckinRequest *)ws ;
 
-    	-(void) afPlaceCheckinWSSucceeded:(afGMapsPlaceCheckinRequest *)ws;
+-(void) afPlaceCheckinWSSucceeded:(afGMapsPlaceCheckinRequest *)ws;
 
-    	-(void) afPlaceCheckinWSFailed:(afGMapsPlaceCheckinRequest *)ws withError:(NSError *)er;
+-(void) afPlaceCheckinWSFailed:(afGMapsPlaceCheckinRequest *)ws withError:(NSError *)er;
+@
 
 h4. Report
 
 //delete request
-afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
+@afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
 req.afDelegate = self;
 req.reference = ...;
-
+@
 
 //add request
 afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
@@ -233,7 +262,7 @@ h1. TODO
 
 	Places:
 
-		From scratch.
+		Tests.
 
 	Elevation:
 
