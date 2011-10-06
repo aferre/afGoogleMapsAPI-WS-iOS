@@ -60,8 +60,8 @@
 -(void) requestFailed:(ASIHTTPRequest *)req{
     if (WS_DEBUG) NSLog(@"Request failed");
     NSLog(@"%@ %@",[[req error]localizedDescription], [[req error] localizedFailureReason]);
-    if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-        [afDelegate afDirectionsWSFailed:self withError:[[self error] localizedDescription]];
+    if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afElevationWSFailed:withError:)]){
+        [afDelegate afElevationWSFailed:self withError:[self error]];
     }
 }
 
@@ -71,123 +71,46 @@
     
     NSString *jsonString = [[NSString alloc] initWithData:[req responseData] encoding:NSUTF8StringEncoding];
     
-    /* NSDictionary *results = [resStr JSONValue];
-     
-     NSString *status = [results objectForKey:@"status"];
-     if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"] ){
-     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-     [afDelegate afDirectionsWSFailed:self withError:status];
-     }
-     return;
-     }
-     
-     //Now we need to obtain our coordinates
-     NSArray *placemark  = [results objectForKey:@"results"];
-     
-     if (WS_DEBUG)    
-     NSLog(@"%d objects", [placemark count]);
-     
-     
-     NSDictionary *dico = [placemark objectAtIndex:0];
-     
-     if (WS_DEBUG)    
-     for (id object in dico){
-     NSLog(@"%@",object);
-     }
-     
-     NSDictionary *geoDico = [dico objectForKey:@"geometry"];
-     
-     double longitude = [[[geoDico objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
-     double latitude = [[[geoDico objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
-     
-     if (WS_DEBUG)
-     NSLog(@"Latitude - Longitude: %f %f", latitude, longitude);
-     
-     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotLatitude:andLongitude:)]){
-     [afDelegate afGeocodingWS:self gotLatitude:latitude andLongitude:longitude];
-     }
-     
-     
-     */
-    
-    
-    
-    
-    
     SBJsonParser *json;
-    NSError *jsonError;
-    NSDictionary *jsonResults;
-    
+    NSError *jsonError;    
     // Init JSON
     json = [ [ SBJsonParser new ] autorelease ];
     
     // Get result in a NSDictionary
-    jsonResults = [ json objectWithString:jsonString error:&jsonError ];
+    jsonResult = [ json objectWithString:jsonString error:&jsonError ];
+    [jsonString release];
     
     // Check if there is an error
-    if (jsonResults == nil) {
+    if (jsonResult == nil) {
         
         NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
         
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                      NSLocalizedString(@"GoogleMaps Elevation API returned no content@",@"")]
+                                                              forKey:NSLocalizedDescriptionKey];
+        NSError *err = [NSError errorWithDomain:@"GoogleMaps Elevation API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+        
+        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afElevationWSFailed:withError:)]){
+            [afDelegate afElevationWSFailed:self withError:err];
+        }
+        
+        return;
+        
     } else {
-        NSString *status = [jsonResults objectForKey:@"status"];
-        if ([status isEqualToString:@"ZERO_RESULTS"] || [status isEqualToString:@"NOT_FOUND"] ){
-            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-                [afDelegate afDirectionsWSFailed:self withError:status];
+        NSString *status = [jsonResult objectForKey:@"status"];
+        if (![status isEqualToString:@"OK"]){
+            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                          NSLocalizedString(@"GoogleMaps Elevation API returned status code %@",@""),
+                                                                          status]
+                                                                  forKey:NSLocalizedDescriptionKey];
+            NSError *err = [NSError errorWithDomain:@"GoogleMaps Elevation API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+            
+            if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afElevationWSFailed:withError:)]){
+                [afDelegate afElevationWSFailed:self withError:err];
             }
             return;
         }
         
-        NSArray *routesArr = [jsonResults objectForKey:@"routes"];
-        
-        NSDictionary *routesDico = [routesArr objectAtIndex:0];
-        
-        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotRoute:)]){
-            [afDelegate afGeocodingWS:self gotRoute:routesDico];
-        }
-        /*
-         NSArray *legsArray = [routesDico objectForKey:@"legs"];
-         
-         NSDictionary *legsDico = [legsArray objectAtIndex:0];
-         
-         NSArray *stepsArray = [legsDico objectForKey:@"steps"];
-         
-         MKMapPoint* pointArr = malloc(sizeof(CLLocationCoordinate2D) * stepsArray.count);
-         CLLocationDegrees latitude;
-         CLLocationDegrees longitude;
-         #if TARGET_IPHONE_SIMULATOR
-         latitude = 48.5;
-         longitude = 2.37;
-         #else
-         latitude = self.mapView.userLocation.location.coordinate.latitude;
-         longitude = self.mapView.userLocation.location.coordinate.longitude;
-         #endif
-         CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-         
-         MKMapPoint point = MKMapPointForCoordinate(coordinate);
-         
-         pointArr[0] = point;
-         int i=1;
-         for (NSDictionary *stepDico in stepsArray){
-         // NSDictionary *start=[stepDico objectForKey:@"start_location"];
-         NSDictionary *end=[stepDico objectForKey:@"end_location"];
-         
-         latitude = [[end objectForKey:@"lat"] doubleValue];
-         longitude = [[end objectForKey:@"lng"] doubleValue];
-         
-         // create our coordinate and add it to the correct spot in the array
-         coordinate = CLLocationCoordinate2DMake(latitude, longitude);
-         
-         // point = MKMapPointMake([[end objectForKey:@"lat"] doubleValue], [[end objectForKey:@"lng"] doubleValue]);
-         point = MKMapPointForCoordinate(coordinate);
-         pointArr[i] = point;
-         i++;
-         }
-         
-         self.routeLine = [MKPolyline polylineWithPoints:pointArr count:stepsArray.count];
-         [self.mapView addOverlay:self.routeLine];
-         free(pointArr);
-         */
     }
 }
 
@@ -197,8 +120,8 @@
 
 -(void) requestStarted:(ASIHTTPRequest *)req{
     if (WS_DEBUG) NSLog(@"Request started");
-    if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSStarted:)]){
-        [afDelegate afDirectionsWSStarted:self];
+    if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afElevationWSStarted:)]){
+        [afDelegate afElevationWSStarted:self];
     }
 }
 

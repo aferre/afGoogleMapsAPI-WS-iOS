@@ -27,3 +27,11 @@
 @property (nonatomic,assign) id<afGoogleMapsElevationDelegate> afDelegate;
 
 @end
+
+@protocol afGoogleMapsElevationDelegate <NSObject>
+@optional
+-(void) afElevationWSStarted:(afGMapsElevationRequest *)ws ;
+
+-(void)  afElevationWSFailed:(afGMapsElevationRequest *)ws withError:(NSError *)er;
+
+@end
