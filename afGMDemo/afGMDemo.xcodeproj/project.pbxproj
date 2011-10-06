@@ -147,6 +147,8 @@
 		38C86871143B422D00291D97 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8686A143B422D00291D97 /* Place.m */; };
 		38CC36DC1396C4B3006C1381 /* afGMapsElevationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */; };
 		38CC36DD1396C4B3006C1381 /* afGMapsPlacesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */; };
+		38FBE770143E1F71000F8B7F /* PlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FBE76E143E1F71000F8B7F /* PlacesViewController.m */; };
+		38FBE771143E1F71000F8B7F /* PlacesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FBE76F143E1F71000F8B7F /* PlacesViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -259,6 +261,9 @@
 		38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGMapsElevationRequest.m; path = ../../iOS/afGMapsElevationRequest.m; sourceTree = "<group>"; };
 		38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGMapsPlacesRequest.h; path = ../../iOS/afGMapsPlacesRequest.h; sourceTree = "<group>"; };
 		38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGMapsPlacesRequest.m; path = ../../iOS/afGMapsPlacesRequest.m; sourceTree = "<group>"; };
+		38FBE76D143E1F71000F8B7F /* PlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesViewController.h; sourceTree = "<group>"; };
+		38FBE76E143E1F71000F8B7F /* PlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesViewController.m; sourceTree = "<group>"; };
+		38FBE76F143E1F71000F8B7F /* PlacesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlacesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,6 +318,9 @@
 				3810D827139811AA00B5972E /* DirectionsViewController.m */,
 				3810D826139811AA00B5972E /* DirectionsViewController.h */,
 				3810D828139811AA00B5972E /* DirectionsViewController.xib */,
+				38FBE76D143E1F71000F8B7F /* PlacesViewController.h */,
+				38FBE76E143E1F71000F8B7F /* PlacesViewController.m */,
+				38FBE76F143E1F71000F8B7F /* PlacesViewController.xib */,
 			);
 			name = ViewCons;
 			sourceTree = "<group>";
@@ -629,6 +637,7 @@
 				3810D82A139811AA00B5972E /* DirectionsViewController.xib in Resources */,
 				3810D83113981DAD00B5972E /* DistanceViewController.xib in Resources */,
 				3810D83613981E1300B5972E /* SettingsViewController.xib in Resources */,
+				38FBE771143E1F71000F8B7F /* PlacesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +738,7 @@
 				38C8686F143B422D00291D97 /* afGMapsPlaceReportRequest.m in Sources */,
 				38C86870143B422D00291D97 /* afGMapsPlaceSearchesRequest.m in Sources */,
 				38C86871143B422D00291D97 /* Place.m in Sources */,
+				38FBE770143E1F71000F8B7F /* PlacesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
