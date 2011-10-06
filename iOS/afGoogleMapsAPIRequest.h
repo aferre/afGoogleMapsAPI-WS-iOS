@@ -397,4 +397,6 @@ typedef enum LocationType {
 
 -(id) initDefault;
 
+-(NSError *) errorForService:(NSString *)serviceName type:(NSString *)errorType status:(NSString *)status;
+
 @end

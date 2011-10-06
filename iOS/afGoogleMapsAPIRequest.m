@@ -1174,6 +1174,27 @@
     return [NSURL URLWithString:finalURL];
 }
 
+-(NSError *)errorForService:(NSString *)serviceName type:(NSString *)errorType status:(NSString *)status{
+    //json error
+    if ([errorType isEqualToString:@"JSON"]){
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                      NSLocalizedString(@"GoogleMaps %@ API returned no content",@""),serviceName]
+                                                              forKey:NSLocalizedDescriptionKey];
+        NSString *dom = [NSString stringWithFormat:@"GoogleMaps %@ API",serviceName];
+        return [NSError errorWithDomain:dom code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+    }
+    else if ([errorType isEqualToString:@"GM"]){
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
+                                                                      NSLocalizedString(@"GoogleMaps %@ API returned status code %@",@""),serviceName,
+                                                                      status]
+                                                              forKey:NSLocalizedDescriptionKey];
+        NSString *dom = [NSString stringWithFormat:@"GoogleMaps %@ API",serviceName];
+        return [NSError errorWithDomain:dom code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+    }
+    return nil;
+}
+
+
 -(void) dealloc{
     
     if (jsonResult != nil){

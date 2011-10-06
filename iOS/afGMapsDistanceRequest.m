@@ -155,33 +155,19 @@
     if (jsonResult == nil) {
         NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
         
-        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                      NSLocalizedString(@"GoogleMaps Distance API returned no content",@"")]
-                                                              forKey:NSLocalizedDescriptionKey];
-        NSError *err = [NSError errorWithDomain:@"GoogleMaps Distance API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+        NSError *err =  [self errorForService:@"Distance" type:@"JSON" status:nil];
+        
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
             [afDelegate afDistanceWSFailed:self withError:err];
         }
         return;
     } else {
         
-        /*
-         OK indicates the response contains a valid result.
-         INVALID_REQUEST indicates that the provided request was invalid.
-         MAX_ELEMENTS_EXCEEDED indicates that the product of origins and destinations exceeds the per-query limit.
-         OVER_QUERY_LIMIT indicates the service has received too many requests from your application within the allowed time period.
-         REQUEST_DENIED indicates that the service denied use of the Distance Matrix service by your application.
-         UNKNOWN_ERROR indicates a Distance Matrix request could not be processed due to a server error. The request may succeed if you try again.
-         */
-        
         NSString *topLevelStatus = [jsonResult objectForKey:@"status"];
         if (![topLevelStatus isEqualToString:@"OK"]){
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWSFailed:withError:)]){
-                NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                              NSLocalizedString(@"GoogleMaps Distance Matrix API returned status code %@",@""),
-                                                                              topLevelStatus]
-                                                                      forKey:NSLocalizedDescriptionKey];
-                NSError *err = [NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+                NSError *err =  [self errorForService:@"Distance" type:@"GM" status:topLevelStatus];
+                
                 [afDelegate afDistanceWSFailed:self withError:err];
             }
             return;
@@ -244,11 +230,7 @@
                 }
                 else {
                     if( afDelegate !=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:origin:destination:failedWithError:)]){
-                        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                                      NSLocalizedString(@"GoogleMaps Distance Matrix API returned status code %@",@""),
-                                                                                      elementStatus]
-                                                                              forKey:NSLocalizedDescriptionKey];
-                        NSError * err = [NSError errorWithDomain:@"GoogleMaps Distance Matrix API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+                        NSError *err =  [self errorForService:@"Distance" type:@"GM" status:elementStatus];
                         
                         [afDelegate afDistanceWS:self origin:providedOrigin destination:providedDest failedWithError:err];
                         

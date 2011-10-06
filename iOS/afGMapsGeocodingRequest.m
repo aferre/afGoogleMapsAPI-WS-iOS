@@ -167,12 +167,10 @@
     if (jsonResult == nil) {
         NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
         
-        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                      NSLocalizedString(@"GoogleMaps Geocoding API returned no content",@"")]
-                                                              forKey:NSLocalizedDescriptionKey];
+        NSError *err =  [self errorForService:@"Geocoding" type:@"JSON" status:nil];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
-            [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+            [afDelegate afGeocodingWSFailed:self withError:err];
         }
         return;
     } 
@@ -181,17 +179,11 @@
         //ERROR CHECK
         //
         NSString *topLevelStatus = [jsonResult objectForKey:@"status"];
-        if ([topLevelStatus isEqualToString:@"OK"]){
-            
-        }
-        else {
+        if (![topLevelStatus isEqualToString:@"OK"]){
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWSFailed:withError:)]){
-                NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                              NSLocalizedString(@"GoogleMaps Geocoding API returned status code %@",@""),
-                                                                              topLevelStatus]
-                                                                      forKey:NSLocalizedDescriptionKey];
-                
-                [afDelegate afGeocodingWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+                NSError *err =  [self errorForService:@"Geocoding" type:@"GM" status:topLevelStatus];
+        
+                [afDelegate afGeocodingWSFailed:self withError:err];
             }
             return;
         }
@@ -223,7 +215,7 @@
                     [ar addObject:((Result *)[custResults objectAtIndex:i]).formattedAddress];
                 } 
                 if (WS_DEBUG)
-                    NSLog(@"Address: %@ ",ar);
+                    NSLog(@"Address: %@",ar);
                 
                 if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afGeocodingWS:gotMultipleAddresses:fromLatitude:andLongitude:)]){
                     

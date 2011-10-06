@@ -139,22 +139,16 @@
         
         NSLog(@"Error when reading JSON (%@).", [ jsonError localizedDescription ]);
         
-        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                      NSLocalizedString(@"GoogleMaps Place Report API returned no content@",@"")]
-                                                              forKey:NSLocalizedDescriptionKey];
+        NSError *err =  [self errorForService:@"Places Report" type:@"JSON" status:nil];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceReportWSFailed:withError:)]){
-            [afDelegate afPlaceReportWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Place Report API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+            [afDelegate afPlaceReportWSFailed:self withError:err];
         }
         return;
     } else {
         NSString *status = [jsonResult objectForKey:@"status"];
         if (![status isEqualToString:@"OK"] ){
-            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                          NSLocalizedString(@"GoogleMaps Place Report API returned status code %@",@""),
-                                                                          status]
-                                                                  forKey:NSLocalizedDescriptionKey];
-            NSError *err = [NSError errorWithDomain:@"GoogleMaps Place Report API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+            NSError *err =  [self errorForService:@"Place Report" type:@"GM" status:status];
             
             if (isDeleting){
                 if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceReportWSFailed:toDelete:withError:)]){

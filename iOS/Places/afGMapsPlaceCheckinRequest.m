@@ -113,10 +113,7 @@
         
         NSLog(@"Error when reading JSON (%@).", [ jsonError localizedDescription ]);
         
-        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                      NSLocalizedString(@"GoogleMaps Place Checkin API returned no content@",@"")]
-                                                              forKey:NSLocalizedDescriptionKey];
-        NSError *err = [NSError errorWithDomain:@"GoogleMaps Place Checkin API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+        NSError *err =  [self errorForService:@"Place Checkin" type:@"JSON" status:nil];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceCheckinWSFailed:withError:)]){
             [afDelegate afPlaceCheckinWSFailed:self withError:err];
@@ -125,11 +122,9 @@
     } else {
         NSString *status = [jsonResult objectForKey:@"status"];
         if (![status isEqualToString:@"OK"] ){
-            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                          NSLocalizedString(@"GoogleMaps Place Checkin API returned status code %@",@""),
-                                                                          status]
-                                                                  forKey:NSLocalizedDescriptionKey];
-            NSError *err = [NSError errorWithDomain:@"GoogleMaps Place Checkin API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+            
+            NSError *err =  [self errorForService:@"Place Checkin" type:@"GM" status:status];
+            
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceCheckinWSFailed:withError:)]){
                 [afDelegate afPlaceCheckinWSFailed:self withError:err];
             }

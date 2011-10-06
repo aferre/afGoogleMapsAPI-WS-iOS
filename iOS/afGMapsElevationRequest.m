@@ -85,10 +85,7 @@
         
         NSLog(@"Erreur lors de la lecture du code JSON (%@).", [ jsonError localizedDescription ]);
         
-        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                      NSLocalizedString(@"GoogleMaps Elevation API returned no content@",@"")]
-                                                              forKey:NSLocalizedDescriptionKey];
-        NSError *err = [NSError errorWithDomain:@"GoogleMaps Elevation API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+        NSError *err =  [self errorForService:@"Elevation" type:@"JSON" status:nil];
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afElevationWSFailed:withError:)]){
             [afDelegate afElevationWSFailed:self withError:err];
@@ -99,11 +96,7 @@
     } else {
         NSString *status = [jsonResult objectForKey:@"status"];
         if (![status isEqualToString:@"OK"]){
-            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                          NSLocalizedString(@"GoogleMaps Elevation API returned status code %@",@""),
-                                                                          status]
-                                                                  forKey:NSLocalizedDescriptionKey];
-            NSError *err = [NSError errorWithDomain:@"GoogleMaps Elevation API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+            NSError *err =  [self errorForService:@"Elevation" type:@"GM" status:status];
             
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afElevationWSFailed:withError:)]){
                 [afDelegate afElevationWSFailed:self withError:err];

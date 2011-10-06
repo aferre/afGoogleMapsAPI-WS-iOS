@@ -133,7 +133,7 @@
 
 -(void) requestFailed:(ASIHTTPRequest *)req{
     if (WS_DEBUG) NSLog(@"Request failed");
-    NSLog(@"%@ %@",[[req error]localizedDescription], [[req error] localizedFailureReason]);
+    NSLog(@"%@ %@",[[req error] localizedDescription], [[req error] localizedFailureReason]);
     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
         [afDelegate afDirectionsWSFailed:self withError:[self error]];
     }
@@ -160,11 +160,9 @@
     if (jsonResult == nil) {
         
         NSLog(@"Error when reading JSON (%@).", [ jsonError localizedDescription ]);
+       
+        NSError *err =  [self errorForService:@"Directions" type:@"JSON" status:nil];
         
-        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                      NSLocalizedString(@"GoogleMaps Directions API returned no content@",@"")]
-                                                              forKey:NSLocalizedDescriptionKey];
-        NSError *err = [NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
             [afDelegate afDirectionsWSFailed:self withError:err];
         }
@@ -172,11 +170,8 @@
     } else {
         NSString *status = [jsonResult objectForKey:@"status"];
         if (![status isEqualToString:@"OK"] ){
-            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
-                                                                          NSLocalizedString(@"GoogleMaps Directions API returned status code %@",@""),
-                                                                          status]
-                                                                  forKey:NSLocalizedDescriptionKey];
-            NSError *err = [NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
+            NSError *err =  [self errorForService:@"Directions" type:@"GM" status:status];
+        
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
                 [afDelegate afDirectionsWSFailed:self withError:err];
             }
