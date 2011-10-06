@@ -102,7 +102,7 @@
         [ar addObject:type3TF.text];
     }
     req.types = ar;
-    req.delegate = self;
+    req.afDelegate = self;
     [req startAsynchronous];
     
 }

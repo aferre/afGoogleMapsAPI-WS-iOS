@@ -418,7 +418,7 @@
 		389D911E1392E89F005A7B40 /* afGMDemo */ = {
 			isa = PBXGroup;
 			children = (
-				38CC36D01396C2C2006C1381 /* New Group */,
+				38CC36D01396C2C2006C1381 /* afGM */,
 				389D91271392E89F005A7B40 /* afGMDemoAppDelegate.h */,
 				389D91281392E89F005A7B40 /* afGMDemoAppDelegate.m */,
 				389D912A1392E89F005A7B40 /* MainWindow.xib */,
@@ -521,7 +521,7 @@
 			path = ../../iOS/Places;
 			sourceTree = "<group>";
 		};
-		38CC36D01396C2C2006C1381 /* New Group */ = {
+		38CC36D01396C2C2006C1381 /* afGM */ = {
 			isa = PBXGroup;
 			children = (
 				389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */,
@@ -543,7 +543,7 @@
 				38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */,
 				38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */,
 			);
-			name = "New Group";
+			name = afGM;
 			sourceTree = "<group>";
 		};
 		38FBE787143E2352000F8B7F /* Places */ = {

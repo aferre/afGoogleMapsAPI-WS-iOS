@@ -77,6 +77,7 @@
     req.afDelegate = self;
     req.reference = refTF.text;
     
+    [req startAsynchronous];
 }
 
 -(BOOL) textFieldShouldReturn:(UITextField *)textField{

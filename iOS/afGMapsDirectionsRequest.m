@@ -164,9 +164,9 @@
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:
                                                                       NSLocalizedString(@"GoogleMaps Directions API returned no content@",@"")]
                                                               forKey:NSLocalizedDescriptionKey];
-        
+        NSError *err = [NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-            [afDelegate afDirectionsWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+            [afDelegate afDirectionsWSFailed:self withError:err];
         }
         return;
     } else {
@@ -176,9 +176,9 @@
                                                                           NSLocalizedString(@"GoogleMaps Directions API returned status code %@",@""),
                                                                           status]
                                                                   forKey:NSLocalizedDescriptionKey];
-            
+            NSError *err = [NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo];
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWSFailed:withError:)]){
-                [afDelegate afDirectionsWSFailed:self withError:[NSError errorWithDomain:@"GoogleMaps Geocoding API Error" code:CUSTOM_ERROR_NUMBER userInfo:errorInfo]];
+                [afDelegate afDirectionsWSFailed:self withError:err];
             }
             return;
         }
@@ -193,7 +193,9 @@
             [returnedRoutes addObject:route];
         }
         
-        self.routes = [[NSArray alloc] initWithArray:returnedRoutes];
+        NSArray *ar =  [[NSArray alloc] initWithArray:returnedRoutes];
+        self.routes = ar;
+        [ar release];
         NSLog(@"Retrieved %u routes",[routes count]);
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDirectionsWS:gotRoutes:)])
@@ -241,19 +243,28 @@
     
     Step *s = [[[self alloc] init] autorelease];
     
-    s.htmlInstructions = [[stepDico objectForKey:@"html_instructions"] copy];
+    NSString *_inst = [[stepDico objectForKey:@"html_instructions"] copy];
+    s.htmlInstructions = _inst;
+    [_inst release];
     
     NSDictionary *durationDico = [stepDico objectForKey:@"duration"];
     
-    s.durationValue = [[durationDico objectForKey:@"value"] copy];
+    NSNumber *durationV = [[durationDico objectForKey:@"value"] copy];
+    s.durationValue = durationV;
+    [durationV release];
     
-    s.durationText = [[durationDico objectForKey:@"text"] copy];
+    NSString *str = [[durationDico objectForKey:@"text"] copy];
+    s.durationText = str;
+    [str release];
     
     NSDictionary *distanceDico = [stepDico objectForKey:@"distance"];
     
-    s.distanceValue = [[distanceDico objectForKey:@"value"] copy];
-    
-    s.distanceText = [[distanceDico objectForKey:@"text"] copy];
+    NSNumber *distanceV = [[distanceDico objectForKey:@"value"] copy];
+    s.distanceValue = distanceV;
+    [distanceV release];
+    NSString *distanceT = [[distanceDico objectForKey:@"text"] copy];
+    s.distanceText = distanceT;
+    [distanceT release];
     
     NSDictionary *startLocationDico = [stepDico objectForKey:@"start_location"];
     s.startLocation = CLLocationCoordinate2DMake([[startLocationDico objectForKey:@"lat"] doubleValue], [[startLocationDico objectForKey:@"lng"] doubleValue]);
@@ -299,21 +310,34 @@
     NSDictionary *endLocationDico = [legDico objectForKey:@"end_location"];
     l.endLocation = CLLocationCoordinate2DMake([[endLocationDico objectForKey:@"lat"] doubleValue], [[endLocationDico objectForKey:@"lng"] doubleValue]);
     
-    l.startAddress = [[legDico objectForKey:@"start_address"] copy];
+    NSNumber *n;
+    NSString *str = [[legDico objectForKey:@"start_address"] copy];
+    l.startAddress = str;
+    [str release];
     
-    l.endAddress = [[legDico objectForKey:@"end_address"] copy];
+    str = [[legDico objectForKey:@"end_address"] copy];
+    l.endAddress = str;
+    [str release];
     
     NSDictionary *durationDico = [legDico objectForKey:@"duration"];
     
-    l.durationValue = [[durationDico objectForKey:@"value"] copy];
+    n=[[durationDico objectForKey:@"value"] copy];
+    l.durationValue = n;
+    [n release];
     
-    l.durationText = [[durationDico objectForKey:@"text"] copy];
+    str = [[durationDico objectForKey:@"text"] copy];
+    l.durationText = str;
+    [str release];
     
     NSDictionary *distanceDico = [legDico objectForKey:@"distance"];
     
-    l.distanceValue = [[distanceDico objectForKey:@"value"] copy];
+    n = [[distanceDico objectForKey:@"value"] copy];
+    l.distanceValue =n;
+    [n release];
     
-    l.distanceText = [[distanceDico objectForKey:@"text"] copy];
+    str=[[distanceDico objectForKey:@"text"] copy];
+    l.distanceText = str;
+    [str release];
     
     NSArray *stepsJsonArray = [legDico objectForKey:@"steps"];
     
@@ -357,13 +381,20 @@
     
     Route *r = [[[self alloc] init] autorelease ];
     
-    r.copyrights = [[routeDico objectForKey:@"copyrights"] copy];
+    NSString *str;
     
-    r.summary = [[routeDico objectForKey:@"summary"] copy];
-    
-    r.warnings = [[routeDico objectForKey:@"warnings"] copy];
-    
-    r.waypointsOrder = [[routeDico objectForKey:@"waypoint_order"] copy];
+    str = [[routeDico objectForKey:@"copyrights"] copy];
+    r.copyrights = str;
+    [str release];
+    str = [[routeDico objectForKey:@"summary"] copy];
+    r.summary = str;
+    [str release];
+    str= [[routeDico objectForKey:@"warnings"] copy];
+    r.warnings = str;
+    [str release];
+    str= [[routeDico objectForKey:@"waypoint_order"] copy];
+    r.waypointsOrder = str; 
+    [str release];
     
     NSArray *legsArray = [routeDico objectForKey:@"legs"];
     
