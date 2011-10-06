@@ -1,18 +1,14 @@
 //
-//  PlacesViewController.m
+//  PlacesSearchViewController.m
 //  afGMDemo
 //
 //  Created by adrien ferré on 06/10/11.
 //  Copyright 2011 Ferré. All rights reserved.
 //
 
-#import "PlacesViewController.h"
+#import "PlacesSearchViewController.h"
 
-@implementation PlacesViewController
-@synthesize checkinBtn;
-@synthesize detailsBtn;
-@synthesize reportBtn;
-@synthesize searchBtn;
+@implementation PlacesSearchViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,17 +32,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.navigationItem.title = @"Places";
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
-    [self setCheckinBtn:nil];
-    [self setDetailsBtn:nil];
-    [self setReportBtn:nil];
-    [self setSearchBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -56,31 +46,6 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)dealloc {
-    [checkinBtn release];
-    [detailsBtn release];
-    [reportBtn release];
-    [searchBtn release];
-    [super dealloc];
-}
-
-- (IBAction)checkinBtnPressed:(id)sender {
-    PlacesCheckinViewController *vc = [[PlacesCheckinViewController alloc] initWithNibName:@"PlacesCheckinViewController" bundle:nil];
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    
-    [vc release];
-}
-
-- (IBAction)detailsBtnPressed:(id)sender {
-}
-
-- (IBAction)reportBtnPressed:(id)sender {
-}
-
-- (IBAction)serachBtnPressed:(id)sender {
 }
 
 @end
