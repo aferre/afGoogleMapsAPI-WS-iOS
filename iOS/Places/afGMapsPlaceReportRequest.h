@@ -12,18 +12,21 @@
 
 @interface afGMapsPlaceReportRequest : afGMapsPlacesRequest    
 
-//provided 
+@property (nonatomic,assign) id<afGoogleMapsPlaceReportDelegate> afDelegate;
 
+#pragma mark ------------------------------------------
+#pragma mark ------ provided 
+#pragma mark ------------------------------------------
 @property (nonatomic,assign) CLLocationCoordinate2D location;
-//meters
-@property (nonatomic,assign) double accuracy;
+@property (nonatomic,assign) double accuracy; //meters
 @property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *reference;
 @property (nonatomic,retain) NSArray *types;
-@property (nonatomic,assign) id<afGoogleMapsPlaceReportDelegate> afDelegate;
 
 //computed
 @property (nonatomic,assign) BOOL isDeleting;
+
++(id)request;
 
 @end
 

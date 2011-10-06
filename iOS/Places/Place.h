@@ -21,4 +21,6 @@
 
 +(Place *)parseJsonDico:(NSDictionary *)jsonDico;
 
+-(NSString *) textualDesc;
+
 @end

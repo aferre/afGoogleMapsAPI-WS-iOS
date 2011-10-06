@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "afGMapsPlaceDetailsRequest.h"
 
-@interface PlacesDetailsViewController : UIViewController
+@interface PlacesDetailsViewController : UIViewController <UITextFieldDelegate,afGoogleMapsPlaceDetailsDelegate>{
+    UITextField *refTF;
+    UIButton *goBtn;
+    UITextView *resultTV;
+}
+
+@property (nonatomic, retain) IBOutlet UITextField *refTF;
+
+@property (nonatomic, retain) IBOutlet UIButton *goBtn;
+
+@property (nonatomic, retain) IBOutlet UITextView *resultTV;
+
+
+- (IBAction)goBtnPressed:(id)sender;
 
 @end

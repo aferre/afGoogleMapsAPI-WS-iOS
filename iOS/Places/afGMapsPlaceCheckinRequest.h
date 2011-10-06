@@ -16,6 +16,8 @@
 //provided
 @property (nonatomic,retain) NSString * reference;
 
++(id)request;
+
 @end
 
 @protocol afGoogleMapsPlaceCheckinDelegate <NSObject>

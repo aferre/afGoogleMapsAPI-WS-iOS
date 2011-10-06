@@ -75,12 +75,27 @@
 }
 
 - (IBAction)detailsBtnPressed:(id)sender {
+    PlacesDetailsViewController *vc = [[PlacesDetailsViewController alloc] initWithNibName:@"PlacesDetailsViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    [vc release];
 }
 
 - (IBAction)reportBtnPressed:(id)sender {
+    PlacesReportViewController *vc = [[PlacesReportViewController alloc] initWithNibName:@"PlacesReportViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    [vc release];
 }
 
 - (IBAction)serachBtnPressed:(id)sender {
+    PlacesSearchViewController *vc = [[PlacesSearchViewController alloc] initWithNibName:@"PlacesSearchViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    [vc release];
 }
 
 @end

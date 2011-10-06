@@ -15,16 +15,23 @@
 
 
 @property (nonatomic,assign) id<afGoogleMapsPlaceSearchesDelegate> afDelegate;
-//provided
 
+#pragma mark ------------------------------------------
+#pragma mark ------ Provided
+#pragma mark ------------------------------------------
 @property (nonatomic,assign) CLLocationCoordinate2D location;
-//meters
-@property (nonatomic,assign) double radius;
+@property (nonatomic,assign) double radius; //meters
 @property (nonatomic,retain) NSArray *types;
 @property (nonatomic,retain) NSString *name;
-//returned
+
+#pragma mark ------------------------------------------
+#pragma mark ------ Returned
+#pragma mark ------------------------------------------
 @property (nonatomic,retain) NSMutableArray *places;
-@property (nonatomic, retain) NSArray *htmlAttributions;
+@property (nonatomic,retain) NSArray *htmlAttributions;
+
++(id)request;
+
 @end
 
 @protocol afGoogleMapsPlaceSearchesDelegate <NSObject>

@@ -24,6 +24,8 @@
 @property (nonatomic,retain) PlaceDetails *details;
 @property (nonatomic,retain) NSArray *htmlAttributions;
 
++(id)request;
+
 @end
 
 @protocol afGoogleMapsPlaceDetailsDelegate <NSObject>
@@ -36,9 +38,8 @@
 
 @end
 
-@interface PlaceDetails : NSObject {
-    
-}
+@interface PlaceDetails : NSObject    
+
 @property (nonatomic,retain) NSString *vicinity;
 @property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *formattedPhoneNumber;
@@ -52,4 +53,7 @@
 @property (nonatomic,assign) double rating;
 
 +(PlaceDetails *) parseJsonDico:(NSDictionary *)jsonDico;
+
+-(NSString *) textualDesc;
+
 @end

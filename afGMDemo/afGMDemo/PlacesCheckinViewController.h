@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "afGMapsPlaceCheckinRequest.h"
 
-@interface PlacesCheckinViewController : UIViewController
+@interface PlacesCheckinViewController : UIViewController <UITextFieldDelegate, afGoogleMapsPlaceCheckinDelegate>{
+    UITextField *refTF;
+    UIButton *goBtn;
+}
+
+@property (nonatomic, retain) IBOutlet UITextField *refTF;
+@property (nonatomic, retain) IBOutlet UIButton *goBtn;
+- (IBAction)goBtnPressed:(id)sender;
 
 @end

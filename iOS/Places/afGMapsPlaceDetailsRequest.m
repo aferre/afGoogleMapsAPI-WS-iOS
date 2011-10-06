@@ -216,6 +216,16 @@
     return  sr;
 }
 
+-(NSString *)textualDesc{
+    NSString *str = @"";
+    str = [str stringByAppendingFormat:@"ID : %@",theId];
+    str = [str stringByAppendingFormat:@"\nRef : %@",reference];
+    str = [str stringByAppendingFormat:@"\nName : %@",name];
+    str = [str stringByAppendingFormat:@"\nRating : %f",rating];
+    str = [str stringByAppendingFormat:@"\nVicinity : %@",vicinity];
+    return str;
+}
+
 -(void) dealloc{
     [vicinity release];
     [name release];

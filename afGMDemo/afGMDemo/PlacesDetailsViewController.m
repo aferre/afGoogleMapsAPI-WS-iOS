@@ -9,6 +9,9 @@
 #import "PlacesDetailsViewController.h"
 
 @implementation PlacesDetailsViewController
+@synthesize refTF;
+@synthesize goBtn;
+@synthesize resultTV;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,11 +35,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    self.navigationItem.title = @"Detail places";
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setRefTF:nil];
+    [self setGoBtn:nil];
+    [self setResultTV:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -48,4 +57,52 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)dealloc {
+    [refTF release];
+    [goBtn release];
+    [resultTV release];
+    [super dealloc];
+}
+
+- (IBAction)goBtnPressed:(id)sender {
+    
+    if([refTF.text isEqualToString:@""]){
+        UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Missing ref" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [al show];
+        [al release];
+        return;
+    }
+    
+    afGMapsPlaceDetailsRequest *req = [afGMapsPlaceDetailsRequest request];
+    req.afDelegate = self;
+    req.reference = refTF.text;
+    
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark ------------------------------------------
+#pragma mark ------ afDelegates
+#pragma mark ------------------------------------------
+
+-(void) afPlaceDetailsWSStarted:(afGMapsPlaceDetailsRequest *)ws{
+     resultTV.text = @"";
+    
+}
+
+-(void) afPlaceDetailsWS:(afGMapsPlaceDetailsRequest *)ws gotDetails:(PlaceDetails *)details htmlAttributions:(NSArray *)htmlAttributions{
+    
+    NSString *str = [details textualDesc];
+    
+    resultTV.text = str;
+}
+
+-(void) afPlaceDetailsWSFailed:(afGMapsPlaceDetailsRequest *)ws withError:(NSError *)er{
+    UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"Error" message:er.description delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [al show];
+    [al release];
+}
 @end

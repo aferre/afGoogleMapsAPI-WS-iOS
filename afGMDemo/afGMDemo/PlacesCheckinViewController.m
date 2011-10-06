@@ -9,6 +9,8 @@
 #import "PlacesCheckinViewController.h"
 
 @implementation PlacesCheckinViewController
+@synthesize refTF;
+@synthesize goBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,11 +34,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"Place checkin";
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
 {
+    [self setRefTF:nil];
+    [self setGoBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -46,6 +52,56 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc {
+    [refTF release];
+    [goBtn release];
+    [super dealloc];
+}
+- (IBAction)goBtnPressed:(id)sender {
+    if ([refTF.text isEqualToString:@""]){
+        UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"Error" message:@"You have to fill in the reference" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [al show];
+        [al release];
+        return;
+    }
+    
+    afGMapsPlaceCheckinRequest *req = [afGMapsPlaceCheckinRequest request];
+    req.reference = refTF.text;
+    req.afDelegate = self;
+    
+    [req startAsynchronous];
+}
+
+
+#pragma mark ------------------------------------------
+#pragma mark ------ TextField delegates
+#pragma mark ------------------------------------------
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark ------------------------------------------
+#pragma mark ------ afDelegate
+#pragma mark ------------------------------------------
+
+-(void) afPlaceCheckinWSStarted:(afGMapsPlaceCheckinRequest *)ws{
+    
+}
+
+-(void) afPlaceCheckinWSSucceeded:(afGMapsPlaceCheckinRequest *)ws{
+    UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"Success" message:@"You just checked in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [al show];
+    [al release];
+}
+
+-(void) afPlaceCheckinWSFailed:(afGMapsPlaceCheckinRequest *)ws withError:(NSError *)er{
+    UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"Error" message:er.description delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [al show];
+    [al release];
 }
 
 @end

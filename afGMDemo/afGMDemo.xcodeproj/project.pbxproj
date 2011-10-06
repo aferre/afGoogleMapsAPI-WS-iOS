@@ -341,18 +341,7 @@
 				38FBE76D143E1F71000F8B7F /* PlacesViewController.h */,
 				38FBE76E143E1F71000F8B7F /* PlacesViewController.m */,
 				38FBE76F143E1F71000F8B7F /* PlacesViewController.xib */,
-				38FBE782143E20F0000F8B7F /* PlacesSearchViewController.h */,
-				38FBE783143E20F0000F8B7F /* PlacesSearchViewController.m */,
-				38FBE784143E20F0000F8B7F /* PlacesSearchViewController.xib */,
-				38FBE77D143E20DF000F8B7F /* PlacesDetailsViewController.h */,
-				38FBE77E143E20DF000F8B7F /* PlacesDetailsViewController.m */,
-				38FBE77F143E20DF000F8B7F /* PlacesDetailsViewController.xib */,
-				38FBE773143E20B9000F8B7F /* PlacesCheckinViewController.h */,
-				38FBE774143E20B9000F8B7F /* PlacesCheckinViewController.m */,
-				38FBE775143E20B9000F8B7F /* PlacesCheckinViewController.xib */,
-				38FBE778143E20C9000F8B7F /* PlacesReportViewController.h */,
-				38FBE779143E20C9000F8B7F /* PlacesReportViewController.m */,
-				38FBE77A143E20C9000F8B7F /* PlacesReportViewController.xib */,
+				38FBE787143E2352000F8B7F /* Places */,
 			);
 			name = ViewCons;
 			sourceTree = "<group>";
@@ -540,6 +529,25 @@
 				38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */,
 			);
 			name = "New Group";
+			sourceTree = "<group>";
+		};
+		38FBE787143E2352000F8B7F /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				38FBE782143E20F0000F8B7F /* PlacesSearchViewController.h */,
+				38FBE783143E20F0000F8B7F /* PlacesSearchViewController.m */,
+				38FBE784143E20F0000F8B7F /* PlacesSearchViewController.xib */,
+				38FBE77D143E20DF000F8B7F /* PlacesDetailsViewController.h */,
+				38FBE77E143E20DF000F8B7F /* PlacesDetailsViewController.m */,
+				38FBE77F143E20DF000F8B7F /* PlacesDetailsViewController.xib */,
+				38FBE773143E20B9000F8B7F /* PlacesCheckinViewController.h */,
+				38FBE774143E20B9000F8B7F /* PlacesCheckinViewController.m */,
+				38FBE775143E20B9000F8B7F /* PlacesCheckinViewController.xib */,
+				38FBE778143E20C9000F8B7F /* PlacesReportViewController.h */,
+				38FBE779143E20C9000F8B7F /* PlacesReportViewController.m */,
+				38FBE77A143E20C9000F8B7F /* PlacesReportViewController.xib */,
+			);
+			name = Places;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
