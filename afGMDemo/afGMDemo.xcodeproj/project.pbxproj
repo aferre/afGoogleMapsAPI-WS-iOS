@@ -138,6 +138,21 @@
 		389D91901392E941005A7B40 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D918F1392E941005A7B40 /* libz.1.2.3.dylib */; };
 		389D91921392E949005A7B40 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91911392E949005A7B40 /* CFNetwork.framework */; };
 		389D91941392E973005A7B40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91931392E973005A7B40 /* Security.framework */; };
+		38C7DCBA143E3BAB00FA0153 /* AddressComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C8685B143B422B00291D97 /* AddressComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38C7DCBB143E3BAB00FA0153 /* afGoogleMaps.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C8685D143B422B00291D97 /* afGoogleMaps.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38C7DCBC143E3BAB00FA0153 /* Geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C8685E143B422B00291D97 /* Geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38C7DCBD143E3BAB00FA0153 /* afGMapsPlaceCheckinRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86861143B422D00291D97 /* afGMapsPlaceCheckinRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38C7DCBE143E3BAB00FA0153 /* afGMapsPlaceDetailsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86863143B422D00291D97 /* afGMapsPlaceDetailsRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38C7DCBF143E3BAB00FA0153 /* afGMapsPlaceReportRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86865143B422D00291D97 /* afGMapsPlaceReportRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38C7DCC0143E3BAB00FA0153 /* afGMapsPlaceSearchesRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86867143B422D00291D97 /* afGMapsPlaceSearchesRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38C7DCC1143E3BAB00FA0153 /* Place.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86869143B422D00291D97 /* Place.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38C7DCC3143E3BBD00FA0153 /* AddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8685C143B422B00291D97 /* AddressComponent.m */; };
+		38C7DCC4143E3BBD00FA0153 /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8685F143B422C00291D97 /* Geometry.m */; };
+		38C7DCC5143E3BBD00FA0153 /* afGMapsPlaceCheckinRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86862143B422D00291D97 /* afGMapsPlaceCheckinRequest.m */; };
+		38C7DCC6143E3BBD00FA0153 /* afGMapsPlaceDetailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86864143B422D00291D97 /* afGMapsPlaceDetailsRequest.m */; };
+		38C7DCC7143E3BBD00FA0153 /* afGMapsPlaceReportRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86866143B422D00291D97 /* afGMapsPlaceReportRequest.m */; };
+		38C7DCC8143E3BBD00FA0153 /* afGMapsPlaceSearchesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86868143B422D00291D97 /* afGMapsPlaceSearchesRequest.m */; };
+		38C7DCC9143E3BBD00FA0153 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8686A143B422D00291D97 /* Place.m */; };
 		38C8686B143B422D00291D97 /* AddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8685C143B422B00291D97 /* AddressComponent.m */; };
 		38C8686C143B422D00291D97 /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8685F143B422C00291D97 /* Geometry.m */; };
 		38C8686D143B422D00291D97 /* afGMapsPlaceCheckinRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86862143B422D00291D97 /* afGMapsPlaceCheckinRequest.m */; };
@@ -557,12 +572,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C7DCBB143E3BAB00FA0153 /* afGoogleMaps.h in Headers */,
 				38476B2C14374C670030EEBE /* afGoogleMapsAPIRequest.h in Headers */,
 				38476B2D14374C670030EEBE /* afGMapsDirectionsRequest.h in Headers */,
 				38476B2E14374C670030EEBE /* afGMapsElevationRequest.h in Headers */,
 				38476B2F14374C670030EEBE /* afGMapsPlacesRequest.h in Headers */,
 				38476B3014374C670030EEBE /* afGMapsDistanceRequest.h in Headers */,
 				38476B3114374C670030EEBE /* afGMapsGeocodingRequest.h in Headers */,
+				38C7DCBA143E3BAB00FA0153 /* AddressComponent.h in Headers */,
+				38C7DCBC143E3BAB00FA0153 /* Geometry.h in Headers */,
+				38C7DCBD143E3BAB00FA0153 /* afGMapsPlaceCheckinRequest.h in Headers */,
+				38C7DCBE143E3BAB00FA0153 /* afGMapsPlaceDetailsRequest.h in Headers */,
+				38C7DCBF143E3BAB00FA0153 /* afGMapsPlaceReportRequest.h in Headers */,
+				38C7DCC0143E3BAB00FA0153 /* afGMapsPlaceSearchesRequest.h in Headers */,
+				38C7DCC1143E3BAB00FA0153 /* Place.h in Headers */,
 				38476B5B14374DE70030EEBE /* NSObject+SBJson.h in Headers */,
 				38476B5C14374DE70030EEBE /* SBJson.h in Headers */,
 				38476B5D14374DE70030EEBE /* SBJsonParser.h in Headers */,
@@ -708,6 +731,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38C7DCC3143E3BBD00FA0153 /* AddressComponent.m in Sources */,
+				38C7DCC4143E3BBD00FA0153 /* Geometry.m in Sources */,
+				38C7DCC5143E3BBD00FA0153 /* afGMapsPlaceCheckinRequest.m in Sources */,
+				38C7DCC6143E3BBD00FA0153 /* afGMapsPlaceDetailsRequest.m in Sources */,
+				38C7DCC7143E3BBD00FA0153 /* afGMapsPlaceReportRequest.m in Sources */,
+				38C7DCC8143E3BBD00FA0153 /* afGMapsPlaceSearchesRequest.m in Sources */,
+				38C7DCC9143E3BBD00FA0153 /* Place.m in Sources */,
 				38476B4614374DC70030EEBE /* NSObject+SBJson.m in Sources */,
 				38476B4714374DC70030EEBE /* SBJsonParser.m in Sources */,
 				38476B4814374DC70030EEBE /* SBJsonStreamParser.m in Sources */,
