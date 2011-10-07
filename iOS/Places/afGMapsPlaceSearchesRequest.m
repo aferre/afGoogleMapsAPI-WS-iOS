@@ -41,7 +41,7 @@
     NSString *rootURL = [super makeURLStringWithServicePrefix:@"search"];
     
     //location
-    rootURL = [rootURL stringByAppendingFormat:@"&location=%f,%f",location.latitude,location.longitude];
+    rootURL = [rootURL stringByAppendingFormat:@"location=%f,%f",location.latitude,location.longitude];
     
     //radius
     rootURL = [rootURL stringByAppendingFormat:@"&radius=%f",radius];

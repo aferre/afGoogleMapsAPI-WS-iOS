@@ -41,7 +41,7 @@
     NSString *rootURL = [super makeURLStringWithServicePrefix:@"details"];
     
     //reference
-    rootURL = [rootURL stringByAppendingFormat:@"&reference=%f",reference];
+    rootURL = [rootURL stringByAppendingFormat:@"reference=%@",reference];
     
     //language
     if (language != LangDEFAULT){
@@ -180,12 +180,18 @@
 
 +(PlaceDetails *) parseJsonDico:(NSDictionary *)jsonDico{
     
-    PlaceDetails *sr = [[[PlaceDetails alloc] init] autorelease];
-    sr.name = [jsonDico objectForKey:@"name"];
-    sr.vicinity = [jsonDico objectForKey:@"vicinity"];
-    sr.types = [jsonDico objectForKey:@"types"];
-    sr.formattedAddress = [jsonDico objectForKey:@"formatted_address"];
-    sr.formattedPhoneNumber= [jsonDico  objectForKey:@"formatted_phone_number"];
+    PlaceDetails *sr = [[PlaceDetails alloc] init];
+    
+    sr.name = [[NSString alloc] initWithString: [jsonDico objectForKey:@"name"]];
+    
+    sr.vicinity = [[NSString alloc] initWithString: [jsonDico objectForKey:@"vicinity"]];
+    
+    sr.types = [[NSArray alloc] initWithArray:[jsonDico objectForKey:@"types"]];
+    
+    sr.formattedAddress = [[NSString alloc] initWithString: [jsonDico objectForKey:@"formatted_address"]];
+    
+    sr.formattedPhoneNumber= [[NSString alloc] initWithString: [jsonDico  objectForKey:@"formatted_phone_number"]];
+    
     NSURL *a = [[NSURL alloc] initWithString:[jsonDico objectForKey:@"url"]];
     sr.urlURL = a;
     [a release];
@@ -193,8 +199,8 @@
     sr.urlICON = b;
     [b release];
     
-    sr.theId = [jsonDico objectForKey:@"id"];
-    sr.reference = [jsonDico objectForKey:@"reference"];
+    sr.theId = [[NSString alloc] initWithString: [jsonDico objectForKey:@"id"]];
+    sr.reference = [[NSString alloc] initWithString: [jsonDico objectForKey:@"reference"]];
     sr.rating = [[jsonDico objectForKey:@"rating"] doubleValue];
     
     NSArray *addressComponentsArray = [jsonDico objectForKey:@"address_components"];

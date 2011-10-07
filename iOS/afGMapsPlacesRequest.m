@@ -16,6 +16,17 @@
     [super dealloc];
 }
 
+-(id) initDefault{
+    
+    self = [super initDefault];
+    
+    if (self){
+        self.useHTTPS = YES;
+    }
+    
+    return self;
+}
+
 -(NSString *) getURLString{
     
     NSString *rootURL = [super getURLString];
@@ -30,6 +41,19 @@
     
     rootURL = [rootURL stringByAppendingFormat:@"/%@",servicePrefix];
     
+    switch (format) {
+        case ReturnXML:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
+        }
+            break;
+        default:
+        {
+            rootURL = [rootURL stringByAppendingFormat:@"/json?"];
+        }
+            break;
+    }
+
     return rootURL;
 }
 

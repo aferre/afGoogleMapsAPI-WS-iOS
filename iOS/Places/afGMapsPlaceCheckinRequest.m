@@ -130,7 +130,7 @@
             }
             return;
         }
-        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceCheckinWSSucceeded)]){
+        if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afPlaceCheckinWSSucceeded:)]){
             [afDelegate afPlaceCheckinWSSucceeded:self];
         }
     }
