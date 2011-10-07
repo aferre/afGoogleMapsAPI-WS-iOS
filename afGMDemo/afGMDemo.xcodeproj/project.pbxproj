@@ -72,33 +72,33 @@
 		38476B5814374DC70030EEBE /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D917C1392E920005A7B40 /* ASIInputStream.m */; };
 		38476B5914374DC70030EEBE /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D917E1392E920005A7B40 /* ASINetworkQueue.m */; };
 		38476B5A14374DC70030EEBE /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91811392E920005A7B40 /* Reachability.m */; };
-		38476B5B14374DE70030EEBE /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91461392E915005A7B40 /* NSObject+SBJson.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B5C14374DE70030EEBE /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91481392E915005A7B40 /* SBJson.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B5D14374DE70030EEBE /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91491392E915005A7B40 /* SBJsonParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B5E14374DE70030EEBE /* SBJsonPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914B1392E915005A7B40 /* SBJsonPublic.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B5F14374DE70030EEBE /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914C1392E915005A7B40 /* SBJsonStreamParser.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6014374DE70030EEBE /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914E1392E915005A7B40 /* SBJsonStreamParserAccumulator.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6114374DE70030EEBE /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91501392E915005A7B40 /* SBJsonStreamParserAdapter.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6214374DE70030EEBE /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91521392E915005A7B40 /* SBJsonStreamParserState.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6314374DE70030EEBE /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91541392E915005A7B40 /* SBJsonStreamWriter.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6414374DE70030EEBE /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91561392E915005A7B40 /* SBJsonStreamWriterAccumulator.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6514374DE70030EEBE /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91581392E915005A7B40 /* SBJsonStreamWriterState.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6614374DE70030EEBE /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915A1392E915005A7B40 /* SBJsonTokeniser.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6714374DE70030EEBE /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915C1392E915005A7B40 /* SBJsonUTF8Stream.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6814374DE70030EEBE /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915E1392E915005A7B40 /* SBJsonWriter.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6914374DE70030EEBE /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916C1392E920005A7B40 /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6A14374DE70030EEBE /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916E1392E920005A7B40 /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6B14374DE70030EEBE /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916F1392E920005A7B40 /* ASIDataCompressor.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6C14374DE70030EEBE /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91711392E920005A7B40 /* ASIDataDecompressor.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6D14374DE70030EEBE /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91731392E920005A7B40 /* ASIDownloadCache.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6E14374DE70030EEBE /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91751392E920005A7B40 /* ASIFormDataRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B6F14374DE70030EEBE /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91771392E920005A7B40 /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B7014374DE70030EEBE /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91791392E920005A7B40 /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B7114374DE70030EEBE /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917A1392E920005A7B40 /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B7214374DE70030EEBE /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917B1392E920005A7B40 /* ASIInputStream.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B7314374DE70030EEBE /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917D1392E920005A7B40 /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B7414374DE70030EEBE /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917F1392E920005A7B40 /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		38476B7514374DE70030EEBE /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91801392E920005A7B40 /* Reachability.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		38476B5B14374DE70030EEBE /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91461392E915005A7B40 /* NSObject+SBJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B5C14374DE70030EEBE /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91481392E915005A7B40 /* SBJson.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B5D14374DE70030EEBE /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91491392E915005A7B40 /* SBJsonParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B5E14374DE70030EEBE /* SBJsonPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914B1392E915005A7B40 /* SBJsonPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B5F14374DE70030EEBE /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914C1392E915005A7B40 /* SBJsonStreamParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6014374DE70030EEBE /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D914E1392E915005A7B40 /* SBJsonStreamParserAccumulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6114374DE70030EEBE /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91501392E915005A7B40 /* SBJsonStreamParserAdapter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6214374DE70030EEBE /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91521392E915005A7B40 /* SBJsonStreamParserState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6314374DE70030EEBE /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91541392E915005A7B40 /* SBJsonStreamWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6414374DE70030EEBE /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91561392E915005A7B40 /* SBJsonStreamWriterAccumulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6514374DE70030EEBE /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91581392E915005A7B40 /* SBJsonStreamWriterState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6614374DE70030EEBE /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915A1392E915005A7B40 /* SBJsonTokeniser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6714374DE70030EEBE /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915C1392E915005A7B40 /* SBJsonUTF8Stream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6814374DE70030EEBE /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D915E1392E915005A7B40 /* SBJsonWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6914374DE70030EEBE /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916C1392E920005A7B40 /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6A14374DE70030EEBE /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916E1392E920005A7B40 /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6B14374DE70030EEBE /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D916F1392E920005A7B40 /* ASIDataCompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6C14374DE70030EEBE /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91711392E920005A7B40 /* ASIDataDecompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6D14374DE70030EEBE /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91731392E920005A7B40 /* ASIDownloadCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6E14374DE70030EEBE /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91751392E920005A7B40 /* ASIFormDataRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B6F14374DE70030EEBE /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91771392E920005A7B40 /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B7014374DE70030EEBE /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91791392E920005A7B40 /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B7114374DE70030EEBE /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917A1392E920005A7B40 /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B7214374DE70030EEBE /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917B1392E920005A7B40 /* ASIInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B7314374DE70030EEBE /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917D1392E920005A7B40 /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B7414374DE70030EEBE /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D917F1392E920005A7B40 /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38476B7514374DE70030EEBE /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91801392E920005A7B40 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		389D91191392E89E005A7B40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91181392E89E005A7B40 /* UIKit.framework */; };
 		389D911B1392E89F005A7B40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911A1392E89F005A7B40 /* Foundation.framework */; };
 		389D911D1392E89F005A7B40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D911C1392E89F005A7B40 /* CoreGraphics.framework */; };
@@ -585,7 +585,7 @@
 				38C7DCBE143E3BAB00FA0153 /* afGMapsPlaceDetailsRequest.h in Headers */,
 				38C7DCBF143E3BAB00FA0153 /* afGMapsPlaceReportRequest.h in Headers */,
 				38C7DCC0143E3BAB00FA0153 /* afGMapsPlaceSearchesRequest.h in Headers */,
-				38C7DCC1143E3BAB00FA0153 /* Place.h in Headers */,
+				38476B6F14374DE70030EEBE /* ASIHTTPRequest.h in Headers */,
 				38476B5B14374DE70030EEBE /* NSObject+SBJson.h in Headers */,
 				38476B5C14374DE70030EEBE /* SBJson.h in Headers */,
 				38476B5D14374DE70030EEBE /* SBJsonParser.h in Headers */,
@@ -606,13 +606,13 @@
 				38476B6C14374DE70030EEBE /* ASIDataDecompressor.h in Headers */,
 				38476B6D14374DE70030EEBE /* ASIDownloadCache.h in Headers */,
 				38476B6E14374DE70030EEBE /* ASIFormDataRequest.h in Headers */,
-				38476B6F14374DE70030EEBE /* ASIHTTPRequest.h in Headers */,
 				38476B7014374DE70030EEBE /* ASIHTTPRequestConfig.h in Headers */,
 				38476B7114374DE70030EEBE /* ASIHTTPRequestDelegate.h in Headers */,
 				38476B7214374DE70030EEBE /* ASIInputStream.h in Headers */,
 				38476B7314374DE70030EEBE /* ASINetworkQueue.h in Headers */,
 				38476B7414374DE70030EEBE /* ASIProgressDelegate.h in Headers */,
 				38476B7514374DE70030EEBE /* Reachability.h in Headers */,
+				38C7DCC1143E3BAB00FA0153 /* Place.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
