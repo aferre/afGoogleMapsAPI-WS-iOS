@@ -20,7 +20,7 @@
 #define CUSTOM_ERROR_NUMBER 666
 
 typedef enum UnitsSystem { 
-    UnitsDefault = 0,
+    UnitsDefault = 0, // default is meters
     UnitsMetric,
     UnitsImperial
 } UnitsSystem;
@@ -388,6 +388,8 @@ typedef enum LocationType {
 +(NSString *) travelMode:(TravelMode) travelMode;
 
 +(NSString *) avoidMode:(AvoidMode) avoidMode;
+
++(NSString *) unitsString:(UnitsSystem) unitSystem;
 
 - (NSString *) getURLString;
 
