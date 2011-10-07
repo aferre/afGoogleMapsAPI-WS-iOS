@@ -9,9 +9,11 @@ loose it on the way.
 OR
 Drag/drop the *.framework file to your project in xcode. Use the Copy to target checkbox to make sure you won't loose 
 it on the way.
+
 h2. Use
 
-Go to https://github.com/aferre/afGoogleMapsAPI-WS-iOS/wiki
+Go to "the wiki":https://github.com/aferre/afGoogleMapsAPI-WS-iOS/wiki
+
 h1. TODO
 
 	Distance Matrix:
