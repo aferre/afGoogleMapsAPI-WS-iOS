@@ -28,6 +28,10 @@
 
 +(id)request;
 
+-(void) setTheReference:(NSString *)refe;
+
+-(void) setTheName:(NSString *)nam;
+
 @end
 
 @protocol afGoogleMapsPlaceReportDelegate <NSObject>

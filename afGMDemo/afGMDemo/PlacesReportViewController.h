@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "afGMapsPlaceReportRequest.h"
 
-@interface PlacesReportViewController : UIViewController <UITextFieldDelegate>   {
+@interface PlacesReportViewController : UIViewController <UITextFieldDelegate, afGoogleMapsPlaceReportDelegate>   {
     UITextField *latTF;
     UITextField *longTF;
     UITextField *nameTF;

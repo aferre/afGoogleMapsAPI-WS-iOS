@@ -95,18 +95,41 @@
             
             return;
         }
+        afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
+        [req setTheReference:[refTF.text copy]];
+        
+        req.afDelegate = self;
+        [req startAsynchronous];
     }else{
-        if ([latTF.text isEqualToString:@""] || [longTF.text isEqualToString:@""] || [accuracyTF.text isEqualToString:@""] || [nameTF.text isEqualToString:@""]){
+        if ([latTF.text isEqualToString:@""] || [longTF.text isEqualToString:@""] || [accuracyTF.text isEqualToString:@""] || [nameTF.text isEqualToString:@""] || [type1TF.text isEqualToString:@""]){
             UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Missing parameter(s)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
             [al show];
             [al release];
             
             return;
         }
+        
+        afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
+        req.location = CLLocationCoordinate2DMake([latTF.text doubleValue], [longTF.text doubleValue]);
+        req.accuracy = [accuracyTF.text doubleValue];
+        [req setTheName:[nameTF.text copy]];
+        NSMutableArray *ar = [[NSMutableArray alloc] init];
+        if (![type1TF.text isEqualToString:@""]){
+            [ar addObject:type1TF.text];
+        }
+        if (![type2TF.text isEqualToString:@""]){
+            [ar addObject:type2TF.text];
+        }
+        if (![type3TF.text isEqualToString:@""]){
+            [ar addObject:type3TF.text];
+        }
+        req.types = ar;
+        [ar release];
+        
+        req.afDelegate = self;
+        [req startAsynchronous];
     }
     
-    afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
-    req.afDelegate = self;
 }
 
 - (IBAction)deleteSwitchTouched:(UISwitch *)sender {

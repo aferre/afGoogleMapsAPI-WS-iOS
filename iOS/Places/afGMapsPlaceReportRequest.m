@@ -87,12 +87,12 @@
     [super startSynchronous];
 }
 
--(void) setReference:(NSString *)refe{
+-(void) setTheReference:(NSString *)refe{
     self.reference = refe;
     isDeleting = YES;
 }
 
--(void) setName:(NSString *)nam{
+-(void) setTheName:(NSString *)nam{
     self.name = nam;
     isDeleting = NO;
 }

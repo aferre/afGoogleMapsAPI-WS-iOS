@@ -78,9 +78,11 @@
     [type3TF release];
     [goBtn release];
     [resultTV release];
+    
     [super dealloc];
 }
 - (IBAction)goBtnPressed:(id)sender {
+    
     if ([latTf.text isEqualToString:@""] || [lngTf.text isEqualToString:@""] || [radiusTF.text isEqualToString:@""] || [nameTF.text isEqualToString:@""]){
         UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Missing parameter(s)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [al show];
