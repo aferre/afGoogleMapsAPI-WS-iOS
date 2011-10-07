@@ -68,6 +68,9 @@
     }
     
     afGMapsPlaceCheckinRequest *req = [afGMapsPlaceCheckinRequest request];
+    BOOL useSensor = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sensor"];
+    
+    [req setUseSensor:useSensor];
     req.reference = refTF.text;
     req.afDelegate = self;
     

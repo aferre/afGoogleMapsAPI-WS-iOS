@@ -30,6 +30,7 @@
 {
     [super viewWillAppear:animated];
     [self reverseSw:revGeocodingSw];
+    [self boundsChanged:boundsSw];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -117,7 +118,7 @@
     
     if (self.boundsSw.on){
         [req setBoundsP1:CGPointMake([self.p1latTF.text doubleValue], [self.p1lngTF.text doubleValue])];
-        [req setBoundsP1:CGPointMake([self.p2latTF.text doubleValue], [self.p2lngTF.text doubleValue])];
+        [req setBoundsP2:CGPointMake([self.p2latTF.text doubleValue], [self.p2lngTF.text doubleValue])];
     }
     
     [req startAsynchronous];

@@ -74,6 +74,9 @@
     }
     
     afGMapsPlaceDetailsRequest *req = [afGMapsPlaceDetailsRequest request];
+    BOOL useSensor = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sensor"];
+    
+    [req setUseSensor:useSensor];
     req.afDelegate = self;
     req.reference = refTF.text;
     

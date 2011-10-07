@@ -92,6 +92,9 @@
     }
     
     afGMapsPlaceSearchesRequest *req = [afGMapsPlaceSearchesRequest request];
+    BOOL useSensor = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sensor"];
+    
+    [req setUseSensor:useSensor];
     req.location = CLLocationCoordinate2DMake([latTf.text doubleValue], [lngTf.text doubleValue]);
     req.name = nameTF.text;
     req.radius = [radiusTF.text doubleValue];

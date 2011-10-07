@@ -98,6 +98,9 @@
         afGMapsPlaceReportRequest *req = [afGMapsPlaceReportRequest request];
         [req setTheReference:[refTF.text copy]];
         
+        BOOL useSensor = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sensor"];
+        
+        [req setUseSensor:useSensor];
         req.afDelegate = self;
         [req startAsynchronous];
     }else{
