@@ -24,7 +24,7 @@
     self = [super initDefault];
     
     if (self){
-        [self setUserInfo: [NSDictionary dictionaryWithObject:@"placeReport" forKey:@"type"]];
+        [self setUserInfo: [NSDictionary dictionaryWithObject:@"PlaceReport" forKey:@"type"]];
         self.delegate = self;
         isDeleting = NO;
     }

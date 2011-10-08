@@ -164,8 +164,8 @@
 		3810D83313981E1300B5972E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		3810D83413981E1300B5972E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		3819B2F4142F87900036F542 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		381E44761440A1D1006D0C12 /* afGoogleMapsEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGoogleMapsEnums.h; sourceTree = "<group>"; };
-		381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGoogleMapsEnums.m; sourceTree = "<group>"; };
+		381E44761440A1D1006D0C12 /* afGoogleMapsEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGoogleMapsEnums.h; path = ../../afGMDemo/afGMDemo/afGoogleMapsEnums.h; sourceTree = "<group>"; };
+		381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGoogleMapsEnums.m; path = ../../afGMDemo/afGMDemo/afGoogleMapsEnums.m; sourceTree = "<group>"; };
 		38476B1914374BC60030EEBE /* afGoogleMapsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = afGoogleMapsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38476B1A14374BC60030EEBE /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		38476B1E14374BC60030EEBE /* afGoogleMapsiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "afGoogleMapsiOS-Info.plist"; sourceTree = "<group>"; };
@@ -488,16 +488,14 @@
 		38CC36D01396C2C2006C1381 /* afGM */ = {
 			isa = PBXGroup;
 			children = (
+				38E506931440D9AF00B0ED0D /* afEnum.h */,
 				38C8685D143B422B00291D97 /* afGoogleMaps.h */,
 				389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */,
-				38E506931440D9AF00B0ED0D /* afEnum.h */,
-				38E506961440D9AF00B0ED0D /* Requests */,
 				389D913F1392E8AF005A7B40 /* afGoogleMapsAPIRequest.m */,
-				381E44761440A1D1006D0C12 /* afGoogleMapsEnums.h */,
-				381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */,
 				38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */,
-				38E506B11440D9F000B0ED0D /* Wrapper classes */,
 				38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */,
+				38E506961440D9AF00B0ED0D /* Requests */,
+				38E506B11440D9F000B0ED0D /* Wrapper classes */,
 			);
 			name = afGM;
 			sourceTree = "<group>";
@@ -537,6 +535,8 @@
 		38E506B11440D9F000B0ED0D /* Wrapper classes */ = {
 			isa = PBXGroup;
 			children = (
+				381E44761440A1D1006D0C12 /* afGoogleMapsEnums.h */,
+				381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */,
 				38E506B21440D9F000B0ED0D /* AddressComponent.h */,
 				38E506B31440D9F000B0ED0D /* AddressComponent.m */,
 				38E506B41440D9F000B0ED0D /* Geometry.h */,

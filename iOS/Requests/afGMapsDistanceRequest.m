@@ -32,7 +32,6 @@
         
         [self setUserInfo: [NSDictionary dictionaryWithObject:@"distance" forKey:@"type"]];
         self.delegate = self;
-        
     }
     
     return self;

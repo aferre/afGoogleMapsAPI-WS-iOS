@@ -25,7 +25,7 @@
     self = [super initDefault];
     
     if (self){
-        [self setUserInfo: [NSDictionary dictionaryWithObject:@"placeCheckin" forKey:@"type"]];
+        [self setUserInfo: [NSDictionary dictionaryWithObject:@"PlaceCheckin" forKey:@"type"]];
         self.delegate = self;
     }
     
