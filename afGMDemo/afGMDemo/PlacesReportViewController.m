@@ -116,18 +116,15 @@
         req.location = CLLocationCoordinate2DMake([latTF.text doubleValue], [longTF.text doubleValue]);
         req.accuracy = [accuracyTF.text doubleValue];
         [req setTheName:[nameTF.text copy]];
-        NSMutableArray *ar = [[NSMutableArray alloc] init];
-        if (![type1TF.text isEqualToString:@""]){
-            [ar addObject:type1TF.text];
-        }
-        if (![type2TF.text isEqualToString:@""]){
-            [ar addObject:type2TF.text];
-        }
-        if (![type3TF.text isEqualToString:@""]){
-            [ar addObject:type3TF.text];
-        }
-        req.types = ar;
-        [ar release];
+        
+        if (![type1TF.text isEqualToString:@""])
+            [req addTypeString:type1TF.text];
+        
+        if (![type2TF.text isEqualToString:@""])
+            [req addTypeString:type2TF.text];
+        
+        if (![type3TF.text isEqualToString:@""])
+            [req addTypeString:type3TF.text];
         
         req.afDelegate = self;
         [req startAsynchronous];
@@ -146,7 +143,6 @@
     type1TF.enabled = !sender.on;
     type2TF.enabled = !sender.on;
     type3TF.enabled = !sender.on;
-    
 }
 
 #pragma mark ------------------------------------------

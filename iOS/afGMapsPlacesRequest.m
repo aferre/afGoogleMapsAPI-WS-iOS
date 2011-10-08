@@ -42,7 +42,7 @@
     rootURL = [rootURL stringByAppendingFormat:@"/%@",servicePrefix];
     
     switch (format) {
-        case ReturnXML:
+        case XML:
         {
             rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
         }

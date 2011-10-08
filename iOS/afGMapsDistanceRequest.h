@@ -26,7 +26,7 @@
     
     AvoidMode avoidMode;
     
-    UnitsSystem unitsSystem;
+    UnitSystem unitsSystem;
     
 }
 
@@ -35,7 +35,7 @@
 @property (nonatomic,retain) NSArray *destinations;
 @property (nonatomic,assign) TravelMode travelMode;
 @property (nonatomic,assign) AvoidMode avoidMode;
-@property (nonatomic,assign) UnitsSystem unitsSystem;
+@property (nonatomic,assign) UnitSystem unitsSystem;
 
 - (id) initDefault;
 
@@ -51,15 +51,15 @@
 
 -(void) afDistanceWSStarted:(afGMapsDistanceRequest *)ws ;
 
--(void) afDistanceWS:(afGMapsDistanceRequest *)ws gotDistance:(NSNumber *) distance unit:(UnitsSystem)unit;
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws gotDistance:(NSNumber *) distance unit:(UnitSystem)unit;
 
 -(void) afDistanceWSFailed:(afGMapsDistanceRequest *)ws withError:(NSError *)er;
 
 -(void) afDistanceWS:(afGMapsDistanceRequest *)ws origin:(NSString *) origin destination:(NSString *)destination failedWithError:(NSError *) err;
 
--(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *) distance origin:(NSString *) origin destination:(NSString *)destination unit:(UnitsSystem)unit;
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *) distance origin:(NSString *) origin destination:(NSString *)destination unit:(UnitSystem)unit;
 
 
--(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *) distance textDistance:(NSString *)textDistance origin:(NSString *) origin returnedOrigin:(NSString *)returnedOrigin destination:(NSString *)destination returnedDestination:(NSString *)returnedDest duration:(NSNumber *)durationInSec textDuration:(NSString *)textDuration unit:(UnitsSystem)unit;
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *) distance textDistance:(NSString *)textDistance origin:(NSString *) origin returnedOrigin:(NSString *)returnedOrigin destination:(NSString *)destination returnedDestination:(NSString *)returnedDest duration:(NSNumber *)durationInSec textDuration:(NSString *)textDuration unit:(UnitSystem)unit;
 
 @end

@@ -61,7 +61,6 @@
     
     NSMutableString *rootURL = [NSMutableString stringWithString:[super makeURLStringWithServicePrefix:GOOGLE_DISTANCE_API_PATH_COMPONENT]];
     
-    
     //origins
     [rootURL appendFormat:@"origins="];
     
@@ -92,7 +91,7 @@
     
     //mode
     if (travelMode != TravelModeDefault)
-        [rootURL appendFormat:@"&mode=%@",[afGoogleMapsAPIRequest travelMode:travelMode]];
+        [rootURL appendFormat:@"&mode=%@",[afGoogleMapsEnums TravelModeStringFromObjectType:travelMode]];
     
     //language
     if (language != LangDEFAULT)
@@ -100,7 +99,7 @@
     
     //avoid
     if (avoidMode != AvoidModeNone)
-        [rootURL appendFormat:@"&avoid=%@",[afGoogleMapsAPIRequest avoidMode:avoidMode]];
+        [rootURL appendFormat:@"&avoid=%@",[afGoogleMapsEnums AvoidModeStringFromObjectType:avoidMode]];
     
     //units
     if (unitsSystem != UnitsDefault)

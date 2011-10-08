@@ -53,7 +53,7 @@
     
     //mode
     if (travelMode != TravelModeDefault)
-        rootURL = [rootURL stringByAppendingFormat:@"&mode=%@",[afGoogleMapsAPIRequest travelMode:travelMode]];
+        rootURL = [rootURL stringByAppendingFormat:@"&mode=%@",[afGoogleMapsEnums TravelModeStringFromObjectType:travelMode]];
     
     //waypoints
     if ([waypoints count]>=1) {
@@ -74,7 +74,7 @@
     
     //avoid
     if (avoidMode != AvoidModeNone)
-        rootURL = [rootURL stringByAppendingFormat:@"&avoid=%@",[afGoogleMapsAPIRequest avoidMode:avoidMode]];
+        rootURL = [rootURL stringByAppendingFormat:@"&avoid=%@",[afGoogleMapsEnums AvoidModeStringFromObjectType:avoidMode]];
     
     //units
     if (unitsSystem != UnitsDefault)
@@ -377,19 +377,19 @@
     Route *r = [[[self alloc] init] autorelease ];
     
     NSString *str;
-    
+    NSArray *ar;
     str = [[routeDico objectForKey:@"copyrights"] copy];
     r.copyrights = str;
     [str release];
     str = [[routeDico objectForKey:@"summary"] copy];
     r.summary = str;
     [str release];
-    str= [[routeDico objectForKey:@"warnings"] copy];
-    r.warnings = str;
-    [str release];
-    str= [[routeDico objectForKey:@"waypoint_order"] copy];
-    r.waypointsOrder = str; 
-    [str release];
+    ar= [[routeDico objectForKey:@"warnings"] copy];
+    r.warnings = ar;
+    [ar release];
+    ar= [[routeDico objectForKey:@"waypoint_order"] copy];
+    r.waypointsOrder = ar; 
+    [ar release];
     
     NSArray *legsArray = [routeDico objectForKey:@"legs"];
     

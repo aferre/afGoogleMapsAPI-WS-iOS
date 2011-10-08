@@ -22,7 +22,7 @@
     if (self){
         useSensor = NO;
         useHTTPS = NO;
-        format = ReturnJSON;
+        format = JSON;
         region = ccTLD_DEFAULT;
         language = LangDEFAULT;
     }
@@ -40,54 +40,6 @@
     }
     
     return str;
-}
-#pragma mark ------------------------------------------
-#pragma mark ------ Helpers
-#pragma mark ------------------------------------------
-
-+(NSString *) unitsString:(UnitsSystem) unitSystem{
-    switch (unitSystem) {
-        default:
-            return @"meters";
-            break;
-            
-        case UnitsImperial:
-            return @"miles";
-            break;
-    }
-}
-
-+(NSString *) travelMode:(TravelMode) travelMode{
-    switch (travelMode) {
-        case TravelModeDriving:
-            return @"driving";
-            break;
-        case TravelModeWalking:
-            return @"walking";
-            break;
-        case TravelModeBicycling:
-            return @"bicycling";
-            break;
-        default:
-            return @"driving";
-            break;
-    }
-    return @"driving";
-}
-
-+(NSString *) avoidMode:(AvoidMode) avoidMode{
-    switch (avoidMode) {
-        case AvoidModeHighway:
-            return @"highways";
-            break;
-        case AvoidModeTolls:
-            return @"tolls";
-            break;
-        default:
-            return @"";
-            break;
-    }
-    return @"";
 }
 
 #pragma mark ------------------------------------------
@@ -1155,7 +1107,7 @@
     rootURL = [rootURL stringByAppendingFormat:@"%@",servicePrefix];
     
     switch (format) {
-        case ReturnXML:
+        case XML:
         {
             rootURL = [rootURL stringByAppendingFormat:@"/xml?"];
         }

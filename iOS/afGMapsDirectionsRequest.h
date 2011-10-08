@@ -40,7 +40,7 @@ typedef enum DirectionsRequestStatusCode {
     
     BOOL alternatives;
     
-    UnitsSystem unitsSystem;
+    UnitSystem unitsSystem;
     
     //returned
     
@@ -55,7 +55,7 @@ typedef enum DirectionsRequestStatusCode {
 @property (nonatomic, assign) AvoidMode avoidMode;
 @property (nonatomic, retain) NSArray *waypoints;
 @property (nonatomic, assign) BOOL alternatives;
-@property (nonatomic, assign) UnitsSystem unitsSystem;
+@property (nonatomic, assign) UnitSystem unitsSystem;
 @property (nonatomic, retain) NSString *origin;
 @property (nonatomic, retain) NSString *destination;
 @property (nonatomic, assign) DirectionsRequestStatusCode directionsRequestStatusCode;

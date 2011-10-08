@@ -152,9 +152,8 @@
 }
 
 
--(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *)distance origin:(NSString *)origin destination:(NSString *)destination unit:(UnitsSystem)unit{
+-(void) afDistanceWS:(afGMapsDistanceRequest *)ws distance:(NSNumber *)distance origin:(NSString *)origin destination:(NSString *)destination unit:(UnitSystem)unit{
     
-    txtView.text = [txtView.text stringByAppendingString:[NSString stringWithFormat:@"FROM : %@ TO %@ = %@\n", origin,destination, distance]];
-       
+    txtView.text = [txtView.text stringByAppendingString:[NSString stringWithFormat:@"FROM : %@ TO %@ = %@ %@\n", origin,destination, distance,[afGoogleMapsEnums UnitSystemStringFromObjectType:unit]]];
 }
 @end

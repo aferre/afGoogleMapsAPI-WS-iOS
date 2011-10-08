@@ -7,10 +7,10 @@
 //
 
 #import "afGoogleMapsAPIRequest.h"
+#import "Place.h"
 
 #define GOOGLE_PLACES_API_PATH_COMPONENT @"place"
 #define API_KEY @"AIzaSyAHJkEYX20qT6N8N4aDSzhTEckkr21sXBY"
-
 
 @interface afGMapsPlacesRequest : afGoogleMapsAPIRequest {
     

@@ -76,6 +76,20 @@
     return [super finalizeURLString:rootURL];
 }
 
+-(void) addTypeString:(NSString *) typeString{
+    PlacesType1 type = [Place PlacesType1FromString:typeString];
+    
+    [self addTypeEnum:type];
+}
+
+-(void) addTypeEnum:(PlacesType1) type{
+    if (!types) types = [[NSMutableArray alloc] init];
+    
+    if (type != PlacesType1Not_defined)
+        [types addObject:[Place PlacesType1StringFromObjectType:type]];
+    
+}
+
 #pragma mark ------------------------------------------
 #pragma mark ------ ASI HTTP REQUEST Overrides
 #pragma mark ------------------------------------------

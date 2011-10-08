@@ -28,6 +28,7 @@
 		3810D83513981E1300B5972E /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3810D83313981E1300B5972E /* SettingsViewController.m */; };
 		3810D83613981E1300B5972E /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3810D83413981E1300B5972E /* SettingsViewController.xib */; };
 		3819B2F5142F87900036F542 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3819B2F4142F87900036F542 /* CoreLocation.framework */; };
+		381E44781440A1D1006D0C12 /* afGoogleMapsEnums.m in Sources */ = {isa = PBXBuildFile; fileRef = 381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */; };
 		38476B1B14374BC60030EEBE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38476B1A14374BC60030EEBE /* CoreFoundation.framework */; };
 		38476B2114374BC60030EEBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38476B1F14374BC60030EEBE /* InfoPlist.strings */; };
 		38476B2C14374C670030EEBE /* afGoogleMapsAPIRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -185,6 +186,9 @@
 		3810D83313981E1300B5972E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		3810D83413981E1300B5972E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		3819B2F4142F87900036F542 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		381E447414408A9F006D0C12 /* afEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afEnum.h; path = ../../iOS/Places/afEnum.h; sourceTree = "<group>"; };
+		381E44761440A1D1006D0C12 /* afGoogleMapsEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGoogleMapsEnums.h; sourceTree = "<group>"; };
+		381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGoogleMapsEnums.m; sourceTree = "<group>"; };
 		38476B1914374BC60030EEBE /* afGoogleMapsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = afGoogleMapsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38476B1A14374BC60030EEBE /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		38476B1E14374BC60030EEBE /* afGoogleMapsiOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "afGoogleMapsiOS-Info.plist"; sourceTree = "<group>"; };
@@ -524,8 +528,11 @@
 		38CC36D01396C2C2006C1381 /* afGM */ = {
 			isa = PBXGroup;
 			children = (
+				38C8685D143B422B00291D97 /* afGoogleMaps.h */,
 				389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */,
 				389D913F1392E8AF005A7B40 /* afGoogleMapsAPIRequest.m */,
+				381E44761440A1D1006D0C12 /* afGoogleMapsEnums.h */,
+				381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */,
 				389D91381392E8AF005A7B40 /* afGMapsDirectionsRequest.h */,
 				389D91391392E8AF005A7B40 /* afGMapsDirectionsRequest.m */,
 				38CC36D81396C4B3006C1381 /* afGMapsElevationRequest.h */,
@@ -536,12 +543,12 @@
 				389D913D1392E8AF005A7B40 /* afGMapsGeocodingRequest.m */,
 				38C8685B143B422B00291D97 /* AddressComponent.h */,
 				38C8685C143B422B00291D97 /* AddressComponent.m */,
-				38C8685D143B422B00291D97 /* afGoogleMaps.h */,
 				38C8685E143B422B00291D97 /* Geometry.h */,
 				38C8685F143B422C00291D97 /* Geometry.m */,
-				38C86860143B422C00291D97 /* Places */,
 				38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */,
 				38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */,
+				38C86860143B422C00291D97 /* Places */,
+				381E447414408A9F006D0C12 /* afEnum.h */,
 			);
 			name = afGM;
 			sourceTree = "<group>";
@@ -817,6 +824,7 @@
 				38FBE77B143E20C9000F8B7F /* PlacesReportViewController.m in Sources */,
 				38FBE780143E20DF000F8B7F /* PlacesDetailsViewController.m in Sources */,
 				38FBE785143E20F0000F8B7F /* PlacesSearchViewController.m in Sources */,
+				381E44781440A1D1006D0C12 /* afGoogleMapsEnums.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

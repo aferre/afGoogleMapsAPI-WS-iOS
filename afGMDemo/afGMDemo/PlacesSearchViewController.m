@@ -95,19 +95,22 @@
     BOOL useSensor = [[NSUserDefaults standardUserDefaults] boolForKey:@"Sensor"];
     
     [req setUseSensor:useSensor];
+    
     req.location = CLLocationCoordinate2DMake([latTf.text doubleValue], [lngTf.text doubleValue]);
     req.name = nameTF.text;
     req.radius = [radiusTF.text doubleValue];
-    NSMutableArray *ar = [NSMutableArray arrayWithCapacity:3];
-    if (![type1TF.text isEqualToString:@""]){
-        [ar addObject:type1TF.text];
-    }if (![type2TF.text isEqualToString:@""]){
-        [ar addObject:type2TF.text];
-    }if (![type3TF.text isEqualToString:@""]){
-        [ar addObject:type3TF.text];
-    }
-    req.types = ar;
+    
+    if (![type1TF.text isEqualToString:@""])
+        [req addTypeString:type1TF.text];
+    
+    if (![type2TF.text isEqualToString:@""])
+        [req addTypeString:type2TF.text];
+    
+    if (![type3TF.text isEqualToString:@""])
+        [req addTypeString:type3TF.text];
+    
     req.afDelegate = self;
+    
     [req startAsynchronous];
     
 }

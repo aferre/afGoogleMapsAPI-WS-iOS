@@ -182,25 +182,37 @@
     
     PlaceDetails *sr = [[PlaceDetails alloc] init];
     
-    sr.name = [[NSString alloc] initWithString: [jsonDico objectForKey:@"name"]];
-    
-    sr.vicinity = [[NSString alloc] initWithString: [jsonDico objectForKey:@"vicinity"]];
-    
-    sr.types = [[NSArray alloc] initWithArray:[jsonDico objectForKey:@"types"]];
-    
-    sr.formattedAddress = [[NSString alloc] initWithString: [jsonDico objectForKey:@"formatted_address"]];
-    
-    sr.formattedPhoneNumber= [[NSString alloc] initWithString: [jsonDico  objectForKey:@"formatted_phone_number"]];
-    
+    NSString *str;
+    NSArray *ar;
+    NSURL *url;
+    str =[[NSString alloc] initWithString: [jsonDico objectForKey:@"name"]]; 
+    sr.name = str;
+    [str release];
+    str = [[NSString alloc] initWithString: [jsonDico objectForKey:@"vicinity"]];
+    sr.vicinity =  str;
+    [str release];
+    ar = [[NSArray alloc] initWithArray:[jsonDico objectForKey:@"types"]];
+    sr.types = ar;
+    [ar    release];
+    str = [[NSString alloc] initWithString: [jsonDico objectForKey:@"formatted_address"]];
+    sr.formattedAddress = str;
+    [str release];
+    str=[[NSString alloc] initWithString: [jsonDico  objectForKey:@"formatted_phone_number"]];
+    sr.formattedPhoneNumber= str;
+    [str release];
     NSURL *a = [[NSURL alloc] initWithString:[jsonDico objectForKey:@"url"]];
     sr.urlURL = a;
     [a release];
     NSURL *b = [[NSURL alloc] initWithString:[jsonDico objectForKey:@"icon"]];
     sr.urlICON = b;
     [b release];
+    str= [[NSString alloc] initWithString: [jsonDico objectForKey:@"id"]];
+    sr.theId = str;
+    [str release];
+    str = [[NSString alloc] initWithString: [jsonDico objectForKey:@"reference"]];
+    sr.reference = str;
+    [str release];
     
-    sr.theId = [[NSString alloc] initWithString: [jsonDico objectForKey:@"id"]];
-    sr.reference = [[NSString alloc] initWithString: [jsonDico objectForKey:@"reference"]];
     sr.rating = [[jsonDico objectForKey:@"rating"] doubleValue];
     
     NSArray *addressComponentsArray = [jsonDico objectForKey:@"address_components"];
@@ -210,7 +222,7 @@
         AddressComponent *addressComp = [AddressComponent parseJsonDico:addressCompDico];
         [addressComponents addObject:addressComp];
     }
-    NSArray *ar = [[NSArray alloc] initWithArray:addressComponents];
+    ar = [[NSArray alloc] initWithArray:addressComponents];
     sr.addressComponents = ar;
     [ar release]; 
     return  sr;

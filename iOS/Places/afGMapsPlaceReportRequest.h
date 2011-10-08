@@ -21,7 +21,7 @@
 @property (nonatomic,assign) double accuracy; //meters
 @property (nonatomic,retain) NSString *name;
 @property (nonatomic,retain) NSString *reference;
-@property (nonatomic,retain) NSArray *types;
+@property (nonatomic,retain) NSMutableArray *types;
 
 //computed
 @property (nonatomic,assign) BOOL isDeleting;
@@ -31,6 +31,10 @@
 -(void) setTheReference:(NSString *)refe;
 
 -(void) setTheName:(NSString *)nam;
+
+-(void) addTypeString:(NSString *) typeString;
+
+-(void) addTypeEnum:(PlacesType1) type;
 
 @end
 

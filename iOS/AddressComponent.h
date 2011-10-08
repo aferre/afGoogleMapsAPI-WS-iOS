@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "afEnum.h"
 
-typedef enum AddressComponentType { 
-    AddressComponentTypeStreetAddress = 0,
+enum { 
+    AddressComponentTypeStreetAddress,
     AddressComponentTypeRoute,
     AddressComponentTypeIntersection,
     AddressComponentTypePolitical,
@@ -32,7 +33,33 @@ typedef enum AddressComponentType {
     AddressComponentTypeStreetNumber,
     AddressComponentTypeFloor,
     AddressComponentTypeRoom
-} AddressComponentType;
+};
+typedef NSInteger AddressComponentType;
+
+static NSString *AddressComponentTypeAsStrings[] = {
+    [AddressComponentTypeStreetAddress] = @"street_ddress",
+    [AddressComponentTypeRoute] = @"route",
+    [AddressComponentTypeIntersection] = @"intersection",
+    [AddressComponentTypePolitical] = @"political",
+    [AddressComponentTypeCountry] = @"country",
+    [AddressComponentTypeAdministrativeAreaLevel1] = @"administrative_area_level_1",
+    [AddressComponentTypeAdministrativeAreaLevel2] = @"administrative_area_level_2",
+    [AddressComponentTypeAdministrativeAreaLevel3] = @"administrative_area_level_3",
+    [AddressComponentTypeColloquialArea] = @"colloquial_area",
+    [AddressComponentTypeLocality] = @"locality",
+    [AddressComponentTypeSublocality] = @"sublocality",
+    [AddressComponentTypeNeighborhood] = @"neighborhood",
+    [AddressComponentTypePremise] = @"premise",
+    [AddressComponentTypeSubpremise] = @"subpremise",
+    [AddressComponentTypePostalCode] = @"postal_code",
+    [AddressComponentTypeNaturalFeature] = @"natural_feature",
+    [AddressComponentTypeAirport] = @"airport",
+    [AddressComponentTypePark] = @"park",
+    [AddressComponentTypePointOfInterest] = @"point_of_interest",
+    [AddressComponentTypePostBox] = @"post_box",
+    [AddressComponentTypeStreetNumber] = @"street_number",
+    [AddressComponentTypeFloor] = @"floor",
+    [AddressComponentTypeRoom] = @"room"};
 
 @interface AddressComponent : NSObject {
     NSArray *componentTypes;
@@ -42,7 +69,8 @@ typedef enum AddressComponentType {
 @property (nonatomic,retain) NSString * longName;
 @property (nonatomic,retain) NSString *shortName;
 @property (nonatomic,retain) NSArray *componentTypes;
-+ (AddressComponentType) fromString:(NSString *)str;
+
+DECLARE_ENUM(AddressComponentType)
 
 + (AddressComponent *) parseJsonDico:(NSDictionary *)jsonDico;
 @end

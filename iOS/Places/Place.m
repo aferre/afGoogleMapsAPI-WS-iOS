@@ -12,6 +12,8 @@
 
 @synthesize theid,reference,iconURL,geometry,types,vicinity,name;
 
+SYNTHESIZE_ENUM(PlacesType1)
+
 +(Place *)parseJsonDico:(NSDictionary *)jsonDico{
     
     Place *p = [[[Place alloc]init]autorelease];

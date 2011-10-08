@@ -7,41 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+
 #import "SBJsonPublic.h"
 #import "ASIHTTPRequest.h"
 #import "ASIHTTPRequestDelegate.h"
-#import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
+
+#import "afGoogleMapsEnums.h"
 
 #define WS_DEBUG YES
 #define GOOGLE_API_ROOT_URL_HTTP @"http://maps.googleapis.com/maps/api/"
 #define GOOGLE_API_ROOT_URL_HTTPS @"https://maps.googleapis.com/maps/api/"
 
 #define CUSTOM_ERROR_NUMBER 666
-
-typedef enum UnitsSystem { 
-    UnitsDefault = 0, // default is meters
-    UnitsMetric,
-    UnitsImperial
-} UnitsSystem;
-
-typedef enum AvoidMode { 
-    AvoidModeHighway = 0,
-    AvoidModeTolls,
-    AvoidModeNone
-} AvoidMode;
-
-typedef enum TravelMode { 
-    TravelModeDriving = 0,
-    TravelModeWalking,
-    TravelModeBicycling,
-    TravelModeDefault
-} TravelMode;
-
-typedef enum ReturnFormat { 
-    ReturnJSON=0,
-    ReturnXML
-} ReturnFormat;
 
 // See http://en.wikipedia.org/wiki/List_of_Internet_top-level_domains#Country_code_top-level_domains
 typedef enum RC{
@@ -381,15 +360,9 @@ typedef enum LocationType {
 @property (nonatomic,assign) RC region;
 @property (nonatomic,assign) Language language;
 
-+(NSString *)languageCode:(Language) ln;
++ (NSString *) languageCode:(Language) ln;
 
-+(NSString *)regionCode:(RC) rc;
-
-+(NSString *) travelMode:(TravelMode) travelMode;
-
-+(NSString *) avoidMode:(AvoidMode) avoidMode;
-
-+(NSString *) unitsString:(UnitsSystem) unitSystem;
++ (NSString *) regionCode:(RC) rc;
 
 - (NSString *) getURLString;
 
@@ -397,8 +370,8 @@ typedef enum LocationType {
 
 - (NSString *) makeURLStringWithServicePrefix:(NSString *)servicePrefix;
 
--(id) initDefault;
+- (id) initDefault;
 
--(NSError *) errorForService:(NSString *)serviceName type:(NSString *)errorType status:(NSString *)status;
+- (NSError *) errorForService:(NSString *)serviceName type:(NSString *)errorType status:(NSString *)status;
 
 @end

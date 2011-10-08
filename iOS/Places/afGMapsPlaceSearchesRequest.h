@@ -7,12 +7,10 @@
 //
 
 #import "afGMapsPlacesRequest.h"
-#import "Place.h"
 
 @protocol afGoogleMapsPlaceSearchesDelegate;
 
 @interface afGMapsPlaceSearchesRequest : afGMapsPlacesRequest
-
 
 @property (nonatomic,assign) id<afGoogleMapsPlaceSearchesDelegate> afDelegate;
 
@@ -21,7 +19,7 @@
 #pragma mark ------------------------------------------
 @property (nonatomic,assign) CLLocationCoordinate2D location;
 @property (nonatomic,assign) double radius; //meters
-@property (nonatomic,retain) NSArray *types;
+@property (nonatomic,retain) NSMutableArray *types;
 @property (nonatomic,retain) NSString *name;
 
 #pragma mark ------------------------------------------
@@ -31,6 +29,10 @@
 @property (nonatomic,retain) NSArray *htmlAttributions;
 
 +(id)request;
+
+-(void) addTypeString:(NSString *) typeString;
+
+-(void) addTypeEnum:(PlacesType1) type;
 
 @end
 

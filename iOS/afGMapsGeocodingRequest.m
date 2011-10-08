@@ -297,7 +297,7 @@
     NSMutableArray *addressComponents = [NSMutableArray array];
     
     for (NSString *type in resultTypesStringArray){
-        AddressComponentType addressType = [AddressComponent fromString:type];
+        AddressComponentType addressType = [AddressComponent AddressComponentTypeFromString:type];
         NSNumber *addressTypeNumber = [NSNumber numberWithInt:addressType];
         [resultsTypesArray addObject:addressTypeNumber];
     }
