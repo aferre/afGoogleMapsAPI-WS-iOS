@@ -32,17 +32,9 @@
 		38476B1B14374BC60030EEBE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38476B1A14374BC60030EEBE /* CoreFoundation.framework */; };
 		38476B2114374BC60030EEBE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38476B1F14374BC60030EEBE /* InfoPlist.strings */; };
 		38476B2C14374C670030EEBE /* afGoogleMapsAPIRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38476B2D14374C670030EEBE /* afGMapsDirectionsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D91381392E8AF005A7B40 /* afGMapsDirectionsRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38476B2E14374C670030EEBE /* afGMapsElevationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38CC36D81396C4B3006C1381 /* afGMapsElevationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38476B2F14374C670030EEBE /* afGMapsPlacesRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38476B3014374C670030EEBE /* afGMapsDistanceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D913A1392E8AF005A7B40 /* afGMapsDistanceRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38476B3114374C670030EEBE /* afGMapsGeocodingRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 389D913C1392E8AF005A7B40 /* afGMapsGeocodingRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38476B3614374CFC0030EEBE /* afGoogleMapsAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913F1392E8AF005A7B40 /* afGoogleMapsAPIRequest.m */; };
-		38476B3714374CFC0030EEBE /* afGMapsDirectionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91391392E8AF005A7B40 /* afGMapsDirectionsRequest.m */; };
-		38476B3814374CFC0030EEBE /* afGMapsElevationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */; };
 		38476B3914374CFC0030EEBE /* afGMapsPlacesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */; };
-		38476B3A14374CFC0030EEBE /* afGMapsDistanceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913B1392E8AF005A7B40 /* afGMapsDistanceRequest.m */; };
-		38476B3B14374CFC0030EEBE /* afGMapsGeocodingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913D1392E8AF005A7B40 /* afGMapsGeocodingRequest.m */; };
 		38476B3C14374D170030EEBE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3819B2F4142F87900036F542 /* CoreLocation.framework */; };
 		38476B3D14374D170030EEBE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91931392E973005A7B40 /* Security.framework */; };
 		38476B3E14374D170030EEBE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91911392E949005A7B40 /* CFNetwork.framework */; };
@@ -109,9 +101,6 @@
 		389D912C1392E89F005A7B40 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D912A1392E89F005A7B40 /* MainWindow.xib */; };
 		389D912F1392E89F005A7B40 /* GeocodingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D912E1392E89F005A7B40 /* GeocodingViewController.m */; };
 		389D91321392E89F005A7B40 /* GeocodingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389D91301392E89F005A7B40 /* GeocodingViewController.xib */; };
-		389D91401392E8AF005A7B40 /* afGMapsDirectionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91391392E8AF005A7B40 /* afGMapsDirectionsRequest.m */; };
-		389D91411392E8AF005A7B40 /* afGMapsDistanceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913B1392E8AF005A7B40 /* afGMapsDistanceRequest.m */; };
-		389D91421392E8AF005A7B40 /* afGMapsGeocodingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913D1392E8AF005A7B40 /* afGMapsGeocodingRequest.m */; };
 		389D91431392E8AF005A7B40 /* afGoogleMapsAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D913F1392E8AF005A7B40 /* afGoogleMapsAPIRequest.m */; };
 		389D91601392E915005A7B40 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D91471392E915005A7B40 /* NSObject+SBJson.m */; };
 		389D91611392E915005A7B40 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 389D914A1392E915005A7B40 /* SBJsonParser.m */; };
@@ -139,30 +128,19 @@
 		389D91901392E941005A7B40 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D918F1392E941005A7B40 /* libz.1.2.3.dylib */; };
 		389D91921392E949005A7B40 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91911392E949005A7B40 /* CFNetwork.framework */; };
 		389D91941392E973005A7B40 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 389D91931392E973005A7B40 /* Security.framework */; };
-		38C7DCBA143E3BAB00FA0153 /* AddressComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C8685B143B422B00291D97 /* AddressComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38C7DCBB143E3BAB00FA0153 /* afGoogleMaps.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C8685D143B422B00291D97 /* afGoogleMaps.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38C7DCBC143E3BAB00FA0153 /* Geometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C8685E143B422B00291D97 /* Geometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38C7DCBD143E3BAB00FA0153 /* afGMapsPlaceCheckinRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86861143B422D00291D97 /* afGMapsPlaceCheckinRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38C7DCBE143E3BAB00FA0153 /* afGMapsPlaceDetailsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86863143B422D00291D97 /* afGMapsPlaceDetailsRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38C7DCBF143E3BAB00FA0153 /* afGMapsPlaceReportRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86865143B422D00291D97 /* afGMapsPlaceReportRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38C7DCC0143E3BAB00FA0153 /* afGMapsPlaceSearchesRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86867143B422D00291D97 /* afGMapsPlaceSearchesRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38C7DCC1143E3BAB00FA0153 /* Place.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C86869143B422D00291D97 /* Place.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		38C7DCC3143E3BBD00FA0153 /* AddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8685C143B422B00291D97 /* AddressComponent.m */; };
-		38C7DCC4143E3BBD00FA0153 /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8685F143B422C00291D97 /* Geometry.m */; };
-		38C7DCC5143E3BBD00FA0153 /* afGMapsPlaceCheckinRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86862143B422D00291D97 /* afGMapsPlaceCheckinRequest.m */; };
-		38C7DCC6143E3BBD00FA0153 /* afGMapsPlaceDetailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86864143B422D00291D97 /* afGMapsPlaceDetailsRequest.m */; };
-		38C7DCC7143E3BBD00FA0153 /* afGMapsPlaceReportRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86866143B422D00291D97 /* afGMapsPlaceReportRequest.m */; };
-		38C7DCC8143E3BBD00FA0153 /* afGMapsPlaceSearchesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86868143B422D00291D97 /* afGMapsPlaceSearchesRequest.m */; };
-		38C7DCC9143E3BBD00FA0153 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8686A143B422D00291D97 /* Place.m */; };
-		38C8686B143B422D00291D97 /* AddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8685C143B422B00291D97 /* AddressComponent.m */; };
-		38C8686C143B422D00291D97 /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8685F143B422C00291D97 /* Geometry.m */; };
-		38C8686D143B422D00291D97 /* afGMapsPlaceCheckinRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86862143B422D00291D97 /* afGMapsPlaceCheckinRequest.m */; };
-		38C8686E143B422D00291D97 /* afGMapsPlaceDetailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86864143B422D00291D97 /* afGMapsPlaceDetailsRequest.m */; };
-		38C8686F143B422D00291D97 /* afGMapsPlaceReportRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86866143B422D00291D97 /* afGMapsPlaceReportRequest.m */; };
-		38C86870143B422D00291D97 /* afGMapsPlaceSearchesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C86868143B422D00291D97 /* afGMapsPlaceSearchesRequest.m */; };
-		38C86871143B422D00291D97 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 38C8686A143B422D00291D97 /* Place.m */; };
-		38CC36DC1396C4B3006C1381 /* afGMapsElevationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */; };
 		38CC36DD1396C4B3006C1381 /* afGMapsPlacesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */; };
+		38E506A91440D9B000B0ED0D /* afGMapsDirectionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E506981440D9AF00B0ED0D /* afGMapsDirectionsRequest.m */; };
+		38E506AA1440D9B000B0ED0D /* afGMapsDistanceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5069A1440D9AF00B0ED0D /* afGMapsDistanceRequest.m */; };
+		38E506AB1440D9B000B0ED0D /* afGMapsElevationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5069C1440D9AF00B0ED0D /* afGMapsElevationRequest.m */; };
+		38E506AC1440D9B000B0ED0D /* afGMapsGeocodingRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E5069E1440D9AF00B0ED0D /* afGMapsGeocodingRequest.m */; };
+		38E506AD1440D9B000B0ED0D /* afGMapsPlaceCheckinRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E506A11440D9AF00B0ED0D /* afGMapsPlaceCheckinRequest.m */; };
+		38E506AE1440D9B000B0ED0D /* afGMapsPlaceDetailsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E506A31440D9AF00B0ED0D /* afGMapsPlaceDetailsRequest.m */; };
+		38E506AF1440D9B000B0ED0D /* afGMapsPlaceReportRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E506A51440D9AF00B0ED0D /* afGMapsPlaceReportRequest.m */; };
+		38E506B01440D9B000B0ED0D /* afGMapsPlaceSearchesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E506A71440D9AF00B0ED0D /* afGMapsPlaceSearchesRequest.m */; };
+		38E506B81440D9F000B0ED0D /* AddressComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E506B31440D9F000B0ED0D /* AddressComponent.m */; };
+		38E506B91440D9F000B0ED0D /* Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E506B51440D9F000B0ED0D /* Geometry.m */; };
+		38E506BA1440D9F000B0ED0D /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E506B71440D9F000B0ED0D /* Place.m */; };
 		38FBE770143E1F71000F8B7F /* PlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FBE76E143E1F71000F8B7F /* PlacesViewController.m */; };
 		38FBE771143E1F71000F8B7F /* PlacesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38FBE76F143E1F71000F8B7F /* PlacesViewController.xib */; };
 		38FBE776143E20B9000F8B7F /* PlacesCheckinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FBE774143E20B9000F8B7F /* PlacesCheckinViewController.m */; };
@@ -186,7 +164,6 @@
 		3810D83313981E1300B5972E /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		3810D83413981E1300B5972E /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		3819B2F4142F87900036F542 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		381E447414408A9F006D0C12 /* afEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afEnum.h; path = ../../iOS/Places/afEnum.h; sourceTree = "<group>"; };
 		381E44761440A1D1006D0C12 /* afGoogleMapsEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGoogleMapsEnums.h; sourceTree = "<group>"; };
 		381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGoogleMapsEnums.m; sourceTree = "<group>"; };
 		38476B1914374BC60030EEBE /* afGoogleMapsiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = afGoogleMapsiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,12 +185,6 @@
 		389D912D1392E89F005A7B40 /* GeocodingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeocodingViewController.h; sourceTree = "<group>"; };
 		389D912E1392E89F005A7B40 /* GeocodingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeocodingViewController.m; sourceTree = "<group>"; };
 		389D91311392E89F005A7B40 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GeocodingViewController.xib; sourceTree = "<group>"; };
-		389D91381392E8AF005A7B40 /* afGMapsDirectionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGMapsDirectionsRequest.h; path = ../../iOS/afGMapsDirectionsRequest.h; sourceTree = "<group>"; };
-		389D91391392E8AF005A7B40 /* afGMapsDirectionsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGMapsDirectionsRequest.m; path = ../../iOS/afGMapsDirectionsRequest.m; sourceTree = "<group>"; };
-		389D913A1392E8AF005A7B40 /* afGMapsDistanceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGMapsDistanceRequest.h; path = ../../iOS/afGMapsDistanceRequest.h; sourceTree = "<group>"; };
-		389D913B1392E8AF005A7B40 /* afGMapsDistanceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGMapsDistanceRequest.m; path = ../../iOS/afGMapsDistanceRequest.m; sourceTree = "<group>"; };
-		389D913C1392E8AF005A7B40 /* afGMapsGeocodingRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGMapsGeocodingRequest.h; path = ../../iOS/afGMapsGeocodingRequest.h; sourceTree = "<group>"; };
-		389D913D1392E8AF005A7B40 /* afGMapsGeocodingRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGMapsGeocodingRequest.m; path = ../../iOS/afGMapsGeocodingRequest.m; sourceTree = "<group>"; };
 		389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGoogleMapsAPIRequest.h; path = ../../iOS/afGoogleMapsAPIRequest.h; sourceTree = "<group>"; };
 		389D913F1392E8AF005A7B40 /* afGoogleMapsAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGoogleMapsAPIRequest.m; path = ../../iOS/afGoogleMapsAPIRequest.m; sourceTree = "<group>"; };
 		389D91461392E915005A7B40 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "JSON/NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -269,25 +240,32 @@
 		389D918F1392E941005A7B40 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		389D91911392E949005A7B40 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		389D91931392E973005A7B40 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		38C8685B143B422B00291D97 /* AddressComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressComponent.h; path = ../../iOS/AddressComponent.h; sourceTree = "<group>"; };
-		38C8685C143B422B00291D97 /* AddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressComponent.m; path = ../../iOS/AddressComponent.m; sourceTree = "<group>"; };
 		38C8685D143B422B00291D97 /* afGoogleMaps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGoogleMaps.h; path = ../../iOS/afGoogleMaps.h; sourceTree = "<group>"; };
-		38C8685E143B422B00291D97 /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Geometry.h; path = ../../iOS/Geometry.h; sourceTree = "<group>"; };
-		38C8685F143B422C00291D97 /* Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Geometry.m; path = ../../iOS/Geometry.m; sourceTree = "<group>"; };
-		38C86861143B422D00291D97 /* afGMapsPlaceCheckinRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceCheckinRequest.h; sourceTree = "<group>"; };
-		38C86862143B422D00291D97 /* afGMapsPlaceCheckinRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceCheckinRequest.m; sourceTree = "<group>"; };
-		38C86863143B422D00291D97 /* afGMapsPlaceDetailsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceDetailsRequest.h; sourceTree = "<group>"; };
-		38C86864143B422D00291D97 /* afGMapsPlaceDetailsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceDetailsRequest.m; sourceTree = "<group>"; };
-		38C86865143B422D00291D97 /* afGMapsPlaceReportRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceReportRequest.h; sourceTree = "<group>"; };
-		38C86866143B422D00291D97 /* afGMapsPlaceReportRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceReportRequest.m; sourceTree = "<group>"; };
-		38C86867143B422D00291D97 /* afGMapsPlaceSearchesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceSearchesRequest.h; sourceTree = "<group>"; };
-		38C86868143B422D00291D97 /* afGMapsPlaceSearchesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceSearchesRequest.m; sourceTree = "<group>"; };
-		38C86869143B422D00291D97 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
-		38C8686A143B422D00291D97 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		38CC36D81396C4B3006C1381 /* afGMapsElevationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGMapsElevationRequest.h; path = ../../iOS/afGMapsElevationRequest.h; sourceTree = "<group>"; };
-		38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGMapsElevationRequest.m; path = ../../iOS/afGMapsElevationRequest.m; sourceTree = "<group>"; };
 		38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afGMapsPlacesRequest.h; path = ../../iOS/afGMapsPlacesRequest.h; sourceTree = "<group>"; };
 		38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = afGMapsPlacesRequest.m; path = ../../iOS/afGMapsPlacesRequest.m; sourceTree = "<group>"; };
+		38E506931440D9AF00B0ED0D /* afEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = afEnum.h; path = ../../iOS/afEnum.h; sourceTree = "<group>"; };
+		38E506971440D9AF00B0ED0D /* afGMapsDirectionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsDirectionsRequest.h; sourceTree = "<group>"; };
+		38E506981440D9AF00B0ED0D /* afGMapsDirectionsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsDirectionsRequest.m; sourceTree = "<group>"; };
+		38E506991440D9AF00B0ED0D /* afGMapsDistanceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsDistanceRequest.h; sourceTree = "<group>"; };
+		38E5069A1440D9AF00B0ED0D /* afGMapsDistanceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsDistanceRequest.m; sourceTree = "<group>"; };
+		38E5069B1440D9AF00B0ED0D /* afGMapsElevationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsElevationRequest.h; sourceTree = "<group>"; };
+		38E5069C1440D9AF00B0ED0D /* afGMapsElevationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsElevationRequest.m; sourceTree = "<group>"; };
+		38E5069D1440D9AF00B0ED0D /* afGMapsGeocodingRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsGeocodingRequest.h; sourceTree = "<group>"; };
+		38E5069E1440D9AF00B0ED0D /* afGMapsGeocodingRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsGeocodingRequest.m; sourceTree = "<group>"; };
+		38E506A01440D9AF00B0ED0D /* afGMapsPlaceCheckinRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceCheckinRequest.h; sourceTree = "<group>"; };
+		38E506A11440D9AF00B0ED0D /* afGMapsPlaceCheckinRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceCheckinRequest.m; sourceTree = "<group>"; };
+		38E506A21440D9AF00B0ED0D /* afGMapsPlaceDetailsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceDetailsRequest.h; sourceTree = "<group>"; };
+		38E506A31440D9AF00B0ED0D /* afGMapsPlaceDetailsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceDetailsRequest.m; sourceTree = "<group>"; };
+		38E506A41440D9AF00B0ED0D /* afGMapsPlaceReportRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceReportRequest.h; sourceTree = "<group>"; };
+		38E506A51440D9AF00B0ED0D /* afGMapsPlaceReportRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceReportRequest.m; sourceTree = "<group>"; };
+		38E506A61440D9AF00B0ED0D /* afGMapsPlaceSearchesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = afGMapsPlaceSearchesRequest.h; sourceTree = "<group>"; };
+		38E506A71440D9AF00B0ED0D /* afGMapsPlaceSearchesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = afGMapsPlaceSearchesRequest.m; sourceTree = "<group>"; };
+		38E506B21440D9F000B0ED0D /* AddressComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressComponent.h; sourceTree = "<group>"; };
+		38E506B31440D9F000B0ED0D /* AddressComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressComponent.m; sourceTree = "<group>"; };
+		38E506B41440D9F000B0ED0D /* Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		38E506B51440D9F000B0ED0D /* Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Geometry.m; sourceTree = "<group>"; };
+		38E506B61440D9F000B0ED0D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		38E506B71440D9F000B0ED0D /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		38FBE76D143E1F71000F8B7F /* PlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacesViewController.h; sourceTree = "<group>"; };
 		38FBE76E143E1F71000F8B7F /* PlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesViewController.m; sourceTree = "<group>"; };
 		38FBE76F143E1F71000F8B7F /* PlacesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlacesViewController.xib; sourceTree = "<group>"; };
@@ -507,50 +485,67 @@
 			name = JSON;
 			sourceTree = "<group>";
 		};
-		38C86860143B422C00291D97 /* Places */ = {
-			isa = PBXGroup;
-			children = (
-				38C86861143B422D00291D97 /* afGMapsPlaceCheckinRequest.h */,
-				38C86862143B422D00291D97 /* afGMapsPlaceCheckinRequest.m */,
-				38C86863143B422D00291D97 /* afGMapsPlaceDetailsRequest.h */,
-				38C86864143B422D00291D97 /* afGMapsPlaceDetailsRequest.m */,
-				38C86865143B422D00291D97 /* afGMapsPlaceReportRequest.h */,
-				38C86866143B422D00291D97 /* afGMapsPlaceReportRequest.m */,
-				38C86867143B422D00291D97 /* afGMapsPlaceSearchesRequest.h */,
-				38C86868143B422D00291D97 /* afGMapsPlaceSearchesRequest.m */,
-				38C86869143B422D00291D97 /* Place.h */,
-				38C8686A143B422D00291D97 /* Place.m */,
-			);
-			name = Places;
-			path = ../../iOS/Places;
-			sourceTree = "<group>";
-		};
 		38CC36D01396C2C2006C1381 /* afGM */ = {
 			isa = PBXGroup;
 			children = (
 				38C8685D143B422B00291D97 /* afGoogleMaps.h */,
 				389D913E1392E8AF005A7B40 /* afGoogleMapsAPIRequest.h */,
+				38E506931440D9AF00B0ED0D /* afEnum.h */,
+				38E506961440D9AF00B0ED0D /* Requests */,
 				389D913F1392E8AF005A7B40 /* afGoogleMapsAPIRequest.m */,
 				381E44761440A1D1006D0C12 /* afGoogleMapsEnums.h */,
 				381E44771440A1D1006D0C12 /* afGoogleMapsEnums.m */,
-				389D91381392E8AF005A7B40 /* afGMapsDirectionsRequest.h */,
-				389D91391392E8AF005A7B40 /* afGMapsDirectionsRequest.m */,
-				38CC36D81396C4B3006C1381 /* afGMapsElevationRequest.h */,
-				38CC36D91396C4B3006C1381 /* afGMapsElevationRequest.m */,
-				389D913A1392E8AF005A7B40 /* afGMapsDistanceRequest.h */,
-				389D913B1392E8AF005A7B40 /* afGMapsDistanceRequest.m */,
-				389D913C1392E8AF005A7B40 /* afGMapsGeocodingRequest.h */,
-				389D913D1392E8AF005A7B40 /* afGMapsGeocodingRequest.m */,
-				38C8685B143B422B00291D97 /* AddressComponent.h */,
-				38C8685C143B422B00291D97 /* AddressComponent.m */,
-				38C8685E143B422B00291D97 /* Geometry.h */,
-				38C8685F143B422C00291D97 /* Geometry.m */,
 				38CC36DA1396C4B3006C1381 /* afGMapsPlacesRequest.h */,
+				38E506B11440D9F000B0ED0D /* Wrapper classes */,
 				38CC36DB1396C4B3006C1381 /* afGMapsPlacesRequest.m */,
-				38C86860143B422C00291D97 /* Places */,
-				381E447414408A9F006D0C12 /* afEnum.h */,
 			);
 			name = afGM;
+			sourceTree = "<group>";
+		};
+		38E506961440D9AF00B0ED0D /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				38E506971440D9AF00B0ED0D /* afGMapsDirectionsRequest.h */,
+				38E506981440D9AF00B0ED0D /* afGMapsDirectionsRequest.m */,
+				38E506991440D9AF00B0ED0D /* afGMapsDistanceRequest.h */,
+				38E5069A1440D9AF00B0ED0D /* afGMapsDistanceRequest.m */,
+				38E5069B1440D9AF00B0ED0D /* afGMapsElevationRequest.h */,
+				38E5069C1440D9AF00B0ED0D /* afGMapsElevationRequest.m */,
+				38E5069D1440D9AF00B0ED0D /* afGMapsGeocodingRequest.h */,
+				38E5069E1440D9AF00B0ED0D /* afGMapsGeocodingRequest.m */,
+				38E5069F1440D9AF00B0ED0D /* Places */,
+			);
+			name = Requests;
+			path = ../../iOS/Requests;
+			sourceTree = "<group>";
+		};
+		38E5069F1440D9AF00B0ED0D /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				38E506A01440D9AF00B0ED0D /* afGMapsPlaceCheckinRequest.h */,
+				38E506A11440D9AF00B0ED0D /* afGMapsPlaceCheckinRequest.m */,
+				38E506A21440D9AF00B0ED0D /* afGMapsPlaceDetailsRequest.h */,
+				38E506A31440D9AF00B0ED0D /* afGMapsPlaceDetailsRequest.m */,
+				38E506A41440D9AF00B0ED0D /* afGMapsPlaceReportRequest.h */,
+				38E506A51440D9AF00B0ED0D /* afGMapsPlaceReportRequest.m */,
+				38E506A61440D9AF00B0ED0D /* afGMapsPlaceSearchesRequest.h */,
+				38E506A71440D9AF00B0ED0D /* afGMapsPlaceSearchesRequest.m */,
+			);
+			path = Places;
+			sourceTree = "<group>";
+		};
+		38E506B11440D9F000B0ED0D /* Wrapper classes */ = {
+			isa = PBXGroup;
+			children = (
+				38E506B21440D9F000B0ED0D /* AddressComponent.h */,
+				38E506B31440D9F000B0ED0D /* AddressComponent.m */,
+				38E506B41440D9F000B0ED0D /* Geometry.h */,
+				38E506B51440D9F000B0ED0D /* Geometry.m */,
+				38E506B61440D9F000B0ED0D /* Place.h */,
+				38E506B71440D9F000B0ED0D /* Place.m */,
+			);
+			name = "Wrapper classes";
+			path = "../../iOS/Wrapper classes";
 			sourceTree = "<group>";
 		};
 		38FBE787143E2352000F8B7F /* Places */ = {
@@ -581,17 +576,7 @@
 			files = (
 				38C7DCBB143E3BAB00FA0153 /* afGoogleMaps.h in Headers */,
 				38476B2C14374C670030EEBE /* afGoogleMapsAPIRequest.h in Headers */,
-				38476B2D14374C670030EEBE /* afGMapsDirectionsRequest.h in Headers */,
-				38476B2E14374C670030EEBE /* afGMapsElevationRequest.h in Headers */,
 				38476B2F14374C670030EEBE /* afGMapsPlacesRequest.h in Headers */,
-				38476B3014374C670030EEBE /* afGMapsDistanceRequest.h in Headers */,
-				38476B3114374C670030EEBE /* afGMapsGeocodingRequest.h in Headers */,
-				38C7DCBA143E3BAB00FA0153 /* AddressComponent.h in Headers */,
-				38C7DCBC143E3BAB00FA0153 /* Geometry.h in Headers */,
-				38C7DCBD143E3BAB00FA0153 /* afGMapsPlaceCheckinRequest.h in Headers */,
-				38C7DCBE143E3BAB00FA0153 /* afGMapsPlaceDetailsRequest.h in Headers */,
-				38C7DCBF143E3BAB00FA0153 /* afGMapsPlaceReportRequest.h in Headers */,
-				38C7DCC0143E3BAB00FA0153 /* afGMapsPlaceSearchesRequest.h in Headers */,
 				38476B6F14374DE70030EEBE /* ASIHTTPRequest.h in Headers */,
 				38476B5B14374DE70030EEBE /* NSObject+SBJson.h in Headers */,
 				38476B5C14374DE70030EEBE /* SBJson.h in Headers */,
@@ -619,7 +604,6 @@
 				38476B7314374DE70030EEBE /* ASINetworkQueue.h in Headers */,
 				38476B7414374DE70030EEBE /* ASIProgressDelegate.h in Headers */,
 				38476B7514374DE70030EEBE /* Reachability.h in Headers */,
-				38C7DCC1143E3BAB00FA0153 /* Place.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -738,13 +722,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38C7DCC3143E3BBD00FA0153 /* AddressComponent.m in Sources */,
-				38C7DCC4143E3BBD00FA0153 /* Geometry.m in Sources */,
-				38C7DCC5143E3BBD00FA0153 /* afGMapsPlaceCheckinRequest.m in Sources */,
-				38C7DCC6143E3BBD00FA0153 /* afGMapsPlaceDetailsRequest.m in Sources */,
-				38C7DCC7143E3BBD00FA0153 /* afGMapsPlaceReportRequest.m in Sources */,
-				38C7DCC8143E3BBD00FA0153 /* afGMapsPlaceSearchesRequest.m in Sources */,
-				38C7DCC9143E3BBD00FA0153 /* Place.m in Sources */,
 				38476B4614374DC70030EEBE /* NSObject+SBJson.m in Sources */,
 				38476B4714374DC70030EEBE /* SBJsonParser.m in Sources */,
 				38476B4814374DC70030EEBE /* SBJsonStreamParser.m in Sources */,
@@ -767,11 +744,7 @@
 				38476B5914374DC70030EEBE /* ASINetworkQueue.m in Sources */,
 				38476B5A14374DC70030EEBE /* Reachability.m in Sources */,
 				38476B3614374CFC0030EEBE /* afGoogleMapsAPIRequest.m in Sources */,
-				38476B3714374CFC0030EEBE /* afGMapsDirectionsRequest.m in Sources */,
-				38476B3814374CFC0030EEBE /* afGMapsElevationRequest.m in Sources */,
 				38476B3914374CFC0030EEBE /* afGMapsPlacesRequest.m in Sources */,
-				38476B3A14374CFC0030EEBE /* afGMapsDistanceRequest.m in Sources */,
-				38476B3B14374CFC0030EEBE /* afGMapsGeocodingRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,9 +755,6 @@
 				389D91261392E89F005A7B40 /* main.m in Sources */,
 				389D91291392E89F005A7B40 /* afGMDemoAppDelegate.m in Sources */,
 				389D912F1392E89F005A7B40 /* GeocodingViewController.m in Sources */,
-				389D91401392E8AF005A7B40 /* afGMapsDirectionsRequest.m in Sources */,
-				389D91411392E8AF005A7B40 /* afGMapsDistanceRequest.m in Sources */,
-				389D91421392E8AF005A7B40 /* afGMapsGeocodingRequest.m in Sources */,
 				389D91431392E8AF005A7B40 /* afGoogleMapsAPIRequest.m in Sources */,
 				389D91601392E915005A7B40 /* NSObject+SBJson.m in Sources */,
 				389D91611392E915005A7B40 /* SBJsonParser.m in Sources */,
@@ -807,24 +777,27 @@
 				389D91881392E920005A7B40 /* ASIInputStream.m in Sources */,
 				389D91891392E920005A7B40 /* ASINetworkQueue.m in Sources */,
 				389D918A1392E920005A7B40 /* Reachability.m in Sources */,
-				38CC36DC1396C4B3006C1381 /* afGMapsElevationRequest.m in Sources */,
 				38CC36DD1396C4B3006C1381 /* afGMapsPlacesRequest.m in Sources */,
 				3810D829139811AA00B5972E /* DirectionsViewController.m in Sources */,
 				3810D83013981DAD00B5972E /* DistanceViewController.m in Sources */,
 				3810D83513981E1300B5972E /* SettingsViewController.m in Sources */,
-				38C8686B143B422D00291D97 /* AddressComponent.m in Sources */,
-				38C8686C143B422D00291D97 /* Geometry.m in Sources */,
-				38C8686D143B422D00291D97 /* afGMapsPlaceCheckinRequest.m in Sources */,
-				38C8686E143B422D00291D97 /* afGMapsPlaceDetailsRequest.m in Sources */,
-				38C8686F143B422D00291D97 /* afGMapsPlaceReportRequest.m in Sources */,
-				38C86870143B422D00291D97 /* afGMapsPlaceSearchesRequest.m in Sources */,
-				38C86871143B422D00291D97 /* Place.m in Sources */,
 				38FBE770143E1F71000F8B7F /* PlacesViewController.m in Sources */,
 				38FBE776143E20B9000F8B7F /* PlacesCheckinViewController.m in Sources */,
 				38FBE77B143E20C9000F8B7F /* PlacesReportViewController.m in Sources */,
 				38FBE780143E20DF000F8B7F /* PlacesDetailsViewController.m in Sources */,
 				38FBE785143E20F0000F8B7F /* PlacesSearchViewController.m in Sources */,
 				381E44781440A1D1006D0C12 /* afGoogleMapsEnums.m in Sources */,
+				38E506A91440D9B000B0ED0D /* afGMapsDirectionsRequest.m in Sources */,
+				38E506AA1440D9B000B0ED0D /* afGMapsDistanceRequest.m in Sources */,
+				38E506AB1440D9B000B0ED0D /* afGMapsElevationRequest.m in Sources */,
+				38E506AC1440D9B000B0ED0D /* afGMapsGeocodingRequest.m in Sources */,
+				38E506AD1440D9B000B0ED0D /* afGMapsPlaceCheckinRequest.m in Sources */,
+				38E506AE1440D9B000B0ED0D /* afGMapsPlaceDetailsRequest.m in Sources */,
+				38E506AF1440D9B000B0ED0D /* afGMapsPlaceReportRequest.m in Sources */,
+				38E506B01440D9B000B0ED0D /* afGMapsPlaceSearchesRequest.m in Sources */,
+				38E506B81440D9F000B0ED0D /* AddressComponent.m in Sources */,
+				38E506B91440D9F000B0ED0D /* Geometry.m in Sources */,
+				38E506BA1440D9F000B0ED0D /* Place.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
