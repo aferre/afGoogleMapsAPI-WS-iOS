@@ -45,14 +45,6 @@
 
 - (id) initDefault;
 
-+ (id) addressForLatitude:(double) lat andLongitude:(double)lng;
-
-- (id) requestAddressForLatitude:(double) lat andLongitude:(double) lng;
-
-+ (id) coordinatesForAddress:(NSString *)address;
-
-- (id) requestCoordinatesForAddress:(NSString *)address;
-
 - (NSURL *) makeURL;
 
 - (void) setBoundsUpperLeft:(CGPoint) p1 downRight:(CGPoint)p2;

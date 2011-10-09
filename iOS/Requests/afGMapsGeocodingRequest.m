@@ -33,37 +33,6 @@
     return self;
 }
 
-+(id) addressForLatitude:(double) lat andLongitude:(double)lng{
-    
-    return [[[self alloc] requestAddressForLatitude:lat andLongitude:lng] autorelease];
-}
-
-- (id) requestAddressForLatitude:(double) lat andLongitude:(double) lng{
-    self = [self init];
-    
-    if (self){
-        [self setLatitude:lat andLongitude:lng];    
-    }
-    
-    return self;
-}
-
-+(id) coordinatesForAddress:(NSString *)address{
-    
-    return [[[self alloc] requestCoordinatesForAddress:address] autorelease];
-}
-
-- (id) requestCoordinatesForAddress:(NSString *)taddress{
-    
-    self = [self init];
-    
-    if (self){
-        [self setTheAddress:taddress];
-    }
-    
-    return self;
-}
-
 #pragma mark ------------------------------------------
 #pragma mark ------ Helpers
 #pragma mark ------------------------------------------
