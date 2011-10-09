@@ -9,6 +9,7 @@
 #import "PlacesSearchViewController.h"
 
 @implementation PlacesSearchViewController
+@synthesize typesInfoBtn;
 @synthesize latTf;
 @synthesize lngTf;
 @synthesize radiusTF;
@@ -57,6 +58,7 @@
     [self setType3TF:nil];
     [self setGoBtn:nil];
     [self setResultTV:nil];
+    [self setTypesInfoBtn:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -79,6 +81,7 @@
     [goBtn release];
     [resultTV release];
     
+    [typesInfoBtn release];
     [super dealloc];
 }
 - (IBAction)goBtnPressed:(id)sender {
@@ -142,4 +145,16 @@
     [al release];
 }
 
+- (IBAction)typesInfoBtnPressed:(id)sender {
+    
+    NSString * str = @"";
+    NSArray *names = [Place PlacesType1Names];
+    for (NSString *name in names){
+        str = [str stringByAppendingFormat:@"%@\n",name];
+    }
+    UIAlertView *al = [[UIAlertView alloc] initWithTitle:@"Error" message:str delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [al show];
+    [al release];
+    
+}
 @end

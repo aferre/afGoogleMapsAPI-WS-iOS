@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ASIHTTPRequest.h"
 
+#import "afGoogleMapsAPIRequest.h"
 #import "afGMapsDirectionsRequest.h"
 #import "afGMapsDistanceRequest.h"
 #import "afGMapsElevationRequest.h"

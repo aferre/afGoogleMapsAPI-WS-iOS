@@ -15,4 +15,7 @@ SYNTHESIZE_ENUM(AvoidMode)
 SYNTHESIZE_ENUM(TravelMode)
 SYNTHESIZE_ENUM(ReturnFormat)
 
+-(void) te{
+    
+}
 @end

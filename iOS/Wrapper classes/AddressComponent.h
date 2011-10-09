@@ -35,7 +35,7 @@ enum {
     AddressComponentTypeRoom
 };
 typedef NSInteger AddressComponentType;
-
+static NSInteger AddressComponentTypeNumber = 22;
 static NSString *AddressComponentTypeAsStrings[] = {
     [AddressComponentTypeStreetAddress] = @"street_ddress",
     [AddressComponentTypeRoute] = @"route",

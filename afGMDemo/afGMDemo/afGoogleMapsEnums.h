@@ -19,6 +19,7 @@ enum {
     UnitsImperial
 };
 typedef NSInteger UnitSystem;
+static NSInteger UnitSystemNumber = 3;
 static NSString *UnitSystemAsStrings[] = {[UnitsDefault] = @"meter",[UnitsMetric] = @"meter",[UnitsImperial] = @"mile"};
 
 enum { 
@@ -27,6 +28,7 @@ enum {
     AvoidModeNone
 };
 typedef NSInteger AvoidMode;
+static NSInteger AvoidModeNumber = 3;
 static NSString *AvoidModeAsStrings[] = {[AvoidModeHighway] = @"highways",[AvoidModeTolls] = @"tolls",[AvoidModeNone] = @"none"};
 
 enum { 
@@ -36,6 +38,7 @@ enum {
     TravelModeDefault
 };
 typedef NSInteger TravelMode;
+static NSInteger TravelModeNumber = 4;
 static NSString *TravelModeAsStrings[] = {[TravelModeDriving] = @"driving",[TravelModeWalking] = @"walking",[TravelModeBicycling] = @"bicycling", [TravelModeDefault] = @"driving"};
 
 enum { 
@@ -43,6 +46,7 @@ enum {
     XML
 };
 typedef NSInteger ReturnFormat;
+static NSInteger ReturnFormatNumber = 2;
 static NSString *ReturnFormatAsStrings[] = {[JSON] = @"json",[XML] = @"xml"};
 
 @interface afGoogleMapsEnums : NSObject

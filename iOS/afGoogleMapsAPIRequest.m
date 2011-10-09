@@ -17,6 +17,7 @@
 #pragma mark ------------------------------------------
 
 - (id) initDefault{
+
     self = [super initWithURL:[NSURL URLWithString:@"http://www.google.fr"]];
     
     if (self){
@@ -407,7 +408,7 @@
         }break;
         case ccTLD_Comoros:{
             return @"km";
-        }break;
+        }break; 
         case ccTLD_Saint_Kitts_and_Nevis:{
             return @"kn";
         }break;

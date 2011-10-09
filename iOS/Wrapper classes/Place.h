@@ -112,7 +112,10 @@ enum {
 };
 typedef NSInteger PlacesType1;
 
-static NSString *PlacesType1AsStrings[] = {[PlacesType1Accounting] = @"Accounting",
+static NSInteger PlacesType1Number = 97;
+
+static NSString *PlacesType1AsStrings[] = {
+    [PlacesType1Accounting] = @"Accounting",
     [PlacesType1Airport] = @"Airport",
     [PlacesType1Amusement_park] = @"Amusement park",
     [PlacesType1Aquarium] = @"Aquarium",

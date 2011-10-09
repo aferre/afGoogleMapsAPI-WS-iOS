@@ -19,7 +19,10 @@
     UITextField *type3TF;
     UIButton *goBtn;
     UITextView *resultTV;
+    UIButton *typesInfoBtn;
 }
+@property (nonatomic, retain) IBOutlet UIButton *typesInfoBtn;
+- (IBAction)typesInfoBtnPressed:(id)sender;
 
 @property (nonatomic, retain) IBOutlet UITextField *latTf;
 @property (nonatomic, retain) IBOutlet UITextField *lngTf;

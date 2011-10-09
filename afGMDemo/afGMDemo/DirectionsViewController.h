@@ -15,7 +15,7 @@
     UITextField *destinationTF;
     UITextField *waypointsTF;
     UISwitch *alternativesSw;
-    UITextView *txtView;
+    UIWebView *webView;
     UIButton *launchBtn;
 }
 
@@ -24,7 +24,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *destinationTF;
 @property (nonatomic, retain) IBOutlet UITextField *waypointsTF;
 @property (nonatomic, retain) IBOutlet UISwitch *alternativesSw;
-@property (nonatomic, retain) IBOutlet UITextView *txtView;
+@property (nonatomic, retain) IBOutlet UIWebView *webView;
 
 - (IBAction)launchReq:(id)sender;
 

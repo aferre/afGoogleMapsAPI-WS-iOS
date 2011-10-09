@@ -15,7 +15,7 @@
 @synthesize destinationTF;
 @synthesize waypointsTF;
 @synthesize alternativesSw;
-@synthesize txtView;
+@synthesize webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +36,7 @@
     [destinationTF release];
     [waypointsTF release];
     [alternativesSw release];
-    [txtView release];
+    [webView release];
     [launchBtn release];
     [super dealloc];
 }
@@ -71,7 +71,7 @@
     [self setDestinationTF:nil];
     [self setWaypointsTF:nil];
     [self setAlternativesSw:nil];
-    [self setTxtView:nil];
+    [self setWebView:nil];
     [self setLaunchBtn:nil];
     
     [super viewDidUnload];
@@ -143,7 +143,7 @@
 #pragma mark ------------------------------------------
 
 -(void) afDirectionsWSStarted:(afGMapsDirectionsRequest *)ws{
-    self.txtView.text = @"";
+    
 }
 
 -(void) afDirectionsWS:(afGMapsDirectionsRequest *)ws gotRoutes:(NSArray *)res{
@@ -156,11 +156,11 @@
             [str appendFormat:@"\n%@",step.htmlInstructions];
         }
     }
-    self.txtView.text = str;
+    [webView loadHTMLString:str baseURL:[NSURL URLWithString: @""]];
 }
 
 -(void) afDirectionsWSFailed:(afGMapsDirectionsRequest *)ws withError:(NSError *)er{
-    self.txtView.text = [NSString stringWithFormat:@"Failed with error %@",[er localizedDescription]];
+   // self.webView.text = [NSString stringWithFormat:@"Failed with error %@",[er localizedDescription]];
 }
 
 #pragma mark ------------------------------------------
