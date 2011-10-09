@@ -212,14 +212,24 @@
                     
                     NSDictionary * distanceDico = [childEle objectForKey:@"distance"];
                     NSString *textDistance = [distanceDico objectForKey:@"text"];
-                    NSNumber *valueDistance = [NSNumber numberWithDouble:[[distanceDico objectForKey:@"value"] doubleValue]];
+                    
+                    //always in meters, so we convert it to match the unit system used
+                    //in the request
+                    
+                    NSNumber *valueDistance;
+                    if(unitsSystem == UnitsImperial){
+                        valueDistance = [NSNumber numberWithDouble:[[distanceDico objectForKey:@"value"] doubleValue] * METER_TO_MILE];
+                    }else{
+                        valueDistance = [NSNumber numberWithDouble:[[distanceDico objectForKey:@"value"] doubleValue]];
+                    }
                     NSDictionary * durationDico = [childEle objectForKey:@"duration"];
                     NSString *textDuration = [durationDico objectForKey:@"text"];
                     NSNumber *valueDuration = [NSNumber numberWithDouble:[[durationDico objectForKey:@"value"] doubleValue]];
                     
-                    
+                                            
                     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:distance:origin:destination:unit:)]){
                         [afDelegate afDistanceWS:self distance:valueDistance origin:providedOrigin destination:providedDest unit:unitsSystem];
+                    
                     }
                     
                     if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afDistanceWS:distance:textDistance:origin:returnedOrigin:destination:returnedDestination:duration:textDuration:unit:)]){

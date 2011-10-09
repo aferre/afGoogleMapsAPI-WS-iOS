@@ -10,6 +10,8 @@
 
 #define GOOGLE_DISTANCE_API_PATH_COMPONENT @"distancematrix"
 
+#define METER_TO_MILE 0.000621371192
+
 @protocol afGoogleMapsDistanceDelegate;
 
 @interface afGMapsDistanceRequest : afGoogleMapsAPIRequest {
