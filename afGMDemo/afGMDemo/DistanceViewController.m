@@ -156,4 +156,12 @@
     
     txtView.text = [txtView.text stringByAppendingString:[NSString stringWithFormat:@"FROM : %@ TO %@ = %@ %@\n", origin,destination, distance,[afGoogleMapsEnums UnitSystemStringFromObjectType:unit]]];
 }
+#pragma mark ------------------------------------------
+#pragma mark ------ TextField delegates
+#pragma mark ------------------------------------------
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 @end

@@ -154,5 +154,13 @@
     
     txtView.text = [NSString stringWithFormat:@"Failed with error %@",[er localizedDescription]]; 
 }
+#pragma mark ------------------------------------------
+#pragma mark ------ TextField delegates
+#pragma mark ------------------------------------------
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
 
 @end

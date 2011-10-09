@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "afGMapsGeocodingRequest.h"
 
-@interface GeocodingViewController : UIViewController <afGoogleMapsGeocodingDelegate>{
+@interface GeocodingViewController : UIViewController <UITextFieldDelegate,afGoogleMapsGeocodingDelegate>{
 
     UISwitch *revGeocodingSw;
     UITextField *addressTF;

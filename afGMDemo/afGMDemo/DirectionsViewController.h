@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "afGMapsDirectionsRequest.h"
 
-@interface DirectionsViewController : UIViewController <afGoogleMapsDirectionsDelegate>{
+@interface DirectionsViewController : UIViewController <UITextFieldDelegate, afGoogleMapsDirectionsDelegate>{
    
     UITextField *originTF;
     UITextField *destinationTF;

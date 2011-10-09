@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "afGMapsDistanceRequest.h"
 
-@interface DistanceViewController : UIViewController <afGoogleMapsDistanceDelegate>{
+@interface DistanceViewController : UIViewController <UITextFieldDelegate, afGoogleMapsDistanceDelegate>{
     
     UITextField *origin1TF;
     UITextField *origin2TF;
