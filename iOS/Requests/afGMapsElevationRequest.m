@@ -186,10 +186,12 @@
             
             [elevations addObject:dico];
             
+            [dico release];
+            
             if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afElevationWS:gotElevation:forLocation:)]){
                 [afDelegate afElevationWS:self gotElevation:el forLocation:location];
             }
-            
+            [location release];
         }
         
         if (afDelegate!=NULL && [afDelegate respondsToSelector:@selector(afElevationWS:gotResults:)]){
