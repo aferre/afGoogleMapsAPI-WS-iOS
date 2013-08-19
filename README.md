@@ -41,3 +41,7 @@ h1. TODO
 		Get rid of custom locales and use Locales from iOS framework.
 
 		Internationalize.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aferre/afgooglemapsapi-ws-ios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
