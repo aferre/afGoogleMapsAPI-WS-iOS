@@ -1,1 +1,5 @@
 language: objective-c
+env:
+  global:
+    - REPO="aferre/afGooglapsAPI-WS-iOS"
+    - CI_HOME=`pwd`/$REPO/afGMDemo
