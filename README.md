@@ -1,8 +1,13 @@
+afGoogleMapsAPI-WS-iOS
+======================
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aferre/afgooglemapsapi-ws-ios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 iOS wrapper for the GoogleMaps API Web Services.
 
-h1. How to
+How to
+------
 
-h2. Install
+### Install
 
 Drag/drop the files in the iOS folder to your project in xcode. Use the Copy to target checkbox to make sure you won't 
 loose it on the way. 
@@ -10,38 +15,38 @@ OR
 Drag/drop the *.framework file to your project in xcode. Use the Copy to target checkbox to make sure you won't loose 
 it on the way.
 
-h2. Use
+### Use
 
 Go to "the wiki":https://github.com/aferre/afGoogleMapsAPI-WS-iOS/wiki
 
-h1. TODO
+TODO
+----
 
-	Distance Matrix:
+### Distance Matrix:
 		
 		Tests.
 
-	Geocoding:
+### Geocoding:
 
 		Tests.
 
-	Places:
+### Places:
 
 		Tests.
 
-	Elevation:
+### Elevation:
 
 		From scratch.
 
-	Directions:
+### Directions:
 
 		Add wrappers for results parameters.
 
-	All:
+### All:
 	
 		Get rid of custom locales and use Locales from iOS framework.
 
 		Internationalize.
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aferre/afgooglemapsapi-ws-ios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
