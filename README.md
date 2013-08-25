@@ -1,5 +1,6 @@
 afGoogleMapsAPI-WS-iOS
 ======================
+[![Build Status](https://travis-ci.org/aferre/afGoogleMapsAPI-WS-iOS.png?branch=master)](https://travis-ci.org/aferre/afGoogleMapsAPI-WS-iOS)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/aferre/afgooglemapsapi-ws-ios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 iOS wrapper for the GoogleMaps API Web Services.
